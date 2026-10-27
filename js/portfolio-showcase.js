@@ -15,6 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initCategoryFilters();
   initVideoModal();
   initSeoLightbox();
+  initHoverVideoPreview();
   checkInitialCategoryFromUrl();
 });
 
@@ -225,5 +226,48 @@ function initSeoLightbox() {
     if (e.key === 'Escape' && lightboxBackdrop.classList.contains('is-open')) {
       closeLightbox();
     }
+  });
+}
+
+/* ==========================================================================
+   04. HOVER VIDEO PREVIEW SYSTEM (Muted Dynamic Previews on MouseEnter)
+   ========================================================================== */
+
+function initHoverVideoPreview() {
+  if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+
+  const videoCards = document.querySelectorAll('.pf-portrait-card, .pf-landscape-card');
+
+  videoCards.forEach(card => {
+    const previewVideo = card.querySelector('video');
+    if (!previewVideo) return;
+
+    previewVideo.muted = true;
+    previewVideo.loop = true;
+
+    let playPromise = null;
+
+    card.addEventListener('mouseenter', () => {
+      card.classList.add('is-hover-playing');
+      playPromise = previewVideo.play();
+      if (playPromise !== undefined) {
+        playPromise.catch(() => {
+          // Autoplay quietly handled
+        });
+      }
+    });
+
+    card.addEventListener('mouseleave', () => {
+      card.classList.remove('is-hover-playing');
+      if (playPromise !== undefined) {
+        playPromise.then(() => {
+          previewVideo.pause();
+        }).catch(() => {
+          previewVideo.pause();
+        });
+      } else {
+        previewVideo.pause();
+      }
+    });
   });
 }

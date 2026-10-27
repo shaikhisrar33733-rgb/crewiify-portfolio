@@ -481,6 +481,34 @@
   box-shadow: 0 0 32px rgba(167, 139, 250, 0.8);
 }
 
+/* Active Hover Video Playback State */
+.pf-portrait-card.is-hover-playing .pf-portrait-card__video-preview,
+.pf-landscape-card.is-hover-playing .pf-landscape-card__video-preview {
+  filter: brightness(1.08) contrast(1.04);
+}
+
+.pf-portrait-card.is-hover-playing .pf-play-btn,
+.pf-landscape-card.is-hover-playing .pf-play-btn {
+  transform: translate(-50%, -50%) scale(1.08);
+  background: rgba(139, 92, 246, 0.95);
+  box-shadow: 0 0 32px rgba(167, 139, 250, 0.9);
+}
+
+.pf-portrait-card.is-hover-playing .pf-play-btn::after,
+.pf-landscape-card.is-hover-playing .pf-play-btn::after {
+  content: '';
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  border: 2px solid rgba(167, 139, 250, 0.6);
+  animation: pf-pulse-ring 1.8s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+}
+
+@keyframes pf-pulse-ring {
+  0% { transform: scale(0.95); opacity: 0.9; }
+  100% { transform: scale(1.4); opacity: 0; }
+}
+
 .pf-portrait-card__bottom {
   display: flex;
   flex-direction: column;
