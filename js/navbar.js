@@ -63,15 +63,40 @@ document.addEventListener('DOMContentLoaded', () => {
     if (isHomePage) return false;
     const cleanItemUrl = itemUrl.toLowerCase().replace(/\/$/, '');
     const itemSegment = cleanItemUrl.split('/').filter(Boolean).pop() || '';
-    return cleanPath === cleanItemUrl || 
+    if (cleanPath === cleanItemUrl || 
            cleanPath.endsWith(cleanItemUrl) || 
            pathLastSegment === itemSegment ||
-           pathLastSegment === `${itemSegment}.html`;
+           pathLastSegment === `${itemSegment}.html`) {
+      return true;
+    }
+    if (itemId === 'case-studies' && (pathLastSegment === 'work' || pathLastSegment === 'portfolio' || pathLastSegment === 'work.html')) {
+      return true;
+    }
+    return false;
   };
 
   // 1. Dynamic Rendering & Filtering of Navigation Items based on NAV_CONFIG
   const renderNavMenu = () => {
     if (!navMenu) return;
+
+    const isGitHubPages = window.location.hostname.endsWith('github.io');
+    const pathParts = window.location.pathname.split('/').filter(Boolean);
+    const repoSegment = isGitHubPages && pathParts.length > 0 ? `/${pathParts[0]}` : '';
+
+    const resolveUrl = (url) => {
+      if (!isGitHubPages) return url;
+      if (url === '/') return `${repoSegment}/index.html`;
+      if (url.startsWith('/')) {
+        const clean = url.replace(/^\//, '').replace(/\/$/, '');
+        return `${repoSegment}/${clean}.html`;
+      }
+      return url;
+    };
+
+    const brandLink = document.querySelector('.navbar__brand');
+    if (brandLink && isGitHubPages) {
+      brandLink.setAttribute('href', `${repoSegment}/index.html`);
+    }
 
     const itemsHTML = NAV_CONFIG.items
       .filter(item => item.enabled)
@@ -92,7 +117,7 @@ document.addEventListener('DOMContentLoaded', () => {
                   const isChildActive = isItemActive(child.url, child.id);
                   return `
                     <li class="navbar__dropdown-item">
-                      <a href="${child.url}" class="navbar__dropdown-link ${isChildActive ? 'navbar__dropdown-link--active' : ''}">${child.label}</a>
+                      <a href="${resolveUrl(child.url)}" class="navbar__dropdown-link ${isChildActive ? 'navbar__dropdown-link--active' : ''}">${child.label}</a>
                     </li>
                   `;
                 }).join('')}
@@ -105,12 +130,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
         return `
           <li class="navbar__item">
-            <a href="${item.url}" class="navbar__link ${isCurrent ? 'navbar__link--active' : ''}">${item.label}</a>
+            <a href="${resolveUrl(item.url)}" class="navbar__link ${isCurrent ? 'navbar__link--active' : ''}">${item.label}</a>
           </li>
         `;
       }).join('');
 
-    const ctaTargetUrl = NAV_CONFIG.cta.url;
+    const ctaTargetUrl = resolveUrl(NAV_CONFIG.cta.url);
     const ctaHTML = NAV_CONFIG.cta.enabled ? `
       <li class="navbar__item navbar__mobile-cta">
         <a href="${ctaTargetUrl}" class="btn btn--primary" style="width: 100%;">${NAV_CONFIG.cta.label}</a>
@@ -126,6 +151,25 @@ document.addEventListener('DOMContentLoaded', () => {
           ${NAV_CONFIG.cta.label}
         </a>
       `;
+    }
+
+    // Resolve footer links and primary CTA buttons when on GitHub Pages
+    if (isGitHubPages) {
+      document.querySelectorAll('.footer__link').forEach(link => {
+        const href = link.getAttribute('href');
+        if (href && href.startsWith('/')) {
+          link.setAttribute('href', resolveUrl(href));
+        }
+      });
+      document.querySelectorAll('.footer-cta__btn').forEach(link => {
+        const href = link.getAttribute('href');
+        if (href && href.startsWith('/')) {
+          link.setAttribute('href', resolveUrl(href));
+        }
+      });
+      document.querySelectorAll('.footer__brand').forEach(link => {
+        link.setAttribute('href', `${repoSegment}/index.html`);
+      });
     }
   };
 

@@ -4,9 +4,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our Work &amp; Portfolio | CREWiiFY - Work That Speaks for Itself</title>
   <meta name="description"
-    content="Explore CREWIIFY Case Studies - Real projects, real results, and trusted white-label delivery for digital agencies worldwide.">
-  <title>Case Studies | CREWIIFY - Real Projects, Real Results</title>
+    content="From scroll-stopping video content to measurable SEO growth and high-performing websites, explore the work we create to help brands stand out and grow.">
 
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="assets/logos/c-logo-optimized.png">
@@ -22,35 +22,16 @@
   <link rel="stylesheet" href="css/variables.css">
   <link rel="stylesheet" href="css/global.css">
   <link rel="stylesheet" href="css/navbar.css">
-  <link rel="stylesheet" href="css/case-studies.css">
+  <link rel="stylesheet" href="css/cta.css">
+  <link rel="stylesheet" href="css/portfolio-showcase.css">
   <link rel="stylesheet" href="css/responsive.css">
-
-  <!-- Meta Pixel Code -->
-  <script>
-    !function (f, b, e, v, n, t, s) {
-      if (f.fbq) return; n = f.fbq = function () {
-        n.callMethod ?
-        n.callMethod.apply(n, arguments) : n.queue.push(arguments)
-      };
-      if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0';
-      n.queue = []; t = b.createElement(e); t.async = !0;
-      t.src = v; s = b.getElementsByTagName(e)[0];
-      s.parentNode.insertBefore(t, s)
-    }(window, document, 'script',
-      'https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init', '1720593865716750');
-    fbq('track', 'PageView');
-  </script>
-  <noscript>
-    <img height="1" width="1" src="https://www.facebook.com/tr?id=1720593865716750&ev=PageView
-&noscript=1" />
-  </noscript>
-  <!-- End Meta Pixel Code -->
 </head>
 
-<body>
+<body class="pf-page">
 
-  <!-- Header / Navigation (Global Reusable Component) -->
+  <!-- ====================================================================
+       01. HEADER / NAVBAR (Global Reusable Brand Navigation)
+       ==================================================================== -->
   <header class="header animate-fade-down" id="header">
     <div class="container">
       <nav class="navbar" aria-label="Main Navigation">
@@ -95,342 +76,874 @@
     </div>
   </header>
 
-  <!-- Main Content -->
-  <main>
-    <!-- Section 1: Case Studies Hero Section -->
-    <section class="cs-hero" id="case-studies-hero">
-      <!-- Background Layers -->
-      <div class="cs-hero__background" aria-hidden="true">
-        <canvas class="cs-hero__particles-canvas" id="csHeroCanvas"></canvas>
-        <div class="cs-hero__dot-grid"></div>
-        <div class="cs-hero__ambient-glow"></div>
-        <div class="cs-hero__ambient-glow-left"></div>
-      </div>
+  <!-- Atmospheric Background Ambient Grid & Glow -->
+  <div class="pf-ambient" aria-hidden="true">
+    <div class="pf-ambient__grid"></div>
+    <div class="pf-ambient__orb pf-ambient__orb--top"></div>
+    <div class="pf-ambient__orb pf-ambient__orb--mid"></div>
+  </div>
 
-      <div class="container">
-        <!-- Main 2-Column Hero Grid -->
-        <div class="cs-hero__container">
+  <main class="pf-main" id="mainContent">
 
-          <!-- Left Column: Editorial Headline & Actions -->
-          <div class="cs-hero__content">
-            <!-- Eyebrow Badge -->
-            <div class="cs-hero__badge animate-fade-scale">
-              <span class="cs-hero__badge-dot"></span>
-              CASE STUDIES
-            </div>
-
-            <!-- Main Display Headline -->
-            <h1 class="cs-hero__title animate-fade-up-1">
-              <span class="cs-hero__title-line">Real projects.</span>
-              <span class="cs-hero__title-line">Real results.</span>
-              <span class="cs-hero__title-line cs-hero__title-gradient">Trusted by agencies.</span>
-            </h1>
-
-            <!-- Supporting Description -->
-            <p class="cs-hero__description animate-fade-up-2">
-              Explore how we help agencies and businesses grow with websites, SEO, paid ads and automation — delivered
-              under the CREWiiFY brand.
-            </p>
-
-            <!-- CTA Group -->
-            <div class="cs-hero__cta-group animate-fade-up-3">
-              <a href="#case-studies-grid" class="btn btn--primary">
-                Explore Case Studies <span class="cs-hero__btn-arrow" aria-hidden="true">→</span>
-              </a>
-              <a href="/contact" class="btn btn--secondary">
-                Start a Project <span class="cs-hero__btn-arrow" aria-hidden="true">→</span>
-              </a>
-            </div>
+    <!-- ====================================================================
+         02. SOPHISTICATED PAGE INTRODUCTION
+         ==================================================================== -->
+    <section class="pf-intro" id="portfolioIntro">
+      <div class="pf-container">
+        <div class="pf-intro__inner">
+          <!-- Eyebrow -->
+          <div class="pf-eyebrow animate-fade-scale">
+            <span class="pf-eyebrow__dot" aria-hidden="true"></span>
+            OUR WORK
           </div>
 
-          <!-- Right Column: Organic Brand Constellation (Desktop / Large Viewports) -->
-          <div class="cs-hero__visual animate-fade-up-2">
-            <div class="cs-constellation" aria-label="Curated Client Brand Constellation">
-              <!-- Broad Ambient Glow Centered Behind Constellation -->
-              <div class="cs-constellation__glow" aria-hidden="true"></div>
+          <!-- Main Heading -->
+          <h1 class="pf-intro__title animate-fade-up-1">
+            Work That Speaks for <span class="pf-intro__gradient">Itself.</span>
+          </h1>
 
-              <!-- 1. Anchor Logo: Royal Caribbean (Visual focal anchor, slightly offset from center) -->
-              <div class="cs-constellation__node cs-constellation__node--anchor" title="Royal Caribbean">
-                <img src="assets/logos/Royal_Caribbean_logo_(2024).svg.png" alt="Royal Caribbean Logo"
-                  class="cs-constellation__img cs-constellation__img--anchor">
-              </div>
+          <!-- Supporting Text -->
+          <p class="pf-intro__desc animate-fade-up-2">
+            “From scroll-stopping video content to measurable SEO growth and high-performing websites, explore the work we create to help brands stand out and grow.”
+          </p>
 
-              <!-- 2. KIMS Hospitals (Upper Left) -->
-              <div class="cs-constellation__node cs-constellation__node--kims" title="KIMS Hospitals">
-                <img src="assets/logos/kimshospitals.png" alt="KIMS Hospitals Logo"
-                  class="cs-constellation__img cs-constellation__img--kims">
-              </div>
-
-              <!-- 3. Wockhardt (Upper Right / Offset) -->
-              <div class="cs-constellation__node cs-constellation__node--wockhardt" title="Wockhardt">
-                <img src="assets/logos/wockhardtlogo.webp" alt="Wockhardt Logo"
-                  class="cs-constellation__img cs-constellation__img--wockhardt">
-              </div>
-
-              <!-- 4. Travezy (Mid Left / Natural organic elevation) -->
-              <div class="cs-constellation__node cs-constellation__node--travezy" title="Travezy">
-                <img src="assets/logos/travezy.png" alt="Travezy Logo"
-                  class="cs-constellation__img cs-constellation__img--travezy">
-              </div>
-
-              <!-- 5. Celebrity Cruises (Mid Right / Staggered) -->
-              <div class="cs-constellation__node cs-constellation__node--celebrity" title="Celebrity Cruises">
-                <img src="assets/logos/celebrity-cruises.png" alt="Celebrity Cruises Logo"
-                  class="cs-constellation__img cs-constellation__img--celebrity">
-              </div>
-
-              <!-- 6. Acktive Vision (Lower Left / Deep Offset) -->
-              <div class="cs-constellation__node cs-constellation__node--acktive" title="Acktive Vision">
-                <img src="assets/logos/acktive-vision-logo-Final-e1771914753291.png" alt="Acktive Vision Logo"
-                  class="cs-constellation__img cs-constellation__img--acktive">
-              </div>
-
-              <!-- 7. Maheshwari (Lower Right / Shifted Elevation) -->
-              <div class="cs-constellation__node cs-constellation__node--maheshwari" title="Maheshwari">
-                <img src="assets/logos/maishwari.png" alt="Maheshwari Logo"
-                  class="cs-constellation__img cs-constellation__img--maheshwari">
-              </div>
-
+          <!-- Proof Ticker Bar -->
+          <div class="pf-intro__proof animate-fade-up-3">
+            <div class="pf-intro__proof-item">
+              <strong>400+</strong> Projects Delivered
             </div>
-          </div>
-
-        </div>
-      </div>
-
-      <!-- Mobile & Tablet Horizontal Client Strip (<= 992px) -->
-      <div class="cs-hero__mobile-strip animate-fade-up-3">
-        <div class="client-strip">
-
-          <div class="client-strip__marquee">
-            <div class="client-strip__track">
-              <!-- Set 1 -->
-              <ul class="client-strip__list">
-                <li class="client-strip__item"><img src="assets/logos/Royal_Caribbean_logo_(2024).svg.png"
-                    alt="Royal Caribbean" class="client-strip__logo client-strip__logo--wide"></li>
-                <li class="client-strip__item"><img src="assets/logos/kimshospitals.png" alt="KIMS Hospital"
-                    class="client-strip__logo client-strip__logo--wide"></li>
-                <li class="client-strip__item"><img src="assets/logos/wockhardtlogo.webp" alt="Wockhardt"
-                    class="client-strip__logo client-strip__logo--square"></li>
-                <li class="client-strip__item"><img src="assets/logos/travezy.png" alt="Travezy"
-                    class="client-strip__logo client-strip__logo--compact"></li>
-                <li class="client-strip__item"><img src="assets/logos/celebrity-cruises.png" alt="Celebrity Cruises"
-                    class="client-strip__logo client-strip__logo--wide"></li>
-                <li class="client-strip__item"><img src="assets/logos/acktive-vision-logo-Final-e1771914753291.png"
-                    alt="Acktive Vision" class="client-strip__logo client-strip__logo--wide"></li>
-                <li class="client-strip__item"><img src="assets/logos/maishwari.png" alt="Maheshwari"
-                    class="client-strip__logo client-strip__logo--wide"></li>
-              </ul>
-              <!-- Set 2 (Duplicate for Seamless Infinite Marquee) -->
-              <ul class="client-strip__list" aria-hidden="true">
-                <li class="client-strip__item"><img src="assets/logos/Royal_Caribbean_logo_(2024).svg.png"
-                    alt="Royal Caribbean" class="client-strip__logo client-strip__logo--wide"></li>
-                <li class="client-strip__item"><img src="assets/logos/kimshospitals.png" alt="KIMS Hospital"
-                    class="client-strip__logo client-strip__logo--wide"></li>
-                <li class="client-strip__item"><img src="assets/logos/wockhardtlogo.webp" alt="Wockhardt"
-                    class="client-strip__logo client-strip__logo--square"></li>
-                <li class="client-strip__item"><img src="assets/logos/travezy.png" alt="Travezy"
-                    class="client-strip__logo client-strip__logo--compact"></li>
-                <li class="client-strip__item"><img src="assets/logos/celebrity-cruises.png" alt="Celebrity Cruises"
-                    class="client-strip__logo client-strip__logo--wide"></li>
-                <li class="client-strip__item"><img src="assets/logos/acktive-vision-logo-Final-e1771914753291.png"
-                    alt="Acktive Vision" class="client-strip__logo client-strip__logo--wide"></li>
-                <li class="client-strip__item"><img src="assets/logos/maishwari.png" alt="Maheshwari"
-                    class="client-strip__logo client-strip__logo--wide"></li>
-              </ul>
+            <span class="pf-intro__proof-sep" aria-hidden="true">&bull;</span>
+            <div class="pf-intro__proof-item">
+              <strong>100%</strong> White-Label Partner
+            </div>
+            <span class="pf-intro__proof-sep" aria-hidden="true">&bull;</span>
+            <div class="pf-intro__proof-item">
+              <strong>4.9/5</strong> Client Satisfaction
+            </div>
+            <span class="pf-intro__proof-sep" aria-hidden="true">&bull;</span>
+            <div class="pf-intro__proof-item">
+              <strong>8+</strong> Years Proven Track Record
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Section 2: Refined Editorial Credibility & Audio Testimonial -->
-    <section class="cs-credibility" id="credibility">
-      <!-- Atmospheric Soft Purple Ambient Glow -->
-      <div class="cs-credibility__glow" aria-hidden="true"></div>
-
-      <div class="container">
-        <!-- Eyebrow Section Identifier (No redundant heading/paragraph) -->
-        <div class="cs-credibility__eyebrow-wrap animate-fade-scale">
-          <div class="cs-credibility__badge">
-            <span class="cs-credibility__badge-dot"></span>
-            TRUSTED BY AGENCIES &amp; BUSINESSES
-          </div>
-        </div>
-
-        <div class="cs-credibility__grid">
-
-          <!-- Left Column: Editorial Stats & Real Project Photography (~50%) -->
-          <div class="cs-credibility__left">
-            <div class="cs-editorial-grid animate-fade-up-2">
-
-              <!-- Block 1: 400+ Stat (Open, light glass surface) -->
-              <div class="cs-editorial-item cs-editorial-item--stat-large">
-                <div class="cs-stat-hero">
-                  <div class="cs-stat-hero__number-wrap">
-                    <span class="cs-stat-hero__num" data-target="400">0</span><span class="cs-stat-hero__plus">+</span>
-                  </div>
-                  <div class="cs-stat-hero__label-group">
-                    <span class="cs-stat-hero__dot" aria-hidden="true"></span>
-                    <span class="cs-stat-hero__label">Projects Delivered</span>
-                  </div>
-                  <div class="cs-stat-hero__sub">Delivered on time for global digital agencies</div>
-                </div>
-              </div>
-
-              <!-- Block 2: Project Media 1 (Web Platforms) -->
-              <div class="cs-editorial-item cs-editorial-item--img-top">
-                <div class="cs-media-card">
-                  <img src="assets/images/web-development-service.webp" alt="CREWiiFY Web Development Project"
-                    class="cs-media-card__img" loading="lazy">
-                  <div class="cs-media-card__overlay">
-                    <span class="cs-media-card__tag">Web Platforms</span>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Block 3: Project Media 2 (Organic Growth / SEO) -->
-              <div class="cs-editorial-item cs-editorial-item--img-bottom">
-                <div class="cs-media-card">
-                  <img src="assets/images/seo-service.webp" alt="CREWiiFY SEO &amp; Organic Growth Case Study"
-                    class="cs-media-card__img" loading="lazy">
-                  <div class="cs-media-card__overlay">
-                    <span class="cs-media-card__tag">Organic Growth</span>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Block 4: Dedicated 4.9/5 Rating Badge (Orbital / Circular Frame) -->
-              <div class="cs-editorial-item cs-editorial-item--rating">
-                <div class="cs-rating-badge">
-                  <!-- Orbital Decorative Circular Frame -->
-                  <div class="cs-rating-badge__orbit">
-                    <span class="cs-rating-badge__orbit-dot" aria-hidden="true"></span>
-                    <div class="cs-rating-badge__score-wrap">
-                      <span class="cs-rating-badge__score">4.9</span>
-                      <span class="cs-rating-badge__max">/5</span>
-                    </div>
-                    <div class="cs-rating-badge__stars" aria-label="5 stars rating">★★★★★</div>
-                  </div>
-                  <div class="cs-rating-badge__label">Average Client Rating</div>
-                </div>
-              </div>
-
-            </div>
-          </div>
-
-          <!-- Right Column: Refined Audio Testimonial Card (~44%) -->
-          <div class="cs-credibility__right animate-fade-up-2">
-            <div class="cs-testimonial-panel">
-              <!-- Subtle Upper-Right Ambient Glow -->
-              <div class="cs-testimonial-panel__glow" aria-hidden="true"></div>
-
-              <!-- Decorative Quote Mark -->
-              <div class="cs-testimonial__quote-mark" aria-hidden="true">“</div>
-
-              <!-- Testimonial Quote Text -->
-              <blockquote class="cs-testimonial__quote">
-                “CREWIIFY has been an extension of our team. They delivered beyond expectations and our clients love the
-                results.”
-              </blockquote>
-
-              <!-- Custom Interactive Audio Player -->
-              <div class="cs-audio-player" role="region" aria-label="Audio Testimonial Player">
-                <!-- Audio Element -->
-                <audio id="csCredAudioEl" src="assets/audio/testimonial_review.ogg" preload="metadata"></audio>
-
-                <!-- Play/Pause Button -->
-                <button class="cs-audio-player__btn" id="csCredAudioBtn" aria-label="Play audio testimonial">
-                  <svg class="cs-audio-player__icon" viewBox="0 0 24 24" fill="currentColor">
-                    <polygon points="5 3 19 12 5 21 5 3"></polygon>
-                  </svg>
-                </button>
-
-                <!-- Waveform Visualizer -->
-                <div class="cs-audio-player__waveform" id="csCredWaveform" aria-hidden="true">
-                  <!-- Generated dynamically via case-studies.js -->
-                </div>
-
-                <!-- Duration Display -->
-                <div class="cs-audio-player__time" id="csCredTime">0:00</div>
-              </div>
-
-              <!-- Author / Client Metadata & Rating -->
-              <div class="cs-testimonial__author">
-                <div class="cs-testimonial__author-left">
-                  <div class="cs-testimonial__avatar" aria-hidden="true">G</div>
-                  <div class="cs-testimonial__author-info">
-                    <div class="cs-testimonial__author-name">Gustavo</div>
-                    <div class="cs-testimonial__author-role">Agency Director, Luciqo</div>
-                  </div>
-                </div>
-
-                <!-- Star Rating Badge -->
-                <div class="cs-testimonial__stars" aria-label="Rated 4.9 out of 5 stars">
-                  <span class="cs-testimonial__stars-score">4.9/5</span>
-                  <span class="cs-testimonial__stars-icons" aria-hidden="true">★★★★★</span>
-                </div>
-              </div>
-
-            </div>
-          </div>
-
-        </div>
+    <!-- ====================================================================
+         03. CATEGORY NAVIGATION BAR
+         ==================================================================== -->
+    <section class="pf-nav-section" id="portfolioShowcase">
+      <div class="pf-nav-container">
+        <nav class="pf-nav-scroll" role="tablist" aria-label="Portfolio Category Navigation">
+          <button type="button" class="pf-nav-btn is-active" data-filter="all" role="tab" aria-selected="true" id="tab-all">
+            All Work <span class="pf-nav-btn__count">22</span>
+          </button>
+          <button type="button" class="pf-nav-btn" data-filter="portrait-videos" role="tab" aria-selected="false" id="tab-portrait">
+            Portrait Videos <span class="pf-nav-btn__count">5</span>
+          </button>
+          <button type="button" class="pf-nav-btn" data-filter="landscape-videos" role="tab" aria-selected="false" id="tab-landscape">
+            Landscape Videos <span class="pf-nav-btn__count">4</span>
+          </button>
+          <button type="button" class="pf-nav-btn" data-filter="seo-results" role="tab" aria-selected="false" id="tab-seo">
+            SEO Results <span class="pf-nav-btn__count">6</span>
+          </button>
+          <button type="button" class="pf-nav-btn" data-filter="websites" role="tab" aria-selected="false" id="tab-websites">
+            Websites <span class="pf-nav-btn__count">7</span>
+          </button>
+        </nav>
       </div>
     </section>
 
-    <!-- Section 3: Case Studies Portfolio Browsing -->
-    <section class="cs-portfolio" id="case-studies-grid">
-      <!-- Atmospheric Ambient Glow -->
-      <div class="cs-portfolio__glow" aria-hidden="true"></div>
+    <div class="pf-container">
 
-      <div class="container">
-
-        <!-- Case Studies Listing -->
-        <div class="cs-grid-view" id="csGridView">
-
-          <!-- 1. Category Filter Navigation -->
-          <nav class="cs-filter-nav" aria-label="Case Study Category Filters">
-            <ul class="cs-filter-list" role="tablist">
-              <li role="presentation">
-                <button class="cs-filter-btn is-active" data-filter="all" role="tab" aria-selected="true">
-                  All Work
-                </button>
-              </li>
-              <li role="presentation">
-                <button class="cs-filter-btn" data-filter="SEO" role="tab" aria-selected="false">
-                  SEO
-                </button>
-              </li>
-              <li role="presentation">
-                <button class="cs-filter-btn" data-filter="PPC Management & Growth" role="tab" aria-selected="false">
-                  PPC Management &amp; Growth
-                </button>
-              </li>
-            </ul>
-          </nav>
-
-          <!-- 2. All Case Studies Grid Header & Counter -->
-          <div class="cs-grid-header">
-            <h3 class="cs-grid-header__title">All Case Studies</h3>
-            <span class="cs-grid-header__count" id="csItemCount">Showing 6 of 6 Projects</span>
+      <!-- ====================================================================
+           04. PORTRAIT VIDEOS SECTION (9:16 Vertical Videos)
+           ==================================================================== -->
+      <section class="pf-section-block" id="sec-portrait-videos" aria-labelledby="heading-portrait">
+        <div class="pf-section-header">
+          <div class="pf-section-header__top">
+            <span class="pf-section-badge">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="5" y="2" width="14" height="20" rx="3"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+              VERTICAL CREATIVES &bull; 9:16
+            </span>
+            <span class="pf-section-count">5 Selected Projects</span>
           </div>
-
-          <!-- 3. Responsive Masonry-Inspired Case Study Grid -->
-          <div class="cs-masonry-grid" id="csMasonryGrid">
-            <!-- Rendered dynamically from case-studies.js -->
-          </div>
-
+          <h2 class="pf-section-title" id="heading-portrait">Portrait Videos</h2>
+          <p class="pf-section-desc">
+            High-retention vertical reels, talking-head shorts, and kinetic product walkthroughs crafted for social feeds and direct-response engagement.
+          </p>
         </div>
 
-      </div>
-    </section>
+        <div class="pf-portrait-grid">
+          <!-- Portrait Card 1 -->
+          <article class="pf-portrait-card" data-video-src="assets/videos/urban-reel.mp4" data-title="High-Retention Video Hooks &amp; Kinetic Pacing" data-format="9:16 REEL" data-desc="Raw footage transformed into 18 engaging Reels with dynamic karaoke subtitles, custom motion graphics, UI zoom callouts, and audio sync." data-aspect="9/16" tabindex="0" role="button" aria-label="Play High-Retention Video Hooks Reel">
+            <div class="pf-portrait-card__media">
+              <video class="pf-portrait-card__video-preview" src="assets/videos/urban-reel.mp4#t=1" preload="metadata" muted playsinline></video>
+              <div class="pf-portrait-card__overlay">
+                <div class="pf-portrait-card__top">
+                  <span class="pf-card-tag">VIRAL REEL</span>
+                  <span class="pf-card-time">0:45</span>
+                </div>
+                <div class="pf-play-btn" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="6 4 20 12 6 20 6 4"></polygon></svg>
+                </div>
+                <div class="pf-portrait-card__bottom">
+                  <span class="pf-portrait-card__client">DTC E-Commerce Client</span>
+                  <h3 class="pf-portrait-card__title">High-Retention Video Hooks &amp; Kinetic Pacing</h3>
+                  <div class="pf-portrait-card__meta-pills">
+                    <span class="pf-mini-pill">24–48h Turnaround</span>
+                    <span class="pf-mini-pill">4K 60fps</span>
+                    <span class="pf-mini-pill">Auto-Captions</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
 
-    <!-- Section 4: Final Conversion CTA -->
+          <!-- Portrait Card 2 -->
+          <article class="pf-portrait-card" data-video-src="assets/videos/sample-reel.mp4" data-title="B-Roll Infused Talking Head Viral Edits" data-format="9:16 TALKING HEAD" data-desc="Multi-cam studio recordings cut down to high-impact 45-second soundbites with contextual B-roll, kinetic zooms, and sound effects." data-aspect="9/16" tabindex="0" role="button" aria-label="Play B-Roll Infused Talking Head Reel">
+            <div class="pf-portrait-card__media">
+              <video class="pf-portrait-card__video-preview" src="assets/videos/sample-reel.mp4#t=1" preload="metadata" muted playsinline></video>
+              <div class="pf-portrait-card__overlay">
+                <div class="pf-portrait-card__top">
+                  <span class="pf-card-tag">TALKING HEAD</span>
+                  <span class="pf-card-time">0:45</span>
+                </div>
+                <div class="pf-play-btn" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="6 4 20 12 6 20 6 4"></polygon></svg>
+                </div>
+                <div class="pf-portrait-card__bottom">
+                  <span class="pf-portrait-card__client">Executive Personal Brand</span>
+                  <h3 class="pf-portrait-card__title">B-Roll Infused Talking Head Viral Edits</h3>
+                  <div class="pf-portrait-card__meta-pills">
+                    <span class="pf-mini-pill">3 Angles / Ep</span>
+                    <span class="pf-mini-pill">Animated Text</span>
+                    <span class="pf-mini-pill">65% Margin</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Portrait Card 3 -->
+          <article class="pf-portrait-card" data-video-src="assets/videos/urban-reel.mp4" data-title="High-Paced SaaS Product Walkthrough" data-format="9:16 PRODUCT DEMO" data-desc="45-second kinetic product reel with auto-captions, cursor zooms, UI callouts, and seamless audio rhythm pacing." data-aspect="9/16" tabindex="0" role="button" aria-label="Play High-Paced SaaS Product Walkthrough">
+            <div class="pf-portrait-card__media">
+              <video class="pf-portrait-card__video-preview" src="assets/videos/urban-reel.mp4#t=3" preload="metadata" muted playsinline></video>
+              <div class="pf-portrait-card__overlay">
+                <div class="pf-portrait-card__top">
+                  <span class="pf-card-tag">PRODUCT DEMO</span>
+                  <span class="pf-card-time">0:45</span>
+                </div>
+                <div class="pf-play-btn" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="6 4 20 12 6 20 6 4"></polygon></svg>
+                </div>
+                <div class="pf-portrait-card__bottom">
+                  <span class="pf-portrait-card__client">Tech Startup Client</span>
+                  <h3 class="pf-portrait-card__title">High-Paced SaaS Product Walkthrough</h3>
+                  <div class="pf-portrait-card__meta-pills">
+                    <span class="pf-mini-pill">Kinetic Zoom</span>
+                    <span class="pf-mini-pill">UI Highlights</span>
+                    <span class="pf-mini-pill">9:16 Format</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Portrait Card 4 -->
+          <article class="pf-portrait-card" data-video-src="assets/videos/sample-reel.mp4" data-title="Founder Story: Lessons From Bootstrapping" data-format="9:16 PODCAST SHORT" data-desc="Multi-cam dynamic cut with b-roll overlays, color pop, sound fx, and auto-synced subtitle animations for social feeds." data-aspect="9/16" tabindex="0" role="button" aria-label="Play Founder Story Podcast Short">
+            <div class="pf-portrait-card__media">
+              <video class="pf-portrait-card__video-preview" src="assets/videos/sample-reel.mp4#t=2" preload="metadata" muted playsinline></video>
+              <div class="pf-portrait-card__overlay">
+                <div class="pf-portrait-card__top">
+                  <span class="pf-card-tag">PODCAST SHORT</span>
+                  <span class="pf-card-time">0:40</span>
+                </div>
+                <div class="pf-play-btn" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="6 4 20 12 6 20 6 4"></polygon></svg>
+                </div>
+                <div class="pf-portrait-card__bottom">
+                  <span class="pf-portrait-card__client">Executive Personal Brand</span>
+                  <h3 class="pf-portrait-card__title">Founder Story: Lessons From Bootstrapping</h3>
+                  <div class="pf-portrait-card__meta-pills">
+                    <span class="pf-mini-pill">Multi-Cam</span>
+                    <span class="pf-mini-pill">B-Roll Sync</span>
+                    <span class="pf-mini-pill">Sound FX</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Portrait Card 5 -->
+          <article class="pf-portrait-card" data-video-src="assets/videos/urban-reel.mp4" data-title="Fitness Coaching Micro-Tutorial Routine" data-format="9:16 MOTION EDIT" data-desc="Fast-cut exercise guide with form callouts, dynamic tempo music sync, and branded lower-third motion graphics." data-aspect="9/16" tabindex="0" role="button" aria-label="Play Fitness Coaching Micro-Tutorial Reel">
+            <div class="pf-portrait-card__media">
+              <video class="pf-portrait-card__video-preview" src="assets/videos/urban-reel.mp4#t=4" preload="metadata" muted playsinline></video>
+              <div class="pf-portrait-card__overlay">
+                <div class="pf-portrait-card__top">
+                  <span class="pf-card-tag">MOTION EDIT</span>
+                  <span class="pf-card-time">0:30</span>
+                </div>
+                <div class="pf-play-btn" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="6 4 20 12 6 20 6 4"></polygon></svg>
+                </div>
+                <div class="pf-portrait-card__bottom">
+                  <span class="pf-portrait-card__client">Wellness Brand Client</span>
+                  <h3 class="pf-portrait-card__title">Fitness Coaching Micro-Tutorial Routine</h3>
+                  <div class="pf-portrait-card__meta-pills">
+                    <span class="pf-mini-pill">Tempo Sync</span>
+                    <span class="pf-mini-pill">Form Guides</span>
+                    <span class="pf-mini-pill">Mobile Native</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- ====================================================================
+           05. LANDSCAPE VIDEOS SECTION (16:9 Horizontal Videos)
+           ==================================================================== -->
+      <section class="pf-section-block" id="sec-landscape-videos" aria-labelledby="heading-landscape">
+        <div class="pf-section-header">
+          <div class="pf-section-header__top">
+            <span class="pf-section-badge">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="2" y="4" width="20" height="16" rx="3"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg>
+              HORIZONTAL CINEMATIC &bull; 16:9
+            </span>
+            <span class="pf-section-count">4 Selected Projects</span>
+          </div>
+          <h2 class="pf-section-title" id="heading-landscape">Landscape Videos</h2>
+          <p class="pf-section-desc">
+            Horizontal brand films, commercial campaign suites, multi-angle paid ads, and motion explainers built for widescreen impact.
+          </p>
+        </div>
+
+        <div class="pf-landscape-grid">
+          <!-- Landscape Card 1 -->
+          <article class="pf-landscape-card" data-video-src="assets/videos/landscape-sample.mp4" data-title="Omnichannel Campaign Launch Suite" data-format="16:9 CAMPAIGN SUITE" data-desc="Synchronized visual campaign rollout spanning YouTube 16:9 brand films, social cutdowns, animated story teasers, and banners." data-aspect="16/9" tabindex="0" role="button" aria-label="Play Omnichannel Campaign Launch Suite Video">
+            <div class="pf-landscape-card__media">
+              <video class="pf-landscape-card__video-preview" src="assets/videos/landscape-sample.mp4#t=2" preload="metadata" muted playsinline></video>
+              <div class="pf-landscape-card__overlay">
+                <div class="pf-portrait-card__top">
+                  <span class="pf-card-tag">OMNICHANNEL SUITE</span>
+                  <span class="pf-card-time">1:15</span>
+                </div>
+                <div class="pf-play-btn" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="6 4 20 12 6 20 6 4"></polygon></svg>
+                </div>
+              </div>
+            </div>
+            <div class="pf-landscape-card__body">
+              <div class="pf-landscape-card__header-line">
+                <span class="pf-landscape-card__client">Lifestyle &amp; Hospitality Group</span>
+                <span class="pf-mini-pill">16:9 Widescreen</span>
+              </div>
+              <h3 class="pf-landscape-card__title">Omnichannel Campaign Launch Suite</h3>
+              <p class="pf-landscape-card__desc">
+                Synchronized visual campaign rollout spanning YouTube brand films, social cutdowns, animated story teasers, and banner graphics delivered within a 5-day sprint.
+              </p>
+              <div class="pf-landscape-card__highlights">
+                <div class="pf-highlight-pill"><span>Total Assets:</span> 36 Deliverables</div>
+                <div class="pf-highlight-pill"><span>Turnaround:</span> 5-Day Sprint</div>
+                <div class="pf-highlight-pill"><span>In-House Team:</span> Zero Needed</div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Landscape Card 2 -->
+          <article class="pf-landscape-card" data-video-src="assets/videos/brand-story.mp4" data-title="Architectural Property Showcase &amp; Stories" data-format="16:9 BRAND FILM" data-desc="High-end architectural walkthrough clips refined with custom LUT cinematic color grade, smooth pacing, and commercially licensed audio." data-aspect="16/9" tabindex="0" role="button" aria-label="Play Architectural Property Showcase Video">
+            <div class="pf-landscape-card__media">
+              <video class="pf-landscape-card__video-preview" src="assets/videos/brand-story.mp4#t=5" preload="metadata" muted playsinline></video>
+              <div class="pf-landscape-card__overlay">
+                <div class="pf-portrait-card__top">
+                  <span class="pf-card-tag">CINEMATIC SHOWCASE</span>
+                  <span class="pf-card-time">1:30</span>
+                </div>
+                <div class="pf-play-btn" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="6 4 20 12 6 20 6 4"></polygon></svg>
+                </div>
+              </div>
+            </div>
+            <div class="pf-landscape-card__body">
+              <div class="pf-landscape-card__header-line">
+                <span class="pf-landscape-card__client">Luxury Real Estate Agency</span>
+                <span class="pf-mini-pill">4K UHD</span>
+              </div>
+              <h3 class="pf-landscape-card__title">Architectural Property Showcase &amp; Stories</h3>
+              <p class="pf-landscape-card__desc">
+                High-end architectural walkthrough clips refined with custom LUT cinematic color grade, elegant typography, and commercially licensed audio.
+              </p>
+              <div class="pf-landscape-card__highlights">
+                <div class="pf-highlight-pill"><span>Color Grade:</span> Custom LUT</div>
+                <div class="pf-highlight-pill"><span>Audio:</span> Commercial Safe</div>
+                <div class="pf-highlight-pill"><span>Status:</span> Ongoing Retainer</div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Landscape Card 3 -->
+          <article class="pf-landscape-card" data-video-src="assets/videos/landscape-sample.mp4" data-title="Conversion-Engine Multi-Angle Ad Creative" data-format="16:9 AD SUITE" data-desc="Batch-edited UGC creative variations, product feature callouts, and motion overlays tested across video ad feeds." data-aspect="16/9" tabindex="0" role="button" aria-label="Play Conversion-Engine Multi-Angle Ad Creative Video">
+            <div class="pf-landscape-card__media">
+              <video class="pf-landscape-card__video-preview" src="assets/videos/landscape-sample.mp4#t=8" preload="metadata" muted playsinline></video>
+              <div class="pf-landscape-card__overlay">
+                <div class="pf-portrait-card__top">
+                  <span class="pf-card-tag">PAID AD CREATIVE</span>
+                  <span class="pf-card-time">0:45</span>
+                </div>
+                <div class="pf-play-btn" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="6 4 20 12 6 20 6 4"></polygon></svg>
+                </div>
+              </div>
+            </div>
+            <div class="pf-landscape-card__body">
+              <div class="pf-landscape-card__header-line">
+                <span class="pf-landscape-card__client">Performance Ad Agency</span>
+                <span class="pf-mini-pill">Multi-Format</span>
+              </div>
+              <h3 class="pf-landscape-card__title">Conversion-Engine Multi-Angle Ad Creative</h3>
+              <p class="pf-landscape-card__desc">
+                Batch-edited UGC creative variations, direct response product callouts, and kinetic motion overlays tested across ad networks for maximum conversion.
+              </p>
+              <div class="pf-landscape-card__highlights">
+                <div class="pf-highlight-pill"><span>Hooks Tested:</span> 12 Angles</div>
+                <div class="pf-highlight-pill"><span>Batch Ship:</span> 48h Turnaround</div>
+                <div class="pf-highlight-pill"><span>Optimized:</span> Meta &amp; YouTube Ads</div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Landscape Card 4 -->
+          <article class="pf-landscape-card" data-video-src="assets/videos/brand-story.mp4" data-title="The 7-Figure E-Commerce Scaling Framework" data-format="16:9 EXPLAINER" data-desc="10-slide visual framework broken down with custom isometric vector illustrations, typography hierarchy, and data animation." data-aspect="16/9" tabindex="0" role="button" aria-label="Play E-Commerce Scaling Framework Explainer Video">
+            <div class="pf-landscape-card__media">
+              <video class="pf-landscape-card__video-preview" src="assets/videos/brand-story.mp4#t=12" preload="metadata" muted playsinline></video>
+              <div class="pf-landscape-card__overlay">
+                <div class="pf-portrait-card__top">
+                  <span class="pf-card-tag">MOTION EXPLAINER</span>
+                  <span class="pf-card-time">1:45</span>
+                </div>
+                <div class="pf-play-btn" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="6 4 20 12 6 20 6 4"></polygon></svg>
+                </div>
+              </div>
+            </div>
+            <div class="pf-landscape-card__body">
+              <div class="pf-landscape-card__header-line">
+                <span class="pf-landscape-card__client">Growth Marketing Agency</span>
+                <span class="pf-mini-pill">Vector Motion</span>
+              </div>
+              <h3 class="pf-landscape-card__title">The 7-Figure E-Commerce Scaling Framework</h3>
+              <p class="pf-landscape-card__desc">
+                Educational video explainer built with custom isometric vector graphics, typography hierarchy, and kinetic data callouts for high-ticket agency lead generation.
+              </p>
+              <div class="pf-landscape-card__highlights">
+                <div class="pf-highlight-pill"><span>Artwork:</span> Custom Vectors</div>
+                <div class="pf-highlight-pill"><span>Pacing:</span> Motion Graphics</div>
+                <div class="pf-highlight-pill"><span>Asset Type:</span> 16:9 Master + Cutdowns</div>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- ====================================================================
+           06. SEO RESULTS SECTION (Verified Proof & Analytics)
+           ==================================================================== -->
+      <section class="pf-section-block" id="sec-seo-results" aria-labelledby="heading-seo">
+        <div class="pf-section-header">
+          <div class="pf-section-header__top">
+            <span class="pf-section-badge">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+              VERIFIED IMPACT &bull; REAL DATA
+            </span>
+            <span class="pf-section-count">6 Verified Case Studies</span>
+          </div>
+          <h2 class="pf-section-title" id="heading-seo">SEO Results</h2>
+          <p class="pf-section-desc">
+            Measurable organic visibility, Google Business Profile performance, and local search growth verified through actual campaign analytics.
+          </p>
+        </div>
+
+        <div class="pf-seo-grid">
+          <!-- SEO Card 1 -->
+          <article class="pf-seo-card">
+            <div class="pf-seo-card__media" data-seo-zoom="assets/images/seo-results/seo-result-palladium-700-calls.png" data-seo-title="Palladium Janseva Hospital - Google Business Profile Calls" data-seo-metric="700 Calls Generated (Jun-Sept 2026)" role="button" tabindex="0" aria-label="Inspect Palladium Janseva Hospital SEO Performance">
+              <picture>
+                <source srcset="assets/images/seo-results/seo-result-palladium-700-calls.webp" type="image/webp">
+                <img src="assets/images/seo-results/seo-result-palladium-700-calls.png" alt="Google Business Profile calls for Palladium Janseva Hospital" class="pf-seo-card__img" loading="lazy" width="1024" height="517">
+              </picture>
+              <div class="pf-seo-card__zoom-hint">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+                Zoom Evidence
+              </div>
+            </div>
+            <div class="pf-seo-card__body">
+              <span class="pf-seo-card__category">LOCAL SEO / GOOGLE BUSINESS PROFILE</span>
+              <h3 class="pf-seo-card__title">Palladium Janseva Hospital</h3>
+              <p class="pf-seo-card__desc">
+                Google Business Profile calls scaled consistently from June to September 2026, reaching a peak of 303 calls in August.
+              </p>
+              <div class="pf-seo-card__metric-box">
+                <span class="pf-seo-card__metric-val">700 Calls</span>
+                <span class="pf-seo-card__metric-lbl">CALLS FROM BUSINESS PROFILE</span>
+              </div>
+              <div class="pf-seo-card__sub-metrics">
+                <span class="pf-seo-stat-pill"><strong>303</strong> Peak Calls / Mo</span>
+                <span class="pf-seo-stat-pill"><strong>4</strong> Months Growth</span>
+                <span class="pf-seo-stat-pill"><strong>Rank #1</strong> Local Map Pack</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- SEO Card 2 -->
+          <article class="pf-seo-card">
+            <div class="pf-seo-card__media" data-seo-zoom="assets/images/seo-results/seo-result-hospital-53k-users.png" data-seo-title="Leading Multispeciality Hospital - GA4 Active Users" data-seo-metric="53K Active Users (Last 30 Days)" role="button" tabindex="0" aria-label="Inspect Hospital SEO Performance">
+              <picture>
+                <source srcset="assets/images/seo-results/seo-result-hospital-53k-users.webp" type="image/webp">
+                <img src="assets/images/seo-results/seo-result-hospital-53k-users.png" alt="Google Analytics active users for multispeciality hospital" class="pf-seo-card__img" loading="lazy" width="1024" height="449">
+              </picture>
+              <div class="pf-seo-card__zoom-hint">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+                Zoom Evidence
+              </div>
+            </div>
+            <div class="pf-seo-card__body">
+              <span class="pf-seo-card__category">SEO / ORGANIC VISIBILITY</span>
+              <h3 class="pf-seo-card__title">A Leading Multispeciality Hospital</h3>
+              <p class="pf-seo-card__desc">
+                Consistent organic search visibility driving continuous patient acquisition across competitive healthcare queries.
+              </p>
+              <div class="pf-seo-card__metric-box">
+                <span class="pf-seo-card__metric-val">53K Active Users</span>
+                <span class="pf-seo-card__metric-lbl">LAST 30 DAYS PERFORMANCE</span>
+              </div>
+              <div class="pf-seo-card__sub-metrics">
+                <span class="pf-seo-stat-pill"><strong>331K</strong> Events (+2.2%)</span>
+                <span class="pf-seo-stat-pill"><strong>108K</strong> Key Events</span>
+                <span class="pf-seo-stat-pill"><strong>52K</strong> New Users</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- SEO Card 3 -->
+          <article class="pf-seo-card">
+            <div class="pf-seo-card__media" data-seo-zoom="assets/images/seo-results/seo-result-cruise-87k-users.png" data-seo-title="Leading Cruise Line - GA4 Organic Discovery" data-seo-metric="87K Active Users across International Travel Queries" role="button" tabindex="0" aria-label="Inspect Cruise Line SEO Performance">
+              <picture>
+                <source srcset="assets/images/seo-results/seo-result-cruise-87k-users.webp" type="image/webp">
+                <img src="assets/images/seo-results/seo-result-cruise-87k-users.png" alt="Google Analytics organic traffic for international cruise line" class="pf-seo-card__img" loading="lazy" width="1024" height="382">
+              </picture>
+              <div class="pf-seo-card__zoom-hint">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+                Zoom Evidence
+              </div>
+            </div>
+            <div class="pf-seo-card__body">
+              <span class="pf-seo-card__category">SEO / ORGANIC DISCOVERY</span>
+              <h3 class="pf-seo-card__title">A Leading Cruise Line</h3>
+              <p class="pf-seo-card__desc">
+                Organic search discovery and passenger engagement across international travel queries and vacation searches.
+              </p>
+              <div class="pf-seo-card__metric-box">
+                <span class="pf-seo-card__metric-val">87K Active Users</span>
+                <span class="pf-seo-card__metric-lbl">ACTIVE USERS</span>
+              </div>
+              <div class="pf-seo-card__sub-metrics">
+                <span class="pf-seo-stat-pill"><strong>84K</strong> New Users</span>
+                <span class="pf-seo-stat-pill"><strong>8,948</strong> Peak Weekly</span>
+                <span class="pf-seo-stat-pill"><strong>Global</strong> Top 5 Nations</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- SEO Card 4 -->
+          <article class="pf-seo-card">
+            <div class="pf-seo-card__media" data-seo-zoom="assets/images/seo-results/seo-result-local-interactions-5896.png" data-seo-title="Local Search Growth - Google Business Profile Interactions" data-seo-metric="5,896 Business Profile Interactions (Apr - Sep 2026)" role="button" tabindex="0" aria-label="Inspect Local Search Interactions Growth">
+              <picture>
+                <source srcset="assets/images/seo-results/seo-result-local-interactions-5896.webp" type="image/webp">
+                <img src="assets/images/seo-results/seo-result-local-interactions-5896.png" alt="Google Business Profile interactions graph showing 5,896 interactions" class="pf-seo-card__img" loading="lazy" width="1024" height="449">
+              </picture>
+              <div class="pf-seo-card__zoom-hint">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+                Zoom Evidence
+              </div>
+            </div>
+            <div class="pf-seo-card__body">
+              <span class="pf-seo-card__category">LOCAL SEO / MAP PACK GROWTH</span>
+              <h3 class="pf-seo-card__title">Local Search Growth</h3>
+              <p class="pf-seo-card__desc">
+                Scaled local map pack visibility and customer engagement across high-intent localized commercial searches over 6 months.
+              </p>
+              <div class="pf-seo-card__metric-box">
+                <span class="pf-seo-card__metric-val">5,896</span>
+                <span class="pf-seo-card__metric-lbl">BUSINESS PROFILE INTERACTIONS</span>
+              </div>
+              <div class="pf-seo-card__sub-metrics">
+                <span class="pf-seo-stat-pill"><strong>1,280+</strong> Peak Monthly</span>
+                <span class="pf-seo-stat-pill"><strong>6</strong> Months Sustained</span>
+                <span class="pf-seo-stat-pill"><strong>High-Intent</strong> Discovery</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- SEO Card 5 -->
+          <article class="pf-seo-card">
+            <div class="pf-seo-card__media" data-seo-zoom="assets/images/seo-results/seo-result-local-calls-224.png" data-seo-title="Local Search Calls - Direct Phone Consultations" data-seo-metric="224 Direct Calls Generated from Profile" role="button" tabindex="0" aria-label="Inspect Local Search Phone Calls Growth">
+              <picture>
+                <source srcset="assets/images/seo-results/seo-result-local-calls-224.webp" type="image/webp">
+                <img src="assets/images/seo-results/seo-result-local-calls-224.png" alt="Google Business Profile direct call chart showing 224 calls" class="pf-seo-card__img" loading="lazy" width="878" height="480">
+              </picture>
+              <div class="pf-seo-card__zoom-hint">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+                Zoom Evidence
+              </div>
+            </div>
+            <div class="pf-seo-card__body">
+              <span class="pf-seo-card__category">LOCAL SEO / HIGH-INTENT CALLS</span>
+              <h3 class="pf-seo-card__title">Local Search Direct Calls</h3>
+              <p class="pf-seo-card__desc">
+                High-urgency phone consultations and appointment calls made directly from the verified Business Profile listing.
+              </p>
+              <div class="pf-seo-card__metric-box">
+                <span class="pf-seo-card__metric-val">224 Calls</span>
+                <span class="pf-seo-card__metric-lbl">CALLS FROM BUSINESS PROFILE</span>
+              </div>
+              <div class="pf-seo-card__sub-metrics">
+                <span class="pf-seo-stat-pill"><strong>134</strong> August Peak Calls</span>
+                <span class="pf-seo-stat-pill"><strong>100%</strong> Uplift Curve</span>
+                <span class="pf-seo-stat-pill"><strong>Direct</strong> Phone Consults</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- SEO Card 6 -->
+          <article class="pf-seo-card">
+            <div class="pf-seo-card__media" data-seo-zoom="assets/images/seo-results/seo-result-local-directions-1443.png" data-seo-title="Local Search Discovery - Direction Requests" data-seo-metric="1,443 Direction Requests made from Google Maps" role="button" tabindex="0" aria-label="Inspect Local Search Direction Requests">
+              <picture>
+                <source srcset="assets/images/seo-results/seo-result-local-directions-1443.webp" type="image/webp">
+                <img src="assets/images/seo-results/seo-result-local-directions-1443.png" alt="Google Business Profile direction requests chart showing 1,443 requests" class="pf-seo-card__img" loading="lazy" width="1024" height="480">
+              </picture>
+              <div class="pf-seo-card__zoom-hint">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+                Zoom Evidence
+              </div>
+            </div>
+            <div class="pf-seo-card__body">
+              <span class="pf-seo-card__category">LOCAL SEO / FOOT TRAFFIC</span>
+              <h3 class="pf-seo-card__title">Local Search Discovery &amp; Directions</h3>
+              <p class="pf-seo-card__desc">
+                Turn-by-turn navigation and direction requests made directly from Google Maps, guiding verified prospective customers to physical locations.
+              </p>
+              <div class="pf-seo-card__metric-box">
+                <span class="pf-seo-card__metric-val">1,443 Requests</span>
+                <span class="pf-seo-card__metric-lbl">DIRECTION REQUESTS</span>
+              </div>
+              <div class="pf-seo-card__sub-metrics">
+                <span class="pf-seo-stat-pill"><strong>1,443</strong> In-Person Visits</span>
+                <span class="pf-seo-stat-pill"><strong>Turn-by-Turn</strong> GPS</span>
+                <span class="pf-seo-stat-pill"><strong>Map Pack</strong> Proven</span>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- ====================================================================
+           07. WEBSITES SECTION (Browser Mockups with Live Links)
+           ==================================================================== -->
+      <section class="pf-section-block" id="sec-websites" aria-labelledby="heading-websites">
+        <div class="pf-section-header">
+          <div class="pf-section-header__top">
+            <span class="pf-section-badge">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+              HIGH-PERFORMANCE WEB ARCHITECTURE
+            </span>
+            <span class="pf-section-count">7 Live Websites</span>
+          </div>
+          <h2 class="pf-section-title" id="heading-websites">Website Projects</h2>
+          <p class="pf-section-desc">
+            Modern, responsive websites and web applications engineered for speed, conversions, and organic search foundations.
+          </p>
+        </div>
+
+        <div class="pf-web-grid">
+          <!-- Web Card 1: Palladium Janseva -->
+          <article class="pf-web-card">
+            <div class="pf-browser-bar">
+              <div class="pf-browser-dots" aria-hidden="true">
+                <span class="pf-browser-dot pf-browser-dot--red"></span>
+                <span class="pf-browser-dot pf-browser-dot--yellow"></span>
+                <span class="pf-browser-dot pf-browser-dot--green"></span>
+              </div>
+              <div class="pf-browser-url">
+                <svg class="pf-browser-lock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                <span>palladiumjanseva.com</span>
+              </div>
+              <span class="pf-card-tag">LIVE</span>
+            </div>
+            <div class="pf-web-card__preview">
+              <img src="assets/images/websites/palladium.png" alt="Palladium Janseva Hospital Website Preview" class="pf-web-card__img" loading="lazy" width="1280" height="800">
+            </div>
+            <div class="pf-web-card__body">
+              <span class="pf-web-card__category">HEALTHCARE / WEB DEVELOPMENT</span>
+              <h3 class="pf-web-card__title">Palladium Janseva Hospital</h3>
+              <p class="pf-web-card__desc">
+                Multispeciality hospital web platform featuring emergency cathlab integrations, doctor directory, and local SEO architecture.
+              </p>
+              <div class="pf-web-card__tags">
+                <span class="pf-web-tag">WordPress Custom</span>
+                <span class="pf-web-tag">SEO Foundations</span>
+                <span class="pf-web-tag">Doctor Directory</span>
+              </div>
+              <div class="pf-web-card__action">
+                <span class="pf-card-time">Verified Live</span>
+                <a href="https://palladiumjanseva.com/" target="_blank" rel="noopener noreferrer" class="pf-web-link">
+                  View Website
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Web Card 2: Falcon Tourism -->
+          <article class="pf-web-card">
+            <div class="pf-browser-bar">
+              <div class="pf-browser-dots" aria-hidden="true">
+                <span class="pf-browser-dot pf-browser-dot--red"></span>
+                <span class="pf-browser-dot pf-browser-dot--yellow"></span>
+                <span class="pf-browser-dot pf-browser-dot--green"></span>
+              </div>
+              <div class="pf-browser-url">
+                <svg class="pf-browser-lock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                <span>falcontourism.ae</span>
+              </div>
+              <span class="pf-card-tag">LIVE</span>
+            </div>
+            <div class="pf-web-card__preview">
+              <img src="assets/images/websites/falcon.png" alt="Falcon Tourism Dubai Website Preview" class="pf-web-card__img" loading="lazy" width="1280" height="800">
+            </div>
+            <div class="pf-web-card__body">
+              <span class="pf-web-card__category">TOURISM &amp; TRAVEL / DUBAI</span>
+              <h3 class="pf-web-card__title">Falcon Tourism</h3>
+              <p class="pf-web-card__desc">
+                Luxury desert safari and travel booking web portal designed for international tourists with intuitive booking inquiry journeys.
+              </p>
+              <div class="pf-web-card__tags">
+                <span class="pf-web-tag">Bilingual Interface</span>
+                <span class="pf-web-tag">Tour Packages</span>
+                <span class="pf-web-tag">Conversion Optimized</span>
+              </div>
+              <div class="pf-web-card__action">
+                <span class="pf-card-time">Verified Live</span>
+                <a href="https://falcontourism.ae/en/" target="_blank" rel="noopener noreferrer" class="pf-web-link">
+                  View Website
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Web Card 3: A Real Estate Media -->
+          <article class="pf-web-card">
+            <div class="pf-browser-bar">
+              <div class="pf-browser-dots" aria-hidden="true">
+                <span class="pf-browser-dot pf-browser-dot--red"></span>
+                <span class="pf-browser-dot pf-browser-dot--yellow"></span>
+                <span class="pf-browser-dot pf-browser-dot--green"></span>
+              </div>
+              <div class="pf-browser-url">
+                <svg class="pf-browser-lock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                <span>arealestatemedia.com</span>
+              </div>
+              <span class="pf-card-tag">LIVE</span>
+            </div>
+            <div class="pf-web-card__preview">
+              <img src="assets/images/websites/arealestate.png" alt="A Real Estate Media Agency Website Preview" class="pf-web-card__img" loading="lazy" width="1280" height="800">
+            </div>
+            <div class="pf-web-card__body">
+              <span class="pf-web-card__category">DIGITAL MEDIA / REAL ESTATE</span>
+              <h3 class="pf-web-card__title">A Real Estate Media</h3>
+              <p class="pf-web-card__desc">
+                High-performance real estate digital media agency platform showcasing architectural cinematography and automated client shoot booking.
+              </p>
+              <div class="pf-web-card__tags">
+                <span class="pf-web-tag">Video Portfolio</span>
+                <span class="pf-web-tag">Service Configurator</span>
+                <span class="pf-web-tag">Instant Booking</span>
+              </div>
+              <div class="pf-web-card__action">
+                <span class="pf-card-time">Verified Live</span>
+                <a href="https://arealestatemedia.com/" target="_blank" rel="noopener noreferrer" class="pf-web-link">
+                  View Website
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Web Card 4: WearWulf -->
+          <article class="pf-web-card">
+            <div class="pf-browser-bar">
+              <div class="pf-browser-dots" aria-hidden="true">
+                <span class="pf-browser-dot pf-browser-dot--red"></span>
+                <span class="pf-browser-dot pf-browser-dot--yellow"></span>
+                <span class="pf-browser-dot pf-browser-dot--green"></span>
+              </div>
+              <div class="pf-browser-url">
+                <svg class="pf-browser-lock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                <span>wearwulf.in</span>
+              </div>
+              <span class="pf-card-tag">LIVE</span>
+            </div>
+            <div class="pf-web-card__preview">
+              <img src="assets/images/websites/wearwulf.png" alt="WearWulf Activewear Store Preview" class="pf-web-card__img" loading="lazy" width="1280" height="800">
+            </div>
+            <div class="pf-web-card__body">
+              <span class="pf-web-card__category">E-COMMERCE / APPAREL</span>
+              <h3 class="pf-web-card__title">WearWulf</h3>
+              <p class="pf-web-card__desc">
+                Direct-to-consumer athletic apparel store engineered with ultra-fast page speed, seamless checkout flows, and mobile commerce optimization.
+              </p>
+              <div class="pf-web-card__tags">
+                <span class="pf-web-tag">DTC Store</span>
+                <span class="pf-web-tag">Fast Checkout</span>
+                <span class="pf-web-tag">Mobile Commerce</span>
+              </div>
+              <div class="pf-web-card__action">
+                <span class="pf-card-time">Verified Live</span>
+                <a href="https://wearwulf.in/" target="_blank" rel="noopener noreferrer" class="pf-web-link">
+                  View Website
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Web Card 5: Acktiv Ortho -->
+          <article class="pf-web-card">
+            <div class="pf-browser-bar">
+              <div class="pf-browser-dots" aria-hidden="true">
+                <span class="pf-browser-dot pf-browser-dot--red"></span>
+                <span class="pf-browser-dot pf-browser-dot--yellow"></span>
+                <span class="pf-browser-dot pf-browser-dot--green"></span>
+              </div>
+              <div class="pf-browser-url">
+                <svg class="pf-browser-lock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                <span>acktivortho.com</span>
+              </div>
+              <span class="pf-card-tag">LIVE</span>
+            </div>
+            <div class="pf-web-card__preview">
+              <img src="assets/images/websites/acktivortho.png" alt="Acktiv Ortho Clinic Website Preview" class="pf-web-card__img" loading="lazy" width="1280" height="800">
+            </div>
+            <div class="pf-web-card__body">
+              <span class="pf-web-card__category">MEDICAL CLINIC / SPECIALTY</span>
+              <h3 class="pf-web-card__title">Acktiv Ortho</h3>
+              <p class="pf-web-card__desc">
+                Specialized orthopedic medical clinic website built for local patient discovery, surgical second opinions, and mobile appointment requests.
+              </p>
+              <div class="pf-web-card__tags">
+                <span class="pf-web-tag">Healthcare UI</span>
+                <span class="pf-web-tag">Local Visibility</span>
+                <span class="pf-web-tag">Consultation Flows</span>
+              </div>
+              <div class="pf-web-card__action">
+                <span class="pf-card-time">Verified Live</span>
+                <a href="https://acktivortho.com/" target="_blank" rel="noopener noreferrer" class="pf-web-link">
+                  View Website
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Web Card 6: CREWiiFY Platform -->
+          <article class="pf-web-card">
+            <div class="pf-browser-bar">
+              <div class="pf-browser-dots" aria-hidden="true">
+                <span class="pf-browser-dot pf-browser-dot--red"></span>
+                <span class="pf-browser-dot pf-browser-dot--yellow"></span>
+                <span class="pf-browser-dot pf-browser-dot--green"></span>
+              </div>
+              <div class="pf-browser-url">
+                <svg class="pf-browser-lock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                <span>crewiify.com</span>
+              </div>
+              <span class="pf-card-tag">LIVE</span>
+            </div>
+            <div class="pf-web-card__preview">
+              <img src="assets/images/websites/crewiify.png" alt="CREWiiFY Agency Infrastructure Preview" class="pf-web-card__img" loading="lazy" width="1280" height="800">
+            </div>
+            <div class="pf-web-card__body">
+              <span class="pf-web-card__category">AGENCY INFRASTRUCTURE / PLATFORM</span>
+              <h3 class="pf-web-card__title">CREWiiFY Platform</h3>
+              <p class="pf-web-card__desc">
+                High-converting digital infrastructure, transparent wholesale rates matrix, and white-label fulfillment platform for digital agencies.
+              </p>
+              <div class="pf-web-card__tags">
+                <span class="pf-web-tag">Design System</span>
+                <span class="pf-web-tag">B2B Rates Engine</span>
+                <span class="pf-web-tag">High-LCP Speed</span>
+              </div>
+              <div class="pf-web-card__action">
+                <span class="pf-card-time">Verified Live</span>
+                <a href="https://www.crewiify.com/" target="_blank" rel="noopener noreferrer" class="pf-web-link">
+                  View Website
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Web Card 7: Cozmoh Shree Bhatiawadi Trust -->
+          <article class="pf-web-card">
+            <div class="pf-browser-bar">
+              <div class="pf-browser-dots" aria-hidden="true">
+                <span class="pf-browser-dot pf-browser-dot--red"></span>
+                <span class="pf-browser-dot pf-browser-dot--yellow"></span>
+                <span class="pf-browser-dot pf-browser-dot--green"></span>
+              </div>
+              <div class="pf-browser-url">
+                <svg class="pf-browser-lock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                <span>avxii-01.github.io</span>
+              </div>
+              <span class="pf-card-tag">LIVE</span>
+            </div>
+            <div class="pf-web-card__preview">
+              <img src="assets/images/websites/bhatiawadi.png" alt="Cozmoh Shree Bhatiawadi Trust Website Preview" class="pf-web-card__img" loading="lazy" width="1280" height="800">
+            </div>
+            <div class="pf-web-card__body">
+              <span class="pf-web-card__category">COMMUNITY &amp; TRUST / HERITAGE</span>
+              <h3 class="pf-web-card__title">Cozmoh Shree Bhatiawadi Trust</h3>
+              <p class="pf-web-card__desc">
+                Community heritage trust web portal featuring archival history, institutional public announcements, and donor services.
+              </p>
+              <div class="pf-web-card__tags">
+                <span class="pf-web-tag">Heritage Archive</span>
+                <span class="pf-web-tag">Public Notices</span>
+                <span class="pf-web-tag">Responsive Portal</span>
+              </div>
+              <div class="pf-web-card__action">
+                <span class="pf-card-time">Verified Live</span>
+                <a href="https://avxii-01.github.io/Cozmoh-Shree-Bhatiawadi-trust-/" target="_blank" rel="noopener noreferrer" class="pf-web-link">
+                  View Website
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                </a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- ====================================================================
+         08. FINAL CONVERSION CTA SECTION (Preserved Brand Standard)
+         ==================================================================== -->
     <section class="footer-cta" id="cta" aria-label="Start a Project">
       <div class="footer-cta__glow" aria-hidden="true"></div>
       <div class="container">
         <div class="footer-cta__content">
-
           <!-- Eyebrow Badge -->
           <div class="footer-cta__eyebrow animate-fade-scale">
             <span class="footer-cta__eyebrow-dot" aria-hidden="true"></span>
@@ -450,7 +963,7 @@
           <!-- Single Primary Action -->
           <div class="footer-cta__action animate-fade-up-3">
             <a href="/contact" class="footer-cta__btn">
-              Start a Project <span class="footer-cta__btn-arrow" aria-hidden="true">→</span>
+              Start a Project <span class="footer-cta__btn-arrow" aria-hidden="true">&rarr;</span>
             </a>
           </div>
 
@@ -458,14 +971,61 @@
           <div class="footer-cta__reassurance animate-fade-up-3">
             No pressure. Just a conversation about what's next.
           </div>
-
         </div>
       </div>
     </section>
 
   </main>
 
-  <!-- Footer (Global Reusable Component) -->
+  <!-- ====================================================================
+       09. VIDEO MODAL PLAYER (For Portrait 9:16 and Landscape 16:9)
+       ==================================================================== -->
+  <div class="pf-modal-backdrop" id="pfVideoModal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="pfVideoTitle">
+    <div class="pf-modal-dialog pf-modal-dialog--portrait" id="pfVideoDialog">
+      <div class="pf-modal-header">
+        <div class="pf-modal-title-group">
+          <span class="pf-card-tag" id="pfVideoBadge">VIDEO</span>
+          <h3 class="pf-modal-title" id="pfVideoTitle">Video Title</h3>
+        </div>
+        <button type="button" class="pf-modal-close-btn" id="pfVideoCloseBtn" aria-label="Close video player">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+      <div class="pf-modal-body">
+        <video class="pf-modal-video" id="pfModalVideo" controls playsinline></video>
+      </div>
+      <div class="pf-modal-footer">
+        <p class="pf-modal-desc" id="pfVideoDesc"></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ====================================================================
+       10. SEO SCREENSHOT LIGHTBOX MODAL
+       ==================================================================== -->
+  <div class="pf-modal-backdrop" id="pfSeoLightbox" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="pfLightboxTitle">
+    <div class="pf-modal-dialog pf-modal-dialog--landscape" style="max-width: 1040px;">
+      <div class="pf-modal-header">
+        <div class="pf-modal-title-group">
+          <span class="pf-card-tag">VERIFIED EVIDENCE</span>
+          <h3 class="pf-modal-title" id="pfLightboxTitle">SEO Analytics Proof</h3>
+        </div>
+        <button type="button" class="pf-modal-close-btn" id="pfLightboxCloseBtn" aria-label="Close screenshot preview">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+      <div class="pf-modal-body" style="padding: 12px; background: #08080C;">
+        <img src="" alt="SEO Analytics Evidence Full Resolution" class="pf-lightbox-img" id="pfLightboxImg">
+      </div>
+      <div class="pf-modal-footer">
+        <p class="pf-modal-desc" id="pfLightboxMetric" style="font-weight: 700; color: #FFFFFF;"></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ====================================================================
+       11. GLOBAL FOOTER (Preserved Brand Standard)
+       ==================================================================== -->
   <footer class="footer">
     <div class="container">
       <div class="footer__content">
@@ -473,53 +1033,21 @@
           <img src="assets/logos/c-logo-optimized.png" alt="CREWIIFY Logo" class="footer__brand-logo-img"
             loading="lazy">
         </a>
-        <p>© 2026 CREWIIFY. All rights reserved. White-Label Delivery Partner for Agencies.</p>
+        <p>&copy; 2026 CREWIIFY. All rights reserved. White-Label Delivery Partner for Agencies.</p>
         <ul class="footer__links">
           <li><a href="/services" class="footer__link">Services</a></li>
           <li><a href="/partner-rates" class="footer__link">Agency Rates</a></li>
           <li><a href="/case-studies" class="footer__link">Case Studies</a></li>
-          <li><a href="/free-resources" class="footer__link">Free Resources</a></li>
           <li><a href="/contact" class="footer__link">Contact</a></li>
         </ul>
       </div>
     </div>
   </footer>
 
-  <!-- Expanded Case Study Overlay / Modal (Immersive Portfolio Experience) -->
-  <div class="cs-modal-backdrop" id="csModalBackdrop" aria-hidden="true" role="presentation">
-    <div class="cs-modal" id="csModal" role="dialog" aria-modal="true" aria-labelledby="csModalStickyTitle"
-      tabindex="-1">
+  <!-- Scripts -->
+  <script src="js/navbar.js"></script>
+  <script type="module" src="js/portfolio-showcase.js"></script>
 
-      <!-- Minimal Editorial Sticky Modal Header -->
-      <header class="cs-modal__sticky-header" id="csModalStickyHeader">
-        <div class="cs-modal__sticky-left">
-          <span class="cs-modal__sticky-index" id="csModalStickyIndex">CASE STUDY 01 / 06</span>
-          <span class="cs-modal__sticky-sep" aria-hidden="true">/</span>
-          <span class="cs-modal__sticky-category" id="csModalStickyCategory">LOCAL SEO</span>
-          <span class="cs-modal__sticky-sep" aria-hidden="true">/</span>
-          <span class="cs-modal__sticky-title" id="csModalStickyTitle">Paladium Janseva Hospital</span>
-        </div>
-        <button class="cs-modal__close-btn" id="csModalCloseBtn" aria-label="Close case study overlay">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <line x1="18" y1="6" x2="6" y2="18"></line>
-            <line x1="6" y1="6" x2="18" y2="18"></line>
-          </svg>
-        </button>
-      </header>
-
-      <!-- Modal Content Body (Rendered dynamically) -->
-      <div class="cs-modal__body" id="csModalBody">
-        <!-- Rendered dynamically from case-studies.js -->
-      </div>
-    </div>
-  </div>
-
-  <!-- Modular Vanilla JavaScript Files -->
-  <script src="js/navbar.js" defer></script>
-  <script src="js/particles.js" defer></script>
-  <script type="module" src="js/case-studies.js"></script>
-  <script type="module" src="js/whatsapp-widget.js"></script>
 </body>
 
 </html>
