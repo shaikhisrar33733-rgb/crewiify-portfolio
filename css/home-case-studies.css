@@ -810,3 +810,8 @@
   line-height: 1.5;
   margin: 0;
 }
+
+/* Clean professional spacing when Our Work masonry grid follows the showcase */
+.home-case-studies + .portfolio {
+  padding-top: clamp(20px, 2.5vw, 36px);
+}
