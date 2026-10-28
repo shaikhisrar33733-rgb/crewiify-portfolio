@@ -954,15 +954,18 @@
 
 /* Clean professional spacing when Our Work masonry grid follows the showcase */
 .home-case-studies + .portfolio,
+.home-websites-section + .portfolio,
 .home-seo-results + .portfolio {
   padding-top: clamp(20px, 2.5vw, 36px);
 }
 
-/* Dedicated SEO Results Section */
+/* Dedicated Website Projects & SEO Results Sections */
+.home-websites-section,
 .home-seo-results {
   border-top: 1px solid rgba(255, 255, 255, 0.06);
 }
 
+.home-websites-section .home-cs__grid,
 .home-seo-results .home-cs__grid {
   margin-bottom: 0;
 }
