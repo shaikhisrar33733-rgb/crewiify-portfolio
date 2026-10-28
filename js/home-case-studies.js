@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initHomeFilters();
   initHomeVideoModal();
   initHomeSeoLightbox();
-  initHomeHoverVideoPreviews();
+  initHomeAutoplayVideoVisibility();
 });
 
 /* ==========================================================================
@@ -93,6 +93,11 @@ function initHomeVideoModal() {
         modalDialog.classList.remove('home-modal-dialog--portrait');
       }
 
+      // Pause all background card preview videos
+      document.querySelectorAll('.home-cs__card[data-home-video] video').forEach(v => {
+        v.pause();
+      });
+
       videoEl.src = videoSrc;
       videoEl.load();
 
@@ -123,6 +128,18 @@ function initHomeVideoModal() {
     videoEl.pause();
     videoEl.removeAttribute('src');
     videoEl.load();
+
+    // Resume playing visible card videos that are currently intersecting the viewport
+    document.querySelectorAll('.home-cs__card[data-home-video]:not(.is-hidden)').forEach(card => {
+      const rect = card.getBoundingClientRect();
+      if (rect.top < window.innerHeight && rect.bottom > 0) {
+        const v = card.querySelector('video');
+        if (v) {
+          v.muted = true;
+          v.play().catch(() => {});
+        }
+      }
+    });
   }
 
   if (closeBtn) closeBtn.addEventListener('click', closeVideoModal);
@@ -197,45 +214,104 @@ function initHomeSeoLightbox() {
 }
 
 /* ==========================================================================
-   04. HOVER VIDEO PREVIEWS ON DESKTOP
+   04. AUTOMATIC MUTED VIDEO PLAYBACK & VISIBILITY OBSERVER
    ========================================================================== */
 
-function initHomeHoverVideoPreviews() {
-  if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
-
+function initHomeAutoplayVideoVisibility() {
   const videoCards = document.querySelectorAll('.home-cs__card[data-home-video]');
+  if (!videoCards.length) return;
 
+  const isReducedData = navigator.connection && (navigator.connection.saveData === true);
+
+  // Configure all 8 video elements for reliable silent loop playback without controls
   videoCards.forEach(card => {
-    const previewVideo = card.querySelector('video');
-    if (!previewVideo) return;
-
-    previewVideo.muted = true;
-    previewVideo.loop = true;
-
-    // Videos configured with autoplay should keep looping continuously
-    if (previewVideo.hasAttribute('autoplay')) {
-      previewVideo.play().catch(() => {});
-      return;
-    }
-
-    let playPromise = null;
-
-    card.addEventListener('mouseenter', () => {
-      playPromise = previewVideo.play();
-    });
-
-    card.addEventListener('mouseleave', () => {
-      if (playPromise !== null) {
-        playPromise
-          .then(() => {
-            previewVideo.pause();
-          })
-          .catch(() => {
-            previewVideo.pause();
-          });
-      } else {
-        previewVideo.pause();
-      }
-    });
+    const video = card.querySelector('video');
+    if (!video) return;
+    video.muted = true;
+    video.loop = true;
+    video.playsInline = true;
+    video.setAttribute('muted', '');
+    video.setAttribute('playsinline', '');
+    video.setAttribute('loop', '');
+    video.removeAttribute('controls');
   });
+
+  const playPromiseMap = new WeakMap();
+
+  const playVideo = (video) => {
+    if (isReducedData) return;
+
+    // Do not autoplay card preview if the full modal player is currently open
+    const modal = document.getElementById('homeVideoModal');
+    if (modal && modal.classList.contains('is-open')) return;
+
+    video.muted = true;
+    const promise = video.play();
+    if (promise !== undefined) {
+      playPromiseMap.set(video, promise);
+      promise.catch(() => {
+        // Gracefully handle browser policy rejections
+      });
+    }
+  };
+
+  const pauseVideo = (video) => {
+    const pendingPromise = playPromiseMap.get(video);
+    if (pendingPromise) {
+      pendingPromise
+        .then(() => video.pause())
+        .catch(() => video.pause());
+    } else {
+      video.pause();
+    }
+  };
+
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        const card = entry.target;
+        const video = card.querySelector('video');
+        if (!video) return;
+
+        const isHidden = card.classList.contains('is-hidden');
+        if (entry.isIntersecting && !isHidden) {
+          playVideo(video);
+        } else {
+          pauseVideo(video);
+        }
+      });
+    }, {
+      root: null,
+      rootMargin: '60px 0px 60px 0px',
+      threshold: [0, 0.2]
+    });
+
+    videoCards.forEach(card => observer.observe(card));
+
+    // Listen to category filter clicks to pause hidden cards immediately
+    document.querySelectorAll('.home-cs__filter-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        requestAnimationFrame(() => {
+          videoCards.forEach(card => {
+            const video = card.querySelector('video');
+            if (!video) return;
+            if (card.classList.contains('is-hidden')) {
+              pauseVideo(video);
+            } else {
+              const rect = card.getBoundingClientRect();
+              if (rect.top < window.innerHeight && rect.bottom > 0) {
+                playVideo(video);
+              }
+            }
+          });
+        });
+      });
+    });
+  } else {
+    // Graceful fallback for environments without IntersectionObserver
+    videoCards.forEach(card => {
+      const video = card.querySelector('video');
+      if (video) playVideo(video);
+    });
+  }
 }
