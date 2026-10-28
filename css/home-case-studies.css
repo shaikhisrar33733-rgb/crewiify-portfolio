@@ -518,12 +518,21 @@
 }
 
 /* Scoped single-line description handling for video cards */
+.home-cs__card[data-home-video] .home-cs__body {
+  padding: 16px 18px 18px;
+  flex-grow: 0;
+}
+
+.home-cs__card[data-home-video] .home-cs__meta-line {
+  margin-bottom: 8px;
+}
+
 .home-cs__card[data-home-video] .home-cs__card-desc {
   font-size: 0.88rem;
   font-weight: 400;
   color: rgba(255, 255, 255, 0.75);
   line-height: 1.5;
-  margin-bottom: 16px;
+  margin-bottom: 0;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
