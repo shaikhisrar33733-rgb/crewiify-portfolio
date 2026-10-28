@@ -517,6 +517,35 @@
   overflow: hidden;
 }
 
+/* Scoped single-line description handling for video cards */
+.home-cs__card[data-home-video] .home-cs__card-desc {
+  font-size: 0.88rem;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.75);
+  line-height: 1.5;
+  margin-bottom: 16px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.home-cs__card[data-home-video] .home-cs__card-desc strong {
+  color: #FFFFFF;
+  font-weight: 600;
+}
+
+@media (max-width: 992px) {
+  .home-cs__card[data-home-video] .home-cs__card-desc {
+    white-space: normal;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    line-height: 1.45;
+  }
+}
+
+
 /* Metric Highlight Box (for SEO cards) */
 .home-cs__metric-box {
   display: flex;
