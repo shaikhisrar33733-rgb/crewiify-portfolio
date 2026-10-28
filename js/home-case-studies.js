@@ -212,6 +212,12 @@ function initHomeHoverVideoPreviews() {
     previewVideo.muted = true;
     previewVideo.loop = true;
 
+    // Videos configured with autoplay should keep looping continuously
+    if (previewVideo.hasAttribute('autoplay')) {
+      previewVideo.play().catch(() => {});
+      return;
+    }
+
     let playPromise = null;
 
     card.addEventListener('mouseenter', () => {
