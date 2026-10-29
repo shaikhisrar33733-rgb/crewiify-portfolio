@@ -1060,6 +1060,256 @@
 
 
 /* ==========================================================================
+   Website Projects, SEO Results, Podcast & Case Studies Sections
+   Matched to Why Choose & Our Process Design
+   ========================================================================== */
+
+#website-projects,
+#seo-results,
+#podcast,
+#case-studies-section {
+  background-color: var(--color-bg-dark);
+  padding: var(--section-padding-y, clamp(52px, 5.2vw, 80px)) 0;
+  color: var(--color-text-main);
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+#website-projects .home-cs__ambient-glow,
+#seo-results .home-cs__ambient-glow,
+#podcast .home-cs__ambient-glow,
+#case-studies-section .home-cs__ambient-glow {
+  background: radial-gradient(ellipse, rgba(139, 92, 246, 0.12) 0%, rgba(109, 40, 217, 0.03) 50%, transparent 75%);
+}
+
+#website-projects .home-cs__header,
+#seo-results .home-cs__header,
+#podcast .home-cs__header,
+#case-studies-section .home-cs__header {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto var(--space-3xl) auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#website-projects .home-cs__badge,
+#seo-results .home-cs__badge,
+#podcast .home-cs__badge,
+#case-studies-section .home-cs__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0.4rem 1.25rem;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--color-purple-border);
+  background: var(--color-purple-pill-bg);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #9A9A9A;
+  margin-bottom: var(--space-xl);
+  box-shadow: none;
+}
+
+#website-projects .home-cs__badge-dot,
+#seo-results .home-cs__badge-dot,
+#podcast .home-cs__badge-dot,
+#case-studies-section .home-cs__badge-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--color-primary);
+  box-shadow: 0 0 6px var(--color-primary);
+}
+
+#website-projects .home-cs__title,
+#seo-results .home-cs__title,
+#podcast .home-cs__title,
+#case-studies-section .home-cs__title {
+  font-size: var(--font-size-3xl);
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: #F5F5F5;
+  margin-bottom: var(--space-md);
+}
+
+#website-projects .home-cs__title-highlight,
+#seo-results .home-cs__title-highlight,
+#podcast .home-cs__title-highlight,
+#case-studies-section .home-cs__title-highlight {
+  font-style: italic;
+  font-weight: 400;
+  color: #F5F5F5;
+  background: linear-gradient(180deg, #F5F5F5 0%, #BCC5D8 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+  padding-right: 4px;
+}
+
+#website-projects .home-cs__description,
+#seo-results .home-cs__description,
+#podcast .home-cs__description,
+#case-studies-section .home-cs__description {
+  font-size: var(--font-size-md);
+  font-weight: 400;
+  color: var(--color-text-muted);
+  line-height: 1.6;
+  max-width: 650px;
+  margin: 0 auto;
+}
+
+@media (max-width: 992px) {
+  #website-projects .home-cs__title,
+  #seo-results .home-cs__title,
+  #podcast .home-cs__title,
+  #case-studies-section .home-cs__title {
+    font-size: var(--font-size-2xl);
+  }
+}
+
+@media (max-width: 768px) {
+  #website-projects,
+  #seo-results,
+  #podcast,
+  #case-studies-section {
+    padding: var(--space-3xl) 0;
+  }
+}
+
+@media (max-width: 480px) {
+  #website-projects .home-cs__title,
+  #seo-results .home-cs__title,
+  #podcast .home-cs__title,
+  #case-studies-section .home-cs__title {
+    font-size: clamp(1.75rem, 7vw, 2rem);
+  }
+}
+
+/* ==========================================================================
+   Dedicated Case Studies Section (#case-studies-section) Cards
+   ========================================================================== */
+
+#case-studies-section .home-cs__grid {
+  margin-bottom: clamp(36px, 4.5vw, 56px);
+}
+
+.home-cs__case-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.home-cs__case-card .home-cs__media {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  cursor: pointer;
+  background: #0D111A;
+  overflow: hidden;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.home-cs__case-card .home-cs__media-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  display: block;
+}
+
+.home-cs__case-card:hover .home-cs__media-img {
+  transform: scale(1.05);
+}
+
+.home-cs__case-card .home-cs__body {
+  padding: clamp(18px, 2vw, 24px);
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.home-cs__case-card .home-cs__meta-line {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.home-cs__case-card .home-cs__client {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #A78BFA;
+}
+
+.home-cs__case-card .home-cs__card-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #FFFFFF;
+  line-height: 1.35;
+  margin: 0 0 16px 0;
+  transition: color 0.2s ease;
+}
+
+.home-cs__case-card .home-cs__card-title-link {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.home-cs__case-card .home-cs__card-title-link:hover,
+.home-cs__case-card:hover .home-cs__card-title {
+  color: #A78BFA;
+}
+
+.home-cs__case-card .home-cs__action-row {
+  margin-top: auto;
+  padding-top: 14px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.home-cs__case-card .home-cs__action-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: transparent;
+  border: none;
+  font-family: inherit;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #A78BFA;
+  cursor: pointer;
+  padding: 4px 0;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.home-cs__case-card .home-cs__action-btn svg {
+  width: 14px;
+  height: 14px;
+  transition: transform 0.2s ease;
+}
+
+.home-cs__case-card:hover .home-cs__action-btn {
+  color: #FFFFFF;
+}
+
+.home-cs__case-card:hover .home-cs__action-btn svg {
+  transform: translateX(4px);
+}
+
+
+
+/* ==========================================================================
    05. OUR WORK VIDEO CAROUSEL (Horizontal Auto-Gliding Infinite Loop)
    ========================================================================== */
 
