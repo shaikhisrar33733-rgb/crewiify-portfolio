@@ -1163,3 +1163,116 @@
   }
 }
 
+/* ==========================================================================
+   Dedicated Case Studies Subsection Inside Our Work (#case-studies)
+   ========================================================================== */
+
+.home-cs__sub-section {
+  position: relative;
+  margin-top: clamp(48px, 6vw, 76px);
+  padding-top: clamp(44px, 5.5vw, 68px);
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.home-cs__sub-header {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto clamp(36px, 4.5vw, 52px) auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.home-cs__sub-title {
+  font-size: var(--font-size-3xl);
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: #F5F5F5;
+  margin-bottom: var(--space-md);
+}
+
+.home-cs__sub-description {
+  font-size: var(--font-size-md);
+  font-weight: 400;
+  color: var(--color-text-muted);
+  line-height: 1.6;
+  max-width: 650px;
+  margin: 0 auto;
+}
+
+.home-cs__sub-grid {
+  margin-bottom: clamp(36px, 4.5vw, 56px);
+}
+
+.home-cs__case-card .home-cs__media {
+  aspect-ratio: 16 / 10;
+  cursor: pointer;
+  background: #0D111A;
+}
+
+.home-cs__case-card .home-cs__media-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.home-cs__case-card:hover .home-cs__media-img {
+  transform: scale(1.05);
+}
+
+.home-cs__case-card .home-cs__card-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #FFFFFF;
+  line-height: 1.35;
+  margin: 0 0 14px 0;
+  transition: color 0.2s ease;
+}
+
+.home-cs__case-card:hover .home-cs__card-title {
+  color: #A78BFA;
+}
+
+.home-cs__case-card .home-cs__action-row {
+  margin-top: auto;
+  padding-top: 14px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.home-cs__case-card .home-cs__action-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: transparent;
+  border: none;
+  font-family: inherit;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #A78BFA;
+  cursor: pointer;
+  padding: 4px 0;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.home-cs__case-card .home-cs__action-btn svg {
+  width: 14px;
+  height: 14px;
+  transition: transform 0.2s ease;
+}
+
+.home-cs__case-card:hover .home-cs__action-btn {
+  color: #FFFFFF;
+}
+
+.home-cs__case-card:hover .home-cs__action-btn svg {
+  transform: translateX(4px);
+}
+
+
