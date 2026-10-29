@@ -91,6 +91,36 @@
   gap: 28px;
 }
 
+/* Card Item Container with Category Label Above Card */
+.portfolio__item {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+}
+
+.portfolio__category-label {
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #A78BFA;
+  background: rgba(139, 92, 246, 0.1);
+  border: 1px solid rgba(167, 139, 250, 0.25);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  padding: 5px 14px;
+  border-radius: var(--radius-pill);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+}
+
+.portfolio__card-desc--mobile {
+  display: none;
+}
+
 /* Card Component (3D Perspective Base Container) */
 .portfolio__card {
   position: relative;
@@ -288,7 +318,17 @@
   }
 
   .portfolio__column:nth-child(3) {
-    display: none; /* Distribute to 2 cols */
+    display: flex;
+    grid-column: 1 / -1;
+  }
+
+  .portfolio__card-desc--mobile {
+    display: block;
+    font-size: var(--font-size-sm);
+    color: #D1D5DB;
+    line-height: 1.55;
+    margin-top: 10px;
+    margin-bottom: 6px;
   }
 
   .portfolio__card--tall,
@@ -344,6 +384,10 @@
 
   .portfolio__column {
     gap: 20px;
+  }
+
+  .portfolio__column:nth-child(3) {
+    grid-column: auto;
   }
 
   .portfolio__card--tall,
