@@ -1716,47 +1716,43 @@
           </p>
         </div>
 
-        <!-- Automatic Infinite Video Carousel (No Arrow Buttons) -->
+        <!-- Automatic Infinite Video Carousel with Navigation Arrows -->
         <div class="podcast-carousel" id="podcastCarousel" tabindex="0" aria-label="Podcast Episodes Carousel" role="region">
+          <button type="button" class="podcast-carousel__arrow podcast-carousel__arrow--prev" id="podcastPrevBtn" aria-label="Previous podcast episode" title="Previous episode">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="15 18 9 12 15 6"></polyline>
+            </svg>
+          </button>
+
           <div class="podcast-carousel__viewport" id="podcastViewport">
             <div class="podcast-carousel__track" id="podcastTrack">
               <!-- Podcast Card 1 -->
               <article class="podcast__card" aria-label="Scaling Beyond 7-Figures: The Agency Playbook">
                 <div class="podcast__media">
-                  <div class="podcast__artwork" aria-hidden="true">
-                    <svg class="podcast__artwork-svg" viewBox="0 0 600 338" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <rect width="600" height="338" fill="#0C101A"/>
-                      <circle cx="300" cy="169" r="140" fill="url(#pcast-g1)" opacity="0.35"/>
-                      <g opacity="0.12" stroke="#38BDF8" stroke-width="1.5">
-                        <line x1="0" y1="84" x2="600" y2="84"/>
-                        <line x1="0" y1="169" x2="600" y2="169"/>
-                        <line x1="0" y1="254" x2="600" y2="254"/>
-                        <line x1="150" y1="0" x2="150" y2="338"/>
-                        <line x1="300" y1="0" x2="300" y2="338"/>
-                        <line x1="450" y1="0" x2="450" y2="338"/>
-                      </g>
-                      <!-- Audio Waveform Center -->
-                      <g opacity="0.85" fill="#38BDF8">
-                        <rect x="220" y="145" width="4" height="48" rx="2"/>
-                        <rect x="232" y="130" width="4" height="78" rx="2"/>
-                        <rect x="244" y="152" width="4" height="34" rx="2"/>
-                        <rect x="256" y="120" width="4" height="98" rx="2" fill="#818CF8"/>
-                        <rect x="268" y="138" width="4" height="62" rx="2"/>
-                        <rect x="328" y="138" width="4" height="62" rx="2"/>
-                        <rect x="340" y="120" width="4" height="98" rx="2" fill="#818CF8"/>
-                        <rect x="352" y="152" width="4" height="34" rx="2"/>
-                        <rect x="364" y="130" width="4" height="78" rx="2"/>
-                        <rect x="376" y="145" width="4" height="48" rx="2"/>
-                      </g>
-                      
-                      <defs>
-                        <radialGradient id="pcast-g1" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(300 169) rotate(90) scale(140)">
-                          <stop stop-color="#38BDF8"/>
-                          <stop offset="1" stop-color="#6366F1" stop-opacity="0"/>
-                        </radialGradient>
-                      </defs>
-                    </svg>
+                  <video class="podcast__video" src="assets/videos/podcast1.mp4" autoplay muted loop playsinline preload="auto"></video>
+                  <div class="podcast__overlay">
+                    <button type="button" class="podcast__play-btn" aria-label="Play Scaling Beyond 7-Figures: The Agency Playbook with sound" title="Play episode">
+                      <svg class="podcast__icon-play" viewBox="0 0 24 24" fill="currentColor">
+                        <polygon points="6 4 20 12 6 20 6 4"></polygon>
+                      </svg>
+                      <svg class="podcast__icon-pause" viewBox="0 0 24 24" fill="currentColor">
+                        <rect x="6" y="4" width="4" height="16" rx="1.5"></rect>
+                        <rect x="14" y="4" width="4" height="16" rx="1.5"></rect>
+                      </svg>
+                    </button>
                   </div>
+                  <button type="button" class="podcast__mute-btn" aria-label="Unmute audio" title="Unmute sound">
+                    <svg class="podcast__icon-volume-high" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" fill="currentColor"></polygon>
+                      <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                      <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
+                    </svg>
+                    <svg class="podcast__icon-volume-muted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" fill="currentColor"></polygon>
+                      <line x1="23" y1="9" x2="17" y2="15"></line>
+                      <line x1="17" y1="9" x2="23" y2="15"></line>
+                    </svg>
+                  </button>
                 </div>
                 <div class="podcast__body">
                   <h3 class="podcast__card-title">Scaling Beyond 7-Figures: The Agency Playbook</h3>
@@ -1766,40 +1762,30 @@
               <!-- Podcast Card 2 -->
               <article class="podcast__card" aria-label="White-Label Delivery: How Modern Agencies Win">
                 <div class="podcast__media">
-                  <div class="podcast__artwork" aria-hidden="true">
-                    <svg class="podcast__artwork-svg" viewBox="0 0 600 338" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <rect width="600" height="338" fill="#0E121D"/>
-                      <circle cx="300" cy="169" r="140" fill="url(#pcast-g2)" opacity="0.35"/>
-                      <g opacity="0.12" stroke="#818CF8" stroke-width="1.5">
-                        <line x1="0" y1="84" x2="600" y2="84"/>
-                        <line x1="0" y1="169" x2="600" y2="169"/>
-                        <line x1="0" y1="254" x2="600" y2="254"/>
-                        <line x1="150" y1="0" x2="150" y2="338"/>
-                        <line x1="300" y1="0" x2="300" y2="338"/>
-                        <line x1="450" y1="0" x2="450" y2="338"/>
-                      </g>
-                      <!-- Studio Frequency Visual -->
-                      <g opacity="0.85" fill="#818CF8">
-                        <rect x="215" y="150" width="4" height="38" rx="2"/>
-                        <rect x="227" y="135" width="4" height="68" rx="2"/>
-                        <rect x="239" y="118" width="4" height="102" rx="2"/>
-                        <rect x="251" y="132" width="4" height="74" rx="2" fill="#38BDF8"/>
-                        <rect x="263" y="146" width="4" height="46" rx="2"/>
-                        <rect x="333" y="146" width="4" height="46" rx="2"/>
-                        <rect x="345" y="132" width="4" height="74" rx="2" fill="#38BDF8"/>
-                        <rect x="357" y="118" width="4" height="102" rx="2"/>
-                        <rect x="369" y="135" width="4" height="68" rx="2"/>
-                        <rect x="381" y="150" width="4" height="38" rx="2"/>
-                      </g>
-                      
-                      <defs>
-                        <radialGradient id="pcast-g2" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(300 169) rotate(90) scale(140)">
-                          <stop stop-color="#818CF8"/>
-                          <stop offset="1" stop-color="#38BDF8" stop-opacity="0"/>
-                        </radialGradient>
-                      </defs>
-                    </svg>
+                  <video class="podcast__video" src="assets/videos/podcast2.mp4" autoplay muted loop playsinline preload="auto"></video>
+                  <div class="podcast__overlay">
+                    <button type="button" class="podcast__play-btn" aria-label="Play White-Label Delivery: How Modern Agencies Win with sound" title="Play episode">
+                      <svg class="podcast__icon-play" viewBox="0 0 24 24" fill="currentColor">
+                        <polygon points="6 4 20 12 6 20 6 4"></polygon>
+                      </svg>
+                      <svg class="podcast__icon-pause" viewBox="0 0 24 24" fill="currentColor">
+                        <rect x="6" y="4" width="4" height="16" rx="1.5"></rect>
+                        <rect x="14" y="4" width="4" height="16" rx="1.5"></rect>
+                      </svg>
+                    </button>
                   </div>
+                  <button type="button" class="podcast__mute-btn" aria-label="Unmute audio" title="Unmute sound">
+                    <svg class="podcast__icon-volume-high" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" fill="currentColor"></polygon>
+                      <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                      <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
+                    </svg>
+                    <svg class="podcast__icon-volume-muted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" fill="currentColor"></polygon>
+                      <line x1="23" y1="9" x2="17" y2="15"></line>
+                      <line x1="17" y1="9" x2="23" y2="15"></line>
+                    </svg>
+                  </button>
                 </div>
                 <div class="podcast__body">
                   <h3 class="podcast__card-title">White-Label Delivery: How Modern Agencies Win</h3>
@@ -1809,40 +1795,30 @@
               <!-- Podcast Card 3 -->
               <article class="podcast__card" aria-label="SEO That Converts: Growth Systems for 2026">
                 <div class="podcast__media">
-                  <div class="podcast__artwork" aria-hidden="true">
-                    <svg class="podcast__artwork-svg" viewBox="0 0 600 338" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <rect width="600" height="338" fill="#0A0E18"/>
-                      <circle cx="300" cy="169" r="140" fill="url(#pcast-g3)" opacity="0.35"/>
-                      <g opacity="0.12" stroke="#38BDF8" stroke-width="1.5">
-                        <line x1="0" y1="84" x2="600" y2="84"/>
-                        <line x1="0" y1="169" x2="600" y2="169"/>
-                        <line x1="0" y1="254" x2="600" y2="254"/>
-                        <line x1="150" y1="0" x2="150" y2="338"/>
-                        <line x1="300" y1="0" x2="300" y2="338"/>
-                        <line x1="450" y1="0" x2="450" y2="338"/>
-                      </g>
-                      <!-- Spectrum Lines -->
-                      <g opacity="0.85" fill="#38BDF8">
-                        <rect x="220" y="140" width="4" height="58" rx="2"/>
-                        <rect x="232" y="125" width="4" height="88" rx="2"/>
-                        <rect x="244" y="148" width="4" height="42" rx="2" fill="#818CF8"/>
-                        <rect x="256" y="112" width="4" height="114" rx="2"/>
-                        <rect x="268" y="130" width="4" height="78" rx="2"/>
-                        <rect x="328" y="130" width="4" height="78" rx="2"/>
-                        <rect x="340" y="112" width="4" height="114" rx="2"/>
-                        <rect x="352" y="148" width="4" height="42" rx="2" fill="#818CF8"/>
-                        <rect x="364" y="125" width="4" height="88" rx="2"/>
-                        <rect x="376" y="140" width="4" height="58" rx="2"/>
-                      </g>
-                      
-                      <defs>
-                        <radialGradient id="pcast-g3" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(300 169) rotate(90) scale(140)">
-                          <stop stop-color="#38BDF8"/>
-                          <stop offset="1" stop-color="#2563EB" stop-opacity="0"/>
-                        </radialGradient>
-                      </defs>
-                    </svg>
+                  <video class="podcast__video" src="assets/videos/podcast3.mp4" autoplay muted loop playsinline preload="auto"></video>
+                  <div class="podcast__overlay">
+                    <button type="button" class="podcast__play-btn" aria-label="Play SEO That Converts: Growth Systems for 2026 with sound" title="Play episode">
+                      <svg class="podcast__icon-play" viewBox="0 0 24 24" fill="currentColor">
+                        <polygon points="6 4 20 12 6 20 6 4"></polygon>
+                      </svg>
+                      <svg class="podcast__icon-pause" viewBox="0 0 24 24" fill="currentColor">
+                        <rect x="6" y="4" width="4" height="16" rx="1.5"></rect>
+                        <rect x="14" y="4" width="4" height="16" rx="1.5"></rect>
+                      </svg>
+                    </button>
                   </div>
+                  <button type="button" class="podcast__mute-btn" aria-label="Unmute audio" title="Unmute sound">
+                    <svg class="podcast__icon-volume-high" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" fill="currentColor"></polygon>
+                      <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                      <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
+                    </svg>
+                    <svg class="podcast__icon-volume-muted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" fill="currentColor"></polygon>
+                      <line x1="23" y1="9" x2="17" y2="15"></line>
+                      <line x1="17" y1="9" x2="23" y2="15"></line>
+                    </svg>
+                  </button>
                 </div>
                 <div class="podcast__body">
                   <h3 class="podcast__card-title">SEO That Converts: Growth Systems for 2026</h3>
@@ -1852,40 +1828,30 @@
               <!-- Podcast Card 4 -->
               <article class="podcast__card" aria-label="High-Converting Web Architecture for Brands">
                 <div class="podcast__media">
-                  <div class="podcast__artwork" aria-hidden="true">
-                    <svg class="podcast__artwork-svg" viewBox="0 0 600 338" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <rect width="600" height="338" fill="#0F111D"/>
-                      <circle cx="300" cy="169" r="140" fill="url(#pcast-g4)" opacity="0.35"/>
-                      <g opacity="0.12" stroke="#60A5FA" stroke-width="1.5">
-                        <line x1="0" y1="84" x2="600" y2="84"/>
-                        <line x1="0" y1="169" x2="600" y2="169"/>
-                        <line x1="0" y1="254" x2="600" y2="254"/>
-                        <line x1="150" y1="0" x2="150" y2="338"/>
-                        <line x1="300" y1="0" x2="300" y2="338"/>
-                        <line x1="450" y1="0" x2="450" y2="338"/>
-                      </g>
-                      <!-- Equalizer -->
-                      <g opacity="0.85" fill="#60A5FA">
-                        <rect x="220" y="148" width="4" height="42" rx="2"/>
-                        <rect x="232" y="132" width="4" height="74" rx="2" fill="#818CF8"/>
-                        <rect x="244" y="122" width="4" height="94" rx="2"/>
-                        <rect x="256" y="138" width="4" height="62" rx="2"/>
-                        <rect x="268" y="152" width="4" height="34" rx="2"/>
-                        <rect x="328" y="152" width="4" height="34" rx="2"/>
-                        <rect x="340" y="138" width="4" height="62" rx="2"/>
-                        <rect x="352" y="122" width="4" height="94" rx="2"/>
-                        <rect x="364" y="132" width="4" height="74" rx="2" fill="#818CF8"/>
-                        <rect x="376" y="148" width="4" height="42" rx="2"/>
-                      </g>
-                      
-                      <defs>
-                        <radialGradient id="pcast-g4" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(300 169) rotate(90) scale(140)">
-                          <stop stop-color="#60A5FA"/>
-                          <stop offset="1" stop-color="#A855F7" stop-opacity="0"/>
-                        </radialGradient>
-                      </defs>
-                    </svg>
+                  <video class="podcast__video" src="assets/videos/podcast4.mp4" autoplay muted loop playsinline preload="auto"></video>
+                  <div class="podcast__overlay">
+                    <button type="button" class="podcast__play-btn" aria-label="Play High-Converting Web Architecture for Brands with sound" title="Play episode">
+                      <svg class="podcast__icon-play" viewBox="0 0 24 24" fill="currentColor">
+                        <polygon points="6 4 20 12 6 20 6 4"></polygon>
+                      </svg>
+                      <svg class="podcast__icon-pause" viewBox="0 0 24 24" fill="currentColor">
+                        <rect x="6" y="4" width="4" height="16" rx="1.5"></rect>
+                        <rect x="14" y="4" width="4" height="16" rx="1.5"></rect>
+                      </svg>
+                    </button>
                   </div>
+                  <button type="button" class="podcast__mute-btn" aria-label="Unmute audio" title="Unmute sound">
+                    <svg class="podcast__icon-volume-high" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" fill="currentColor"></polygon>
+                      <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                      <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
+                    </svg>
+                    <svg class="podcast__icon-volume-muted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" fill="currentColor"></polygon>
+                      <line x1="23" y1="9" x2="17" y2="15"></line>
+                      <line x1="17" y1="9" x2="23" y2="15"></line>
+                    </svg>
+                  </button>
                 </div>
                 <div class="podcast__body">
                   <h3 class="podcast__card-title">High-Converting Web Architecture for Brands</h3>
@@ -1895,40 +1861,30 @@
               <!-- Podcast Card 5 -->
               <article class="podcast__card" aria-label="The Future of AI & Automation for Agencies">
                 <div class="podcast__media">
-                  <div class="podcast__artwork" aria-hidden="true">
-                    <svg class="podcast__artwork-svg" viewBox="0 0 600 338" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <rect width="600" height="338" fill="#0C111C"/>
-                      <circle cx="300" cy="169" r="140" fill="url(#pcast-g5)" opacity="0.35"/>
-                      <g opacity="0.12" stroke="#38BDF8" stroke-width="1.5">
-                        <line x1="0" y1="84" x2="600" y2="84"/>
-                        <line x1="0" y1="169" x2="600" y2="169"/>
-                        <line x1="0" y1="254" x2="600" y2="254"/>
-                        <line x1="150" y1="0" x2="150" y2="338"/>
-                        <line x1="300" y1="0" x2="300" y2="338"/>
-                        <line x1="450" y1="0" x2="450" y2="338"/>
-                      </g>
-                      <!-- Waveform -->
-                      <g opacity="0.85" fill="#38BDF8">
-                        <rect x="220" y="142" width="4" height="54" rx="2"/>
-                        <rect x="232" y="128" width="4" height="82" rx="2"/>
-                        <rect x="244" y="115" width="4" height="108" rx="2" fill="#818CF8"/>
-                        <rect x="256" y="134" width="4" height="70" rx="2"/>
-                        <rect x="268" y="150" width="4" height="38" rx="2"/>
-                        <rect x="328" y="150" width="4" height="38" rx="2"/>
-                        <rect x="340" y="134" width="4" height="70" rx="2"/>
-                        <rect x="352" y="115" width="4" height="108" rx="2" fill="#818CF8"/>
-                        <rect x="364" y="128" width="4" height="82" rx="2"/>
-                        <rect x="376" y="142" width="4" height="54" rx="2"/>
-                      </g>
-                      
-                      <defs>
-                        <radialGradient id="pcast-g5" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(300 169) rotate(90) scale(140)">
-                          <stop stop-color="#38BDF8"/>
-                          <stop offset="1" stop-color="#06B6D4" stop-opacity="0"/>
-                        </radialGradient>
-                      </defs>
-                    </svg>
+                  <video class="podcast__video" src="assets/videos/podcast5.mp4" autoplay muted loop playsinline preload="auto"></video>
+                  <div class="podcast__overlay">
+                    <button type="button" class="podcast__play-btn" aria-label="Play The Future of AI & Automation for Agencies with sound" title="Play episode">
+                      <svg class="podcast__icon-play" viewBox="0 0 24 24" fill="currentColor">
+                        <polygon points="6 4 20 12 6 20 6 4"></polygon>
+                      </svg>
+                      <svg class="podcast__icon-pause" viewBox="0 0 24 24" fill="currentColor">
+                        <rect x="6" y="4" width="4" height="16" rx="1.5"></rect>
+                        <rect x="14" y="4" width="4" height="16" rx="1.5"></rect>
+                      </svg>
+                    </button>
                   </div>
+                  <button type="button" class="podcast__mute-btn" aria-label="Unmute audio" title="Unmute sound">
+                    <svg class="podcast__icon-volume-high" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" fill="currentColor"></polygon>
+                      <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                      <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
+                    </svg>
+                    <svg class="podcast__icon-volume-muted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" fill="currentColor"></polygon>
+                      <line x1="23" y1="9" x2="17" y2="15"></line>
+                      <line x1="17" y1="9" x2="23" y2="15"></line>
+                    </svg>
+                  </button>
                 </div>
                 <div class="podcast__body">
                   <h3 class="podcast__card-title">The Future of AI & Automation for Agencies</h3>
@@ -1938,48 +1894,43 @@
               <!-- Podcast Card 6 -->
               <article class="podcast__card" aria-label="From Freelancer to 8-Figure Agency Founder">
                 <div class="podcast__media">
-                  <div class="podcast__artwork" aria-hidden="true">
-                    <svg class="podcast__artwork-svg" viewBox="0 0 600 338" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <rect width="600" height="338" fill="#101322"/>
-                      <circle cx="300" cy="169" r="140" fill="url(#pcast-g6)" opacity="0.35"/>
-                      <g opacity="0.12" stroke="#818CF8" stroke-width="1.5">
-                        <line x1="0" y1="84" x2="600" y2="84"/>
-                        <line x1="0" y1="169" x2="600" y2="169"/>
-                        <line x1="0" y1="254" x2="600" y2="254"/>
-                        <line x1="150" y1="0" x2="150" y2="338"/>
-                        <line x1="300" y1="0" x2="300" y2="338"/>
-                        <line x1="450" y1="0" x2="450" y2="338"/>
-                      </g>
-                      <!-- Equalizer -->
-                      <g opacity="0.85" fill="#818CF8">
-                        <rect x="220" y="146" width="4" height="46" rx="2"/>
-                        <rect x="232" y="130" width="4" height="78" rx="2"/>
-                        <rect x="244" y="118" width="4" height="102" rx="2" fill="#38BDF8"/>
-                        <rect x="256" y="136" width="4" height="66" rx="2"/>
-                        <rect x="268" y="152" width="4" height="34" rx="2"/>
-                        <rect x="328" y="152" width="4" height="34" rx="2"/>
-                        <rect x="340" y="136" width="4" height="66" rx="2"/>
-                        <rect x="352" y="118" width="4" height="102" rx="2" fill="#38BDF8"/>
-                        <rect x="364" y="130" width="4" height="78" rx="2"/>
-                        <rect x="376" y="146" width="4" height="46" rx="2"/>
-                      </g>
-                      
-                      <defs>
-                        <radialGradient id="pcast-g6" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(300 169) rotate(90) scale(140)">
-                          <stop stop-color="#818CF8"/>
-                          <stop offset="1" stop-color="#4F46E5" stop-opacity="0"/>
-                        </radialGradient>
-                      </defs>
-                    </svg>
+                  <video class="podcast__video" src="assets/videos/podcast6.mp4" autoplay muted loop playsinline preload="auto"></video>
+                  <div class="podcast__overlay">
+                    <button type="button" class="podcast__play-btn" aria-label="Play From Freelancer to 8-Figure Agency Founder with sound" title="Play episode">
+                      <svg class="podcast__icon-play" viewBox="0 0 24 24" fill="currentColor">
+                        <polygon points="6 4 20 12 6 20 6 4"></polygon>
+                      </svg>
+                      <svg class="podcast__icon-pause" viewBox="0 0 24 24" fill="currentColor">
+                        <rect x="6" y="4" width="4" height="16" rx="1.5"></rect>
+                        <rect x="14" y="4" width="4" height="16" rx="1.5"></rect>
+                      </svg>
+                    </button>
                   </div>
+                  <button type="button" class="podcast__mute-btn" aria-label="Unmute audio" title="Unmute sound">
+                    <svg class="podcast__icon-volume-high" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" fill="currentColor"></polygon>
+                      <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                      <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
+                    </svg>
+                    <svg class="podcast__icon-volume-muted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" fill="currentColor"></polygon>
+                      <line x1="23" y1="9" x2="17" y2="15"></line>
+                      <line x1="17" y1="9" x2="23" y2="15"></line>
+                    </svg>
+                  </button>
                 </div>
                 <div class="podcast__body">
                   <h3 class="podcast__card-title">From Freelancer to 8-Figure Agency Founder</h3>
                 </div>
               </article>
-
             </div>
           </div>
+
+          <button type="button" class="podcast-carousel__arrow podcast-carousel__arrow--next" id="podcastNextBtn" aria-label="Next podcast episode" title="Next episode">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+          </button>
         </div>
 
       </div>
