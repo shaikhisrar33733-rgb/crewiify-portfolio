@@ -1,6 +1,6 @@
 /* ==========================================================================
    podcast.css - CREWIIFY Dedicated Podcast Section & Video Carousel
-   Modern, responsive auto-advancing carousel with silent video playback & controls
+   Modern, responsive auto-advancing carousel with silent autoplaying videos
    ========================================================================== */
 
 /* Section Spacing & Boundaries */
@@ -130,11 +130,6 @@
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.65), 0 0 24px rgba(110, 63, 243, 0.25);
 }
 
-.podcast__card.is-playing {
-  border-color: rgba(167, 139, 250, 0.75);
-  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.75), 0 0 28px rgba(139, 92, 246, 0.4);
-}
-
 /* ==========================================================================
    Video Preview Container
    ========================================================================== */
@@ -145,7 +140,6 @@
   aspect-ratio: 9 / 16;
   background: #0B0E17;
   overflow: hidden;
-  cursor: pointer;
 }
 
 .podcast-carousel__viewport.is-dragging .podcast__media {
@@ -166,96 +160,6 @@
 
 .podcast__card:hover .podcast__video {
   transform: scale(1.03);
-}
-
-/* ==========================================================================
-   Video Center Play / Pause Button Overlay
-   ========================================================================== */
-
-.podcast__overlay {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: radial-gradient(circle at center, rgba(0, 0, 0, 0.12) 0%, rgba(0, 0, 0, 0.42) 100%);
-  z-index: 3;
-  pointer-events: none;
-  transition: background 0.3s ease;
-}
-
-.podcast__card:hover .podcast__overlay {
-  background: radial-gradient(circle at center, rgba(139, 92, 246, 0.12) 0%, rgba(0, 0, 0, 0.5) 100%);
-}
-
-.podcast__play-btn {
-  pointer-events: auto;
-  position: relative;
-  width: 54px;
-  height: 54px;
-  border-radius: 50%;
-  border: 1.5px solid rgba(167, 139, 250, 0.5);
-  background: rgba(18, 18, 24, 0.82);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  color: #FFFFFF;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6), 0 0 16px rgba(139, 92, 246, 0.28);
-  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
-              background 0.25s ease,
-              border-color 0.25s ease,
-              box-shadow 0.25s ease,
-              opacity 0.25s ease;
-  z-index: 4;
-}
-
-.podcast__play-btn:hover {
-  transform: scale(1.12);
-  background: rgba(139, 92, 246, 0.95);
-  border-color: #FFFFFF;
-  box-shadow: 0 12px 30px rgba(139, 92, 246, 0.65), 0 0 24px rgba(167, 139, 250, 0.5);
-}
-
-.podcast__play-btn:active {
-  transform: scale(0.95);
-}
-
-.podcast__icon-play {
-  width: 20px;
-  height: 20px;
-  margin-left: 2px;
-  display: block;
-  transition: transform 0.2s ease;
-}
-
-.podcast__icon-pause {
-  width: 18px;
-  height: 18px;
-  margin-left: 0;
-  display: none;
-}
-
-/* When playing: toggle play/pause icon */
-.podcast__card.is-playing .podcast__icon-play {
-  display: none;
-}
-
-.podcast__card.is-playing .podcast__icon-pause {
-  display: block;
-}
-
-.podcast__card.is-playing .podcast__play-btn {
-  background: rgba(139, 92, 246, 0.65);
-  border-color: rgba(255, 255, 255, 0.6);
-  opacity: 0.88;
-}
-
-.podcast__card.is-playing:hover .podcast__play-btn {
-  opacity: 1;
-  background: rgba(139, 92, 246, 0.95);
 }
 
 /* ==========================================================================
@@ -314,26 +218,10 @@
     width: 16px;
     height: 16px;
   }
-
-  .podcast__play-btn {
-    width: 48px;
-    height: 48px;
-  }
-
-  .podcast__icon-play {
-    width: 17px;
-    height: 17px;
-  }
-
-  .podcast__icon-pause {
-    width: 16px;
-    height: 16px;
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .podcast__card,
-  .podcast__play-btn,
   .podcast-carousel__arrow {
     transition: none !important;
   }

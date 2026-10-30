@@ -1,8 +1,8 @@
 /**
  * podcast.js - CREWIIFY Dedicated Podcast Section Video Carousel
- * Continuous smooth auto-gliding infinite carousel with silent video playback,
- * play/pause overlay controls, and previous/next navigation arrows.
- * All podcast videos always play in silent/muted mode without volume controls.
+ * Continuous smooth auto-gliding infinite carousel with silent autoplaying videos
+ * and previous/next navigation arrows.
+ * All 6 podcast videos autoplay silently in muted mode with no play, pause, or audio controls.
  */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -58,10 +58,6 @@ function initPodcastCarousel() {
   let lastTimestamp = 0;
   let animationId = null;
 
-  // Active playing card tracking (ensures only one video plays at a time)
-  let activePlayingCard = null;
-  let isAnyVideoPlaying = false;
-
   // Gliding speed in pixels per second
   const SPEED = 46;
 
@@ -107,101 +103,8 @@ function initPodcastCarousel() {
     }
   }
 
-  // Play a video in silent/muted mode and pause carousel sliding
-  function playVideo(card) {
-    const video = card.querySelector('video');
-    if (!video) return;
-
-    // If another card was active, stop it first
-    if (activePlayingCard && activePlayingCard !== card) {
-      stopActiveVideo(false);
-    }
-
-    // Pause all other carousel videos so ONLY this video plays actively
-    const allVideos = track.querySelectorAll('video');
-    allVideos.forEach((v) => {
-      if (v !== video) {
-        v.pause();
-        v.muted = true;
-        v.volume = 0;
-      }
-    });
-
-    // Enforce silent/muted mode - audio is completely disabled
-    video.muted = true;
-    video.volume = 0;
-    video.setAttribute('muted', '');
-    video.playsInline = true;
-    video.setAttribute('playsinline', '');
-    video.loop = false; // Allows 'ended' event to trigger completion
-
-    if (video.ended || (video.duration && video.currentTime >= video.duration - 0.2)) {
-      video.currentTime = 0;
-    }
-
-    video.play().catch(() => {});
-
-    card.classList.add('is-playing');
-    activePlayingCard = card;
-    isAnyVideoPlaying = true;
-
-    const playBtn = card.querySelector('.podcast__play-btn');
-    if (playBtn) {
-      playBtn.setAttribute('title', 'Pause episode');
-      playBtn.setAttribute('aria-label', 'Pause episode');
-    }
-  }
-
-  // Stop currently playing active video and optionally resume carousel
-  function stopActiveVideo(andResumeCarousel = true) {
-    if (activePlayingCard) {
-      const vid = activePlayingCard.querySelector('video');
-      if (vid) {
-        vid.pause();
-        vid.muted = true;
-        vid.volume = 0;
-        vid.loop = true;
-      }
-      activePlayingCard.classList.remove('is-playing');
-      const pBtn = activePlayingCard.querySelector('.podcast__play-btn');
-      if (pBtn) {
-        pBtn.setAttribute('title', 'Play episode');
-        pBtn.setAttribute('aria-label', 'Play episode');
-      }
-      activePlayingCard = null;
-    }
-    isAnyVideoPlaying = false;
-    if (andResumeCarousel) {
-      lastTimestamp = performance.now();
-      playAllSilentVideos();
-    }
-  }
-
-  // Setup video ended & pause listener callbacks
-  function setupVideoEventListeners() {
-    const allVideos = track.querySelectorAll('video');
-    allVideos.forEach((v) => {
-      v.addEventListener('ended', () => {
-        const card = v.closest('.podcast__card');
-        if (card === activePlayingCard) {
-          stopActiveVideo(true);
-        }
-      });
-      v.addEventListener('pause', () => {
-        const card = v.closest('.podcast__card');
-        if (card === activePlayingCard && !v.ended && v.paused) {
-          card.classList.remove('is-playing');
-          isAnyVideoPlaying = false;
-          lastTimestamp = performance.now();
-          playAllSilentVideos();
-        }
-      });
-    });
-  }
-
-  // Background silent loop playback for all carousel videos
+  // Ensure all videos play silently in continuous loop
   function playAllSilentVideos() {
-    if (isAnyVideoPlaying) return;
     const allVideos = track.querySelectorAll('video');
     allVideos.forEach((v) => {
       v.muted = true;
@@ -212,7 +115,10 @@ function initPodcastCarousel() {
       v.setAttribute('playsinline', '');
       v.setAttribute('loop', '');
       v.removeAttribute('controls');
-      v.play().catch(() => {});
+      const playPromise = v.play();
+      if (playPromise !== undefined) {
+        playPromise.catch(() => {});
+      }
     });
   }
 
@@ -223,14 +129,13 @@ function initPodcastCarousel() {
     });
   }
 
-  // Animation Loop using requestAnimationFrame
+  // Continuous animation loop using requestAnimationFrame
   function animate(timestamp) {
     if (!lastTimestamp) lastTimestamp = timestamp;
     const deltaTime = (timestamp - lastTimestamp) / 1000;
     lastTimestamp = timestamp;
 
-    // Movement pauses when a video is being played by the user (!isAnyVideoPlaying)
-    if (isVisible && !isHovered && !isDragging && !isReducedMotion && !isAnyVideoPlaying && singleSetWidth > 0) {
+    if (isVisible && !isHovered && !isDragging && !isReducedMotion && singleSetWidth > 0) {
       currentX += SPEED * deltaTime;
       if (currentX >= singleSetWidth) {
         currentX = currentX % singleSetWidth;
@@ -272,7 +177,7 @@ function initPodcastCarousel() {
     });
   }
 
-  // Hover Handlers
+  // Hover Handlers (Pause on hover, resume on leave)
   viewport.addEventListener('mouseenter', () => {
     isHovered = true;
   });
@@ -324,46 +229,13 @@ function initPodcastCarousel() {
   window.addEventListener('touchmove', moveDrag, { passive: true });
   window.addEventListener('touchend', endDrag);
 
-  // Click handler on carousel track for Play/Pause toggling
-  track.addEventListener('click', (e) => {
-    // If the user performed a drag movement, cancel click
-    if (dragMoved) {
-      e.preventDefault();
-      e.stopPropagation();
-      dragMoved = false;
-      return;
-    }
-
-    // Play/Pause button or media card click
-    const playBtn = e.target.closest('.podcast__play-btn');
-    const media = e.target.closest('.podcast__media');
-    if (playBtn || media) {
-      e.preventDefault();
-      e.stopPropagation();
-      const card = (playBtn || media).closest('.podcast__card');
-      if (!card) return;
-
-      if (card.classList.contains('is-playing')) {
-        stopActiveVideo(true);
-      } else {
-        playVideo(card);
-      }
-      return;
-    }
-
-    e.preventDefault();
-    e.stopPropagation();
-  });
-
   // IntersectionObserver to pause when offscreen
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
       isVisible = entry.isIntersecting;
       if (isVisible) {
         lastTimestamp = performance.now();
-        if (!isAnyVideoPlaying) {
-          playAllSilentVideos();
-        }
+        playAllSilentVideos();
       } else {
         pauseAllVideos();
       }
@@ -373,9 +245,7 @@ function initPodcastCarousel() {
 
   // Fallback trigger for mobile browser autoplay policies
   const resumeSilentVideos = () => {
-    if (!isAnyVideoPlaying) {
-      playAllSilentVideos();
-    }
+    playAllSilentVideos();
     document.removeEventListener('pointerdown', resumeSilentVideos);
     document.removeEventListener('scroll', resumeSilentVideos);
   };
@@ -391,9 +261,8 @@ function initPodcastCarousel() {
     }, 100);
   });
 
-  // Initialize layout, video events, and start continuous loop
+  // Initialize layout, video playback, and start continuous loop
   updateDimensions();
-  setupVideoEventListeners();
   playAllSilentVideos();
   animationId = requestAnimationFrame(animate);
 }
