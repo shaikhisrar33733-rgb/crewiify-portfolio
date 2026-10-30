@@ -1,8 +1,13 @@
 /**
  * podcast.js - CREWIIFY Dedicated Podcast Section Video Carousel
- * Continuous smooth auto-gliding infinite carousel with silent autoplaying videos
- * and previous/next navigation arrows.
- * All 6 podcast videos autoplay silently in muted mode with no play, pause, or audio controls.
+ * Continuous smooth auto-gliding infinite carousel with silent autoplaying videos.
+ * Features:
+ * - Glides horizontally automatically using requestAnimationFrame with seamless infinite wrapping
+ * - Starts/continues smooth automatic horizontal movement when mouse enters the carousel area
+ * - Seamlessly returns to normal automatic sliding behavior when mouse leaves
+ * - Touch & drag swipe support with seamless release
+ * - All 6 podcast videos autoplay silently in muted mode with zero controls
+ * - No arrow buttons or audio controls
  */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -13,8 +18,6 @@ function initPodcastCarousel() {
   const carousel = document.getElementById('podcastCarousel');
   const viewport = document.getElementById('podcastViewport');
   const track = document.getElementById('podcastTrack');
-  const prevBtn = document.getElementById('podcastPrevBtn');
-  const nextBtn = document.getElementById('podcastNextBtn');
 
   if (!carousel || !viewport || !track) return;
   if (track.querySelector('.is-clone')) return;
@@ -51,15 +54,17 @@ function initPodcastCarousel() {
   let currentX = 0;
   let isHovered = false;
   let isDragging = false;
-  let dragMoved = false;
   let isVisible = true;
   let dragStartX = 0;
   let dragStartOffset = 0;
   let lastTimestamp = 0;
   let animationId = null;
 
-  // Gliding speed in pixels per second
-  const SPEED = 46;
+  // Gliding speeds in pixels per second:
+  // BASE_SPEED: normal automatic sliding
+  // HOVER_SPEED: smooth active movement when mouse is over the carousel
+  const BASE_SPEED = 46;
+  const HOVER_SPEED = 54;
 
   // Reduced motion accessibility
   const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -135,8 +140,13 @@ function initPodcastCarousel() {
     const deltaTime = (timestamp - lastTimestamp) / 1000;
     lastTimestamp = timestamp;
 
-    if (isVisible && !isHovered && !isDragging && !isReducedMotion && singleSetWidth > 0) {
-      currentX += SPEED * deltaTime;
+    // Carousel moves continuously:
+    // When mouse enters, it smoothly moves horizontally automatically (HOVER_SPEED).
+    // When mouse leaves, it returns to normal automatic sliding behavior (BASE_SPEED).
+    // Pauses only when actively dragging with mouse/touch or when off-screen.
+    if (isVisible && !isDragging && !isReducedMotion && singleSetWidth > 0) {
+      const activeSpeed = isHovered ? HOVER_SPEED : BASE_SPEED;
+      currentX += activeSpeed * deltaTime;
       if (currentX >= singleSetWidth) {
         currentX = currentX % singleSetWidth;
       }
@@ -146,40 +156,12 @@ function initPodcastCarousel() {
     animationId = requestAnimationFrame(animate);
   }
 
-  // Navigation Arrows Support
-  if (prevBtn) {
-    prevBtn.addEventListener('click', () => {
-      const gap = getGap();
-      const step = cardWidth + gap;
-      currentX -= step;
-      while (currentX < 0) currentX += singleSetWidth;
-      track.style.transition = 'transform 0.35s cubic-bezier(0.16, 1, 0.3, 1)';
-      track.style.transform = `translate3d(-${currentX}px, 0, 0)`;
-      setTimeout(() => {
-        track.style.transition = '';
-        lastTimestamp = performance.now();
-      }, 350);
-    });
-  }
-
-  if (nextBtn) {
-    nextBtn.addEventListener('click', () => {
-      const gap = getGap();
-      const step = cardWidth + gap;
-      currentX += step;
-      if (currentX >= singleSetWidth) currentX = currentX % singleSetWidth;
-      track.style.transition = 'transform 0.35s cubic-bezier(0.16, 1, 0.3, 1)';
-      track.style.transform = `translate3d(-${currentX}px, 0, 0)`;
-      setTimeout(() => {
-        track.style.transition = '';
-        lastTimestamp = performance.now();
-      }, 350);
-    });
-  }
-
-  // Hover Handlers (Pause on hover, resume on leave)
+  // Hover Handlers
+  // When cursor enters, start/continue smooth horizontal movement automatically
+  // When cursor leaves, seamlessly return to normal automatic sliding behavior
   viewport.addEventListener('mouseenter', () => {
     isHovered = true;
+    lastTimestamp = performance.now();
   });
 
   viewport.addEventListener('mouseleave', () => {
@@ -191,7 +173,6 @@ function initPodcastCarousel() {
   function startDrag(e) {
     isDragging = true;
     dragStartX = e.type.includes('touch') ? e.touches[0].clientX : e.clientX;
-    dragMoved = false;
     dragStartOffset = currentX;
     viewport.classList.add('is-dragging');
   }
@@ -200,9 +181,6 @@ function initPodcastCarousel() {
     if (!isDragging) return;
     const clientX = e.type.includes('touch') ? e.touches[0].clientX : e.clientX;
     const deltaX = dragStartX - clientX;
-    if (Math.abs(deltaX) > 6) {
-      dragMoved = true;
-    }
     currentX = dragStartOffset + deltaX;
 
     if (singleSetWidth > 0) {
@@ -216,7 +194,6 @@ function initPodcastCarousel() {
   function endDrag() {
     if (!isDragging) return;
     isDragging = false;
-    isHovered = false;
     lastTimestamp = performance.now();
     viewport.classList.remove('is-dragging');
   }
