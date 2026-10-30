@@ -19,7 +19,7 @@ function initHomeFilters() {
   const filterBtns = document.querySelectorAll('.home-cs__filter-btn');
   const cards = document.querySelectorAll('#homeCsGrid .home-cs__card');
 
-  if (!filterBtns.length || !cards.length) return;
+  if (!filterBtns.length) return;
 
   filterBtns.forEach(btn => {
     btn.addEventListener('click', () => {
