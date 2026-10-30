@@ -1,7 +1,8 @@
 /**
  * podcast.js - CREWIIFY Dedicated Podcast Section Video Carousel
- * Continuous smooth auto-gliding infinite carousel with interactive video playback,
- * original audio support, mute/unmute controls, and previous/next navigation arrows.
+ * Continuous smooth auto-gliding infinite carousel with silent video playback,
+ * play/pause overlay controls, and previous/next navigation arrows.
+ * All podcast videos always play in silent/muted mode without volume controls.
  */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -57,7 +58,7 @@ function initPodcastCarousel() {
   let lastTimestamp = 0;
   let animationId = null;
 
-  // Active playing card tracking (ensures only one video plays with sound)
+  // Active playing card tracking (ensures only one video plays at a time)
   let activePlayingCard = null;
   let isAnyVideoPlaying = false;
 
@@ -106,8 +107,8 @@ function initPodcastCarousel() {
     }
   }
 
-  // Play a video with original sound and pause carousel gliding
-  function playVideoWithSound(card) {
+  // Play a video in silent/muted mode and pause carousel sliding
+  function playVideo(card) {
     const video = card.querySelector('video');
     if (!video) return;
 
@@ -116,34 +117,31 @@ function initPodcastCarousel() {
       stopActiveVideo(false);
     }
 
-    // Pause all other carousel videos so ONLY this video plays
+    // Pause all other carousel videos so ONLY this video plays actively
     const allVideos = track.querySelectorAll('video');
     allVideos.forEach((v) => {
       if (v !== video) {
         v.pause();
         v.muted = true;
+        v.volume = 0;
       }
     });
 
-    // Unmute and play this video with original audio
-    video.muted = false;
-    video.volume = 1;
+    // Enforce silent/muted mode - audio is completely disabled
+    video.muted = true;
+    video.volume = 0;
+    video.setAttribute('muted', '');
+    video.playsInline = true;
+    video.setAttribute('playsinline', '');
     video.loop = false; // Allows 'ended' event to trigger completion
 
     if (video.ended || (video.duration && video.currentTime >= video.duration - 0.2)) {
       video.currentTime = 0;
     }
 
-    const playPromise = video.play();
-    if (playPromise !== undefined) {
-      playPromise.catch(() => {
-        // Fallback silently if browser restrictions prevent unmuted audio
-        video.muted = true;
-        video.play().catch(() => {});
-      });
-    }
+    video.play().catch(() => {});
 
-    card.classList.add('is-playing', 'is-unmuted');
+    card.classList.add('is-playing');
     activePlayingCard = card;
     isAnyVideoPlaying = true;
 
@@ -151,11 +149,6 @@ function initPodcastCarousel() {
     if (playBtn) {
       playBtn.setAttribute('title', 'Pause episode');
       playBtn.setAttribute('aria-label', 'Pause episode');
-    }
-    const muteBtn = card.querySelector('.podcast__mute-btn');
-    if (muteBtn) {
-      muteBtn.setAttribute('title', 'Mute sound');
-      muteBtn.setAttribute('aria-label', 'Mute podcast audio');
     }
   }
 
@@ -166,18 +159,14 @@ function initPodcastCarousel() {
       if (vid) {
         vid.pause();
         vid.muted = true;
+        vid.volume = 0;
         vid.loop = true;
       }
-      activePlayingCard.classList.remove('is-playing', 'is-unmuted');
+      activePlayingCard.classList.remove('is-playing');
       const pBtn = activePlayingCard.querySelector('.podcast__play-btn');
       if (pBtn) {
         pBtn.setAttribute('title', 'Play episode');
-        pBtn.setAttribute('aria-label', 'Play podcast video with sound');
-      }
-      const mBtn = activePlayingCard.querySelector('.podcast__mute-btn');
-      if (mBtn) {
-        mBtn.setAttribute('title', 'Unmute sound');
-        mBtn.setAttribute('aria-label', 'Unmute podcast audio');
+        pBtn.setAttribute('aria-label', 'Play episode');
       }
       activePlayingCard = null;
     }
@@ -185,34 +174,6 @@ function initPodcastCarousel() {
     if (andResumeCarousel) {
       lastTimestamp = performance.now();
       playAllSilentVideos();
-    }
-  }
-
-  // Toggle Mute/Unmute sound for a video card
-  function toggleMute(card) {
-    const video = card.querySelector('video');
-    if (!video) return;
-
-    video.muted = !video.muted;
-    const muteBtn = card.querySelector('.podcast__mute-btn');
-
-    if (video.muted) {
-      card.classList.remove('is-unmuted');
-      if (muteBtn) {
-        muteBtn.setAttribute('title', 'Unmute sound');
-        muteBtn.setAttribute('aria-label', 'Unmute podcast audio');
-      }
-    } else {
-      video.volume = 1;
-      card.classList.add('is-unmuted');
-      if (muteBtn) {
-        muteBtn.setAttribute('title', 'Mute sound');
-        muteBtn.setAttribute('aria-label', 'Mute podcast audio');
-      }
-      // If the card was not yet in active playing mode, activate it
-      if (!card.classList.contains('is-playing')) {
-        playVideoWithSound(card);
-      }
     }
   }
 
@@ -363,7 +324,7 @@ function initPodcastCarousel() {
   window.addEventListener('touchmove', moveDrag, { passive: true });
   window.addEventListener('touchend', endDrag);
 
-  // Unified click handler on carousel track
+  // Click handler on carousel track for Play/Pause toggling
   track.addEventListener('click', (e) => {
     // If the user performed a drag movement, cancel click
     if (dragMoved) {
@@ -373,17 +334,7 @@ function initPodcastCarousel() {
       return;
     }
 
-    // 1. Mute/Unmute button click
-    const muteBtn = e.target.closest('.podcast__mute-btn');
-    if (muteBtn) {
-      e.preventDefault();
-      e.stopPropagation();
-      const card = muteBtn.closest('.podcast__card');
-      if (card) toggleMute(card);
-      return;
-    }
-
-    // 2. Play/Pause button or media click
+    // Play/Pause button or media card click
     const playBtn = e.target.closest('.podcast__play-btn');
     const media = e.target.closest('.podcast__media');
     if (playBtn || media) {
@@ -395,7 +346,7 @@ function initPodcastCarousel() {
       if (card.classList.contains('is-playing')) {
         stopActiveVideo(true);
       } else {
-        playVideoWithSound(card);
+        playVideo(card);
       }
       return;
     }
