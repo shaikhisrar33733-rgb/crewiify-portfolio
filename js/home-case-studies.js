@@ -319,6 +319,7 @@ function initHomeAutoplayVideoVisibility() {
 
 /* ==========================================================================
    00. OUR WORK HORIZONTAL AUTO-GLIDING VIDEO CAROUSEL
+   With Interactive Play/Pause, Sound Audio, Mute Toggle & Carousel Motion Pause
    ========================================================================== */
 
 function initHomeWorkCarousel() {
@@ -361,11 +362,16 @@ function initHomeWorkCarousel() {
   let currentX = 0;
   let isHovered = false;
   let isDragging = false;
+  let dragMoved = false;
   let isVisible = true;
   let dragStartX = 0;
   let dragStartOffset = 0;
   let lastTimestamp = 0;
   let animationId = null;
+
+  // Active playing card tracking (ensures only one video plays with sound)
+  let activePlayingCard = null;
+  let isAnyVideoPlaying = false;
 
   // Smooth cinematic gliding speed: ~46 px/sec
   const SPEED = 46;
@@ -412,10 +418,143 @@ function initHomeWorkCarousel() {
     }
   }
 
-  // Ensure all video elements autoplay muted inline with zero controls
-  function playAllVideos() {
+  // Play a video with original sound and pause carousel gliding
+  function playVideoWithSound(card) {
+    const video = card.querySelector('video');
+    if (!video) return;
+
+    // If another card was active, stop it first
+    if (activePlayingCard && activePlayingCard !== card) {
+      stopActiveVideo(false);
+    }
+
+    // Pause all other carousel videos so ONLY this video plays
     const allVideos = track.querySelectorAll('video');
-    allVideos.forEach(v => {
+    allVideos.forEach((v) => {
+      if (v !== video) {
+        v.pause();
+        v.muted = true;
+      }
+    });
+
+    // Unmute and play this video
+    video.muted = false;
+    video.volume = 1;
+    video.loop = false; // Allows 'ended' event to trigger completion
+
+    if (video.ended || (video.duration && video.currentTime >= video.duration - 0.2)) {
+      video.currentTime = 0;
+    }
+
+    const playPromise = video.play();
+    if (playPromise !== undefined) {
+      playPromise.catch(() => {
+        // Fallback silently if browser restrictions prevent audio
+        video.muted = true;
+        video.play().catch(() => {});
+      });
+    }
+
+    card.classList.add('is-playing', 'is-unmuted');
+    activePlayingCard = card;
+    isAnyVideoPlaying = true;
+
+    const playBtn = card.querySelector('.home-work__play-btn');
+    if (playBtn) {
+      playBtn.setAttribute('title', 'Pause video');
+      playBtn.setAttribute('aria-label', 'Pause video');
+    }
+    const muteBtn = card.querySelector('.home-work__mute-btn');
+    if (muteBtn) {
+      muteBtn.setAttribute('title', 'Mute sound');
+      muteBtn.setAttribute('aria-label', 'Mute video audio');
+    }
+  }
+
+  // Stop currently playing active video and optionally resume carousel
+  function stopActiveVideo(andResumeCarousel = true) {
+    if (activePlayingCard) {
+      const vid = activePlayingCard.querySelector('video');
+      if (vid) {
+        vid.pause();
+        vid.muted = true;
+        vid.loop = true;
+      }
+      activePlayingCard.classList.remove('is-playing', 'is-unmuted');
+      const pBtn = activePlayingCard.querySelector('.home-work__play-btn');
+      if (pBtn) {
+        pBtn.setAttribute('title', 'Play video');
+        pBtn.setAttribute('aria-label', 'Play video with sound');
+      }
+      const mBtn = activePlayingCard.querySelector('.home-work__mute-btn');
+      if (mBtn) {
+        mBtn.setAttribute('title', 'Unmute sound');
+        mBtn.setAttribute('aria-label', 'Unmute video audio');
+      }
+      activePlayingCard = null;
+    }
+    isAnyVideoPlaying = false;
+    if (andResumeCarousel) {
+      lastTimestamp = performance.now();
+      playAllSilentVideos();
+    }
+  }
+
+  // Toggle Mute/Unmute sound for a video card
+  function toggleMute(card) {
+    const video = card.querySelector('video');
+    if (!video) return;
+
+    video.muted = !video.muted;
+    const muteBtn = card.querySelector('.home-work__mute-btn');
+
+    if (video.muted) {
+      card.classList.remove('is-unmuted');
+      if (muteBtn) {
+        muteBtn.setAttribute('title', 'Unmute sound');
+        muteBtn.setAttribute('aria-label', 'Unmute video audio');
+      }
+    } else {
+      video.volume = 1;
+      card.classList.add('is-unmuted');
+      if (muteBtn) {
+        muteBtn.setAttribute('title', 'Mute sound');
+        muteBtn.setAttribute('aria-label', 'Mute video audio');
+      }
+      // If the card was not yet in active playing mode, activate it
+      if (!card.classList.contains('is-playing')) {
+        playVideoWithSound(card);
+      }
+    }
+  }
+
+  // Setup video ended & pause listener callbacks
+  function setupVideoEventListeners() {
+    const allVideos = track.querySelectorAll('video');
+    allVideos.forEach((v) => {
+      v.addEventListener('ended', () => {
+        const card = v.closest('.home-work__card');
+        if (card === activePlayingCard) {
+          stopActiveVideo(true);
+        }
+      });
+      v.addEventListener('pause', () => {
+        const card = v.closest('.home-work__card');
+        if (card === activePlayingCard && !v.ended && v.paused) {
+          card.classList.remove('is-playing');
+          isAnyVideoPlaying = false;
+          lastTimestamp = performance.now();
+          playAllSilentVideos();
+        }
+      });
+    });
+  }
+
+  // Background silent loop playback for all carousel videos
+  function playAllSilentVideos() {
+    if (isAnyVideoPlaying) return;
+    const allVideos = track.querySelectorAll('video');
+    allVideos.forEach((v) => {
       v.muted = true;
       v.volume = 0;
       v.loop = true;
@@ -430,7 +569,7 @@ function initHomeWorkCarousel() {
 
   function pauseAllVideos() {
     const allVideos = track.querySelectorAll('video');
-    allVideos.forEach(v => {
+    allVideos.forEach((v) => {
       v.pause();
     });
   }
@@ -441,7 +580,8 @@ function initHomeWorkCarousel() {
     const deltaTime = (timestamp - lastTimestamp) / 1000;
     lastTimestamp = timestamp;
 
-    if (isVisible && !isHovered && !isDragging && !isReducedMotion && singleSetWidth > 0) {
+    // Movement pauses when a video is being played by the user (!isAnyVideoPlaying)
+    if (isVisible && !isHovered && !isDragging && !isReducedMotion && !isAnyVideoPlaying && singleSetWidth > 0) {
       currentX += SPEED * deltaTime;
       if (currentX >= singleSetWidth) {
         currentX = currentX % singleSetWidth;
@@ -452,7 +592,7 @@ function initHomeWorkCarousel() {
     animationId = requestAnimationFrame(animate);
   }
 
-  // Hover Pause Handlers (Pause on hover, resume on pointer leave)
+  // Hover Handlers (Pause on pointer hover, resume on pointer leave)
   viewport.addEventListener('mouseenter', () => {
     isHovered = true;
   });
@@ -466,6 +606,7 @@ function initHomeWorkCarousel() {
   function startDrag(e) {
     isDragging = true;
     dragStartX = e.type.includes('touch') ? e.touches[0].clientX : e.clientX;
+    dragMoved = false;
     dragStartOffset = currentX;
     viewport.classList.add('is-dragging');
   }
@@ -474,6 +615,9 @@ function initHomeWorkCarousel() {
     if (!isDragging) return;
     const clientX = e.type.includes('touch') ? e.touches[0].clientX : e.clientX;
     const deltaX = dragStartX - clientX;
+    if (Math.abs(deltaX) > 6) {
+      dragMoved = true;
+    }
     currentX = dragStartOffset + deltaX;
 
     if (singleSetWidth > 0) {
@@ -500,19 +644,56 @@ function initHomeWorkCarousel() {
   window.addEventListener('touchmove', moveDrag, { passive: true });
   window.addEventListener('touchend', endDrag);
 
-  // Prevent any clicks on cards from opening modals or triggering default actions
+  // Unified click handler on carousel track
   track.addEventListener('click', (e) => {
+    // If the user performed a drag movement, cancel click
+    if (dragMoved) {
+      e.preventDefault();
+      e.stopPropagation();
+      dragMoved = false;
+      return;
+    }
+
+    // 1. Mute/Unmute button click
+    const muteBtn = e.target.closest('.home-work__mute-btn');
+    if (muteBtn) {
+      e.preventDefault();
+      e.stopPropagation();
+      const card = muteBtn.closest('.home-work__card');
+      if (card) toggleMute(card);
+      return;
+    }
+
+    // 2. Play/Pause button or media click
+    const playBtn = e.target.closest('.home-work__play-btn');
+    const media = e.target.closest('.home-cs__media');
+    if (playBtn || media) {
+      e.preventDefault();
+      e.stopPropagation();
+      const card = (playBtn || media).closest('.home-work__card');
+      if (!card) return;
+
+      if (card.classList.contains('is-playing')) {
+        stopActiveVideo(true);
+      } else {
+        playVideoWithSound(card);
+      }
+      return;
+    }
+
     e.preventDefault();
     e.stopPropagation();
   });
 
-  // IntersectionObserver to pause gliding and videos when offscreen
+  // IntersectionObserver to pause when offscreen
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
       isVisible = entry.isIntersecting;
       if (isVisible) {
         lastTimestamp = performance.now();
-        playAllVideos();
+        if (!isAnyVideoPlaying) {
+          playAllSilentVideos();
+        }
       } else {
         pauseAllVideos();
       }
@@ -522,7 +703,9 @@ function initHomeWorkCarousel() {
 
   // Fallback trigger for mobile browser autoplay policies
   const resumeSilentVideos = () => {
-    playAllVideos();
+    if (!isAnyVideoPlaying) {
+      playAllSilentVideos();
+    }
     document.removeEventListener('pointerdown', resumeSilentVideos);
     document.removeEventListener('scroll', resumeSilentVideos);
   };
@@ -538,8 +721,9 @@ function initHomeWorkCarousel() {
     }, 100);
   });
 
-  // Initialize layout and start continuous loop
+  // Initialize layout, video events, and start continuous loop
   updateDimensions();
-  playAllVideos();
+  setupVideoEventListeners();
+  playAllSilentVideos();
   animationId = requestAnimationFrame(animate);
 }

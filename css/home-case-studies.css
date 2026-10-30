@@ -1378,7 +1378,7 @@
   aspect-ratio: 9 / 16;
   background: #0B0E17;
   overflow: hidden;
-  cursor: grab;
+  cursor: pointer;
 }
 
 .home-work-carousel__viewport.is-dragging .home-work__card .home-cs__media {
@@ -1430,5 +1430,185 @@
 @media (max-width: 768px) {
   .home-work-carousel__track {
     gap: 16px;
+  }
+}
+
+/* Video Center Overlay */
+.home-work__overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(circle at center, rgba(0, 0, 0, 0.12) 0%, rgba(0, 0, 0, 0.42) 100%);
+  z-index: 3;
+  pointer-events: none;
+  transition: background 0.3s ease;
+}
+
+.home-work__card:hover .home-work__overlay {
+  background: radial-gradient(circle at center, rgba(139, 92, 246, 0.12) 0%, rgba(0, 0, 0, 0.5) 100%);
+}
+
+/* Modern Glass Play / Pause Button */
+.home-work__play-btn {
+  pointer-events: auto;
+  position: relative;
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(167, 139, 250, 0.5);
+  background: rgba(18, 18, 24, 0.82);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6), 0 0 16px rgba(139, 92, 246, 0.28);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+              background 0.25s ease,
+              border-color 0.25s ease,
+              box-shadow 0.25s ease,
+              opacity 0.25s ease;
+  z-index: 4;
+}
+
+.home-work__play-btn:hover {
+  transform: scale(1.12);
+  background: rgba(139, 92, 246, 0.95);
+  border-color: #FFFFFF;
+  box-shadow: 0 12px 30px rgba(139, 92, 246, 0.65), 0 0 24px rgba(167, 139, 250, 0.5);
+}
+
+.home-work__play-btn:active {
+  transform: scale(0.95);
+}
+
+.home-work__icon-play {
+  width: 20px;
+  height: 20px;
+  margin-left: 2px;
+  display: block;
+  transition: transform 0.2s ease;
+}
+
+.home-work__icon-pause {
+  width: 18px;
+  height: 18px;
+  margin-left: 0;
+  display: none;
+}
+
+/* When playing: show pause icon, hide play icon */
+.home-work__card.is-playing .home-work__icon-play {
+  display: none;
+}
+
+.home-work__card.is-playing .home-work__icon-pause {
+  display: block;
+}
+
+.home-work__card.is-playing .home-work__play-btn {
+  background: rgba(139, 92, 246, 0.65);
+  border-color: rgba(255, 255, 255, 0.6);
+  opacity: 0.88;
+}
+
+.home-work__card.is-playing:hover .home-work__play-btn {
+  opacity: 1;
+  background: rgba(139, 92, 246, 0.95);
+}
+
+/* Active Playing Card Highlight */
+.home-work__card.is-playing {
+  border-color: rgba(167, 139, 250, 0.7);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.75), 0 0 28px rgba(139, 92, 246, 0.35);
+}
+
+/* Mute / Unmute Floating Control Button */
+.home-work__mute-btn {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 6;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(15, 15, 22, 0.78);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.5);
+  transition: transform 0.25s ease,
+              background 0.25s ease,
+              border-color 0.25s ease,
+              box-shadow 0.25s ease;
+}
+
+.home-work__mute-btn:hover {
+  transform: scale(1.1);
+  background: rgba(139, 92, 246, 0.85);
+  border-color: rgba(255, 255, 255, 0.45);
+  box-shadow: 0 6px 18px rgba(139, 92, 246, 0.45);
+}
+
+.home-work__mute-btn svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* Default state: muted icon visible, high icon hidden */
+.home-work__icon-volume-muted {
+  display: block;
+}
+
+.home-work__icon-volume-high {
+  display: none;
+}
+
+/* When unmuted: high icon visible, muted icon hidden */
+.home-work__card.is-unmuted .home-work__icon-volume-muted {
+  display: none;
+}
+
+.home-work__card.is-unmuted .home-work__icon-volume-high {
+  display: block;
+}
+
+.home-work__card.is-unmuted .home-work__mute-btn {
+  border-color: rgba(167, 139, 250, 0.65);
+  background: rgba(139, 92, 246, 0.45);
+  box-shadow: 0 0 12px rgba(139, 92, 246, 0.35);
+}
+
+@media (max-width: 768px) {
+  .home-work__play-btn {
+    width: 48px;
+    height: 48px;
+  }
+  .home-work__icon-play {
+    width: 17px;
+    height: 17px;
+  }
+  .home-work__icon-pause {
+    width: 16px;
+    height: 16px;
+  }
+  .home-work__mute-btn {
+    width: 32px;
+    height: 32px;
+    top: 10px;
+    right: 10px;
+  }
+  .home-work__mute-btn svg {
+    width: 14px;
+    height: 14px;
   }
 }
