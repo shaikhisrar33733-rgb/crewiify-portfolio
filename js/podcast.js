@@ -93,11 +93,15 @@ function initPodcastCarousel() {
       cardWidth = Math.max(cardWidth, 220);
     }
 
+    const cardHeight = Math.round(cardWidth * (16 / 9));
+
     const allCards = track.querySelectorAll('.podcast__card');
     allCards.forEach((card) => {
       card.style.flex = `0 0 ${cardWidth}px`;
       card.style.width = `${cardWidth}px`;
       card.style.maxWidth = `${cardWidth}px`;
+      card.style.height = `${cardHeight}px`;
+      card.style.maxHeight = `${cardHeight}px`;
     });
 
     singleSetWidth = totalCards * (cardWidth + gap);
