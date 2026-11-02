@@ -59,13 +59,14 @@
 .podcast__card {
   position: relative;
   width: 100%;
+  max-width: 245px;
   aspect-ratio: 9 / 16;
   overflow: hidden;
   box-sizing: border-box;
   flex-shrink: 0;
   background: #0B0E17;
   border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 18px;
+  border-radius: 16px;
   margin: 0;
   padding: 0;
   transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),

@@ -75,10 +75,10 @@ function initPodcastCarousel() {
 
   function getCardsPerView() {
     const w = window.innerWidth;
-    if (w <= 480) return 1.25; // 1 card + peek on mobile
-    if (w <= 768) return 2.15; // 2 cards + peek on tablet
-    if (w <= 1100) return 3.2; // 3 cards + peek on laptop
-    return 4;                  // 4 cards on desktop
+    if (w <= 480) return 1.55; // Compact card + peek on mobile
+    if (w <= 768) return 2.65; // ~2.65 cards on tablet
+    if (w <= 1100) return 3.75; // ~3.75 cards on laptop
+    return 4.75;               // ~4.75 cards on desktop for compact, balanced sizing
   }
 
   function updateDimensions() {
@@ -86,11 +86,12 @@ function initPodcastCarousel() {
     const viewportWidth = viewport.getBoundingClientRect().width;
     const cardsPerView = getCardsPerView();
 
-    if (cardsPerView <= 1.3) {
-      cardWidth = Math.min(viewportWidth * 0.78, 280);
+    if (cardsPerView <= 1.8) {
+      cardWidth = Math.min(viewportWidth * 0.64, 230);
+      cardWidth = Math.max(cardWidth, 190);
     } else {
       cardWidth = (viewportWidth - (gap * (Math.floor(cardsPerView) - 1))) / cardsPerView;
-      cardWidth = Math.max(cardWidth, 220);
+      cardWidth = Math.min(Math.max(cardWidth, 190), 245);
     }
 
     const cardHeight = Math.round(cardWidth * (16 / 9));
