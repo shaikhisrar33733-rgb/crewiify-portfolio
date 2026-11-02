@@ -95,13 +95,30 @@ function initPodcastCarousel() {
 
     const cardHeight = Math.round(cardWidth * (16 / 9));
 
-    const allCards = track.querySelectorAll('.podcast__card');
+    const allCards = track.querySelectorAll('.podcast__card, .podcast-video-card');
     allCards.forEach((card) => {
       card.style.flex = `0 0 ${cardWidth}px`;
       card.style.width = `${cardWidth}px`;
       card.style.maxWidth = `${cardWidth}px`;
       card.style.height = `${cardHeight}px`;
       card.style.maxHeight = `${cardHeight}px`;
+
+      const media = card.querySelector('.podcast__media');
+      if (media) {
+        media.style.width = '100%';
+        media.style.height = '100%';
+      }
+
+      const video = card.querySelector('video');
+      if (video) {
+        video.style.width = '100%';
+        video.style.height = '100%';
+        video.style.objectFit = 'cover';
+        video.style.objectPosition = 'center';
+        video.style.display = 'block';
+        video.style.margin = '0';
+        video.style.padding = '0';
+      }
     });
 
     singleSetWidth = totalCards * (cardWidth + gap);
@@ -112,7 +129,7 @@ function initPodcastCarousel() {
     }
   }
 
-  // Ensure all videos play silently in continuous loop
+  // Ensure all videos play silently in continuous loop with exact cover dimensions
   function playAllSilentVideos() {
     const allVideos = track.querySelectorAll('video');
     allVideos.forEach((v) => {
@@ -124,6 +141,13 @@ function initPodcastCarousel() {
       v.setAttribute('playsinline', '');
       v.setAttribute('loop', '');
       v.removeAttribute('controls');
+      v.style.width = '100%';
+      v.style.height = '100%';
+      v.style.objectFit = 'cover';
+      v.style.objectPosition = 'center';
+      v.style.display = 'block';
+      v.style.margin = '0';
+      v.style.padding = '0';
       const playPromise = v.play();
       if (playPromise !== undefined) {
         playPromise.catch(() => {});

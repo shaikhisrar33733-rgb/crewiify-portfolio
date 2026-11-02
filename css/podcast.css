@@ -10,7 +10,7 @@
   overflow: hidden;
 }
 
-.home-podcast-section + .portfolio {
+.home-podcast-section+.portfolio {
   padding-top: clamp(20px, 2.5vw, 36px);
 }
 
@@ -52,34 +52,34 @@
 }
 
 /* ==========================================================================
-   Podcast Video Card Design
+   Podcast Video Card Design (Shared Consistent Video Container)
    ========================================================================== */
 
+.podcast-video-card,
 .podcast__card {
   position: relative;
-  display: flex;
-  flex-direction: column;
-  background: #0B0E17;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 18px;
+  width: 100%;
+  aspect-ratio: 9 / 16;
   overflow: hidden;
   box-sizing: border-box;
   flex-shrink: 0;
-  aspect-ratio: 9 / 16;
-  width: 100%;
-  height: 100%;
+  background: #0B0E17;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 18px;
   margin: 0;
   padding: 0;
   transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
-              border-color 0.35s ease,
-              box-shadow 0.35s ease;
+    border-color 0.35s ease,
+    box-shadow 0.35s ease;
   cursor: grab;
 }
 
+.podcast-carousel__viewport.is-dragging .podcast-video-card,
 .podcast-carousel__viewport.is-dragging .podcast__card {
   cursor: grabbing;
 }
 
+.podcast-video-card:hover,
 .podcast__card:hover {
   transform: translateY(-6px);
   border-color: rgba(167, 139, 250, 0.45);
@@ -91,13 +91,13 @@
    ========================================================================== */
 
 .podcast__media {
-  position: relative;
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
-  aspect-ratio: 9 / 16;
-  background: #0B0E17;
   overflow: hidden;
-  display: block;
+  background: #0B0E17;
+  border-radius: inherit;
   margin: 0;
   padding: 0;
 }
@@ -106,55 +106,39 @@
   cursor: grabbing;
 }
 
+/* ==========================================================================
+   Podcast Video Elements: Exact Edge-to-Edge Coverage Without Letterboxing
+   ========================================================================== */
+
+.podcast-video-card video,
+.podcast__card video,
+.podcast__media video,
 .podcast__video {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-  background: #0B0E17;
   display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100% !important;
+  height: 100% !important;
+  min-width: 100% !important;
+  min-height: 100% !important;
+  max-width: 100% !important;
+  max-height: 100% !important;
+  object-fit: cover !important;
+  object-position: center center !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+  outline: none !important;
+  background: #0B0E17;
   pointer-events: none;
-  margin: 0;
-  padding: 0;
-  border: none;
-  outline: none;
+  border-radius: inherit;
   transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+.podcast-video-card:hover video,
 .podcast__card:hover .podcast__video {
   transform: scale(1.02);
-}
-
-/* ==========================================================================
-   Card Content Body - Single Line Title
-   ========================================================================== */
-
-.podcast__body {
-  padding: 14px 18px 16px;
-  background: #171C28;
-  display: flex;
-  align-items: center;
-  flex-grow: 0;
-  min-height: auto;
-  border-top: 1px solid rgba(255, 255, 255, 0.05);
-}
-
-.podcast__card-title {
-  font-size: 0.88rem;
-  font-weight: 600;
-  color: #FFFFFF;
-  line-height: 1.4;
-  margin: 0;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  transition: color 0.2s ease;
-}
-
-.podcast__card:hover .podcast__card-title {
-  color: #A78BFA;
 }
 
 /* ==========================================================================
@@ -168,6 +152,8 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+
+  .podcast-video-card,
   .podcast__card {
     transition: none !important;
   }
