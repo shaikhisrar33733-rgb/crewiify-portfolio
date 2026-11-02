@@ -139,6 +139,9 @@
   border-radius: inherit;
   margin: 0;
   padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .podcast-carousel__viewport.is-dragging .podcast__media {
@@ -146,7 +149,7 @@
 }
 
 /* ==========================================================================
-   Podcast Video Elements: Exact Edge-to-Edge Coverage Without Letterboxing
+   Podcast Video Elements: Exact Containment Without Cropping
    Prevent Video From Altering Container Dimensions Under Any State
    ========================================================================== */
 
@@ -164,7 +167,7 @@
   min-height: 100% !important;
   max-width: 100% !important;
   max-height: 100% !important;
-  object-fit: cover !important;
+  object-fit: contain !important;
   object-position: center center !important;
   margin: 0 !important;
   padding: 0 !important;
@@ -186,6 +189,7 @@
    ========================================================================== */
 
 @media (prefers-reduced-motion: reduce) {
+
   .podcast-video-card,
   .podcast__card {
     transition: none !important;

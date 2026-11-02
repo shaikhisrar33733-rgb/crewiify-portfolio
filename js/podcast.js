@@ -46,7 +46,10 @@ function initPodcastCarousel() {
   });
 
   function getGap() {
-    return window.innerWidth <= 768 ? 16 : 24;
+    const section = document.querySelector('.home-podcast-section') || carousel;
+    const style = window.getComputedStyle(section);
+    const gap = parseFloat(style.getPropertyValue('--podcast-gap'));
+    return gap || (window.innerWidth <= 768 ? 16 : 24);
   }
 
   let cardWidth = 0;
@@ -74,17 +77,27 @@ function initPodcastCarousel() {
   });
 
   function updateDimensions() {
-    const firstCard = track.querySelector('.podcast__card');
-    const gap = getGap();
+    const section = document.querySelector('.home-podcast-section') || carousel;
+    const style = window.getComputedStyle(section);
+    cardWidth = parseFloat(style.getPropertyValue('--podcast-card-w'));
+    let cardHeight = parseFloat(style.getPropertyValue('--podcast-card-h'));
+    const gap = parseFloat(style.getPropertyValue('--podcast-gap')) || getGap();
 
-    if (firstCard) {
-      const rect = firstCard.getBoundingClientRect();
-      cardWidth = Math.round(rect.width) || (window.innerWidth <= 480 ? 195 : (window.innerWidth <= 768 ? 210 : 230));
-    } else {
-      cardWidth = window.innerWidth <= 480 ? 195 : (window.innerWidth <= 768 ? 210 : 230);
+    if (!cardWidth || isNaN(cardWidth)) {
+      if (window.innerWidth <= 480) {
+        cardWidth = 195;
+      } else if (window.innerWidth <= 768) {
+        cardWidth = 210;
+      } else if (window.innerWidth <= 1100) {
+        cardWidth = 220;
+      } else {
+        cardWidth = 230;
+      }
     }
 
-    const cardHeight = Math.round(cardWidth * (16 / 9));
+    if (!cardHeight || isNaN(cardHeight)) {
+      cardHeight = Math.round(cardWidth * (16 / 9));
+    }
 
     const allCards = track.querySelectorAll('.podcast__card, .podcast-video-card');
     allCards.forEach((card) => {
@@ -95,6 +108,7 @@ function initPodcastCarousel() {
       card.style.height = `${cardHeight}px`;
       card.style.minHeight = `${cardHeight}px`;
       card.style.maxHeight = `${cardHeight}px`;
+      card.style.boxSizing = 'border-box';
 
       const media = card.querySelector('.podcast__media');
       if (media) {
@@ -102,6 +116,11 @@ function initPodcastCarousel() {
         media.style.height = '100%';
         media.style.minWidth = '100%';
         media.style.minHeight = '100%';
+        media.style.maxWidth = '100%';
+        media.style.maxHeight = '100%';
+        media.style.display = 'flex';
+        media.style.alignItems = 'center';
+        media.style.justifyContent = 'center';
       }
 
       const video = card.querySelector('video');
@@ -110,11 +129,14 @@ function initPodcastCarousel() {
         video.style.height = '100%';
         video.style.minWidth = '100%';
         video.style.minHeight = '100%';
-        video.style.objectFit = 'cover';
+        video.style.maxWidth = '100%';
+        video.style.maxHeight = '100%';
+        video.style.objectFit = 'contain';
         video.style.objectPosition = 'center';
         video.style.display = 'block';
         video.style.margin = '0';
         video.style.padding = '0';
+        video.style.background = '#0B0E17';
       }
     });
 
@@ -126,7 +148,7 @@ function initPodcastCarousel() {
     }
   }
 
-  // Ensure all videos play silently in continuous loop with exact cover dimensions
+  // Ensure all videos play silently in continuous loop with exact contain dimensions
   function playAllSilentVideos() {
     const allVideos = track.querySelectorAll('video');
     allVideos.forEach((v) => {
@@ -140,11 +162,12 @@ function initPodcastCarousel() {
       v.removeAttribute('controls');
       v.style.width = '100%';
       v.style.height = '100%';
-      v.style.objectFit = 'cover';
+      v.style.objectFit = 'contain';
       v.style.objectPosition = 'center';
       v.style.display = 'block';
       v.style.margin = '0';
       v.style.padding = '0';
+      v.style.background = '#0B0E17';
       const playPromise = v.play();
       if (playPromise !== undefined) {
         playPromise.catch(() => {});
