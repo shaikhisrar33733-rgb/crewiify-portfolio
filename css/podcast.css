@@ -3,8 +3,11 @@
    Modern, responsive auto-advancing carousel with silent autoplaying videos
    ========================================================================== */
 
-/* Section Spacing & Boundaries */
+/* Section Spacing, Boundaries & Uniform CSS Dimensions */
 .home-podcast-section {
+  --podcast-card-w: 230px;
+  --podcast-card-h: 409px;
+  --podcast-gap: 24px;
   position: relative;
   border-top: 1px solid rgba(255, 255, 255, 0.06);
   overflow: hidden;
@@ -12,6 +15,31 @@
 
 .home-podcast-section+.portfolio {
   padding-top: clamp(20px, 2.5vw, 36px);
+}
+
+/* Responsive Uniform CSS Dimensions Across Breakpoints */
+@media (max-width: 1100px) {
+  .home-podcast-section {
+    --podcast-card-w: 220px;
+    --podcast-card-h: 391px;
+    --podcast-gap: 24px;
+  }
+}
+
+@media (max-width: 768px) {
+  .home-podcast-section {
+    --podcast-card-w: 210px;
+    --podcast-card-h: 373px;
+    --podcast-gap: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .home-podcast-section {
+    --podcast-card-w: 195px;
+    --podcast-card-h: 347px;
+    --podcast-gap: 16px;
+  }
 }
 
 /* ==========================================================================
@@ -47,19 +75,25 @@
 .podcast-carousel__track {
   display: flex;
   align-items: stretch;
-  gap: 24px;
+  gap: var(--podcast-gap, 24px);
   will-change: transform;
 }
 
 /* ==========================================================================
-   Podcast Video Card Design (Shared Consistent Video Container)
+   Podcast Video Card Design (Strict Uniform CSS Sizing For Every Card)
    ========================================================================== */
 
 .podcast-video-card,
 .podcast__card {
   position: relative;
-  width: 100%;
-  max-width: 245px;
+  display: block;
+  flex: 0 0 var(--podcast-card-w, 230px);
+  width: var(--podcast-card-w, 230px);
+  min-width: var(--podcast-card-w, 230px);
+  max-width: var(--podcast-card-w, 230px);
+  height: var(--podcast-card-h, 409px);
+  min-height: var(--podcast-card-h, 409px);
+  max-height: var(--podcast-card-h, 409px);
   aspect-ratio: 9 / 16;
   overflow: hidden;
   box-sizing: border-box;
@@ -88,7 +122,7 @@
 }
 
 /* ==========================================================================
-   Video Preview Container
+   Video Preview Container - Locked 100% Dimensions
    ========================================================================== */
 
 .podcast__media {
@@ -96,6 +130,10 @@
   inset: 0;
   width: 100%;
   height: 100%;
+  min-width: 100%;
+  min-height: 100%;
+  max-width: 100%;
+  max-height: 100%;
   overflow: hidden;
   background: #0B0E17;
   border-radius: inherit;
@@ -109,6 +147,7 @@
 
 /* ==========================================================================
    Podcast Video Elements: Exact Edge-to-Edge Coverage Without Letterboxing
+   Prevent Video From Altering Container Dimensions Under Any State
    ========================================================================== */
 
 .podcast-video-card video,
@@ -143,17 +182,10 @@
 }
 
 /* ==========================================================================
-   Responsive Breakpoints & Reduced Motion
+   Reduced Motion Accessibility
    ========================================================================== */
 
-@media (max-width: 768px) {
-  .podcast-carousel__track {
-    gap: 16px;
-  }
-}
-
 @media (prefers-reduced-motion: reduce) {
-
   .podcast-video-card,
   .podcast__card {
     transition: none !important;

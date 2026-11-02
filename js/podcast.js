@@ -73,25 +73,15 @@ function initPodcastCarousel() {
     isReducedMotion = e.matches;
   });
 
-  function getCardsPerView() {
-    const w = window.innerWidth;
-    if (w <= 480) return 1.55; // Compact card + peek on mobile
-    if (w <= 768) return 2.65; // ~2.65 cards on tablet
-    if (w <= 1100) return 3.75; // ~3.75 cards on laptop
-    return 4.75;               // ~4.75 cards on desktop for compact, balanced sizing
-  }
-
   function updateDimensions() {
+    const firstCard = track.querySelector('.podcast__card');
     const gap = getGap();
-    const viewportWidth = viewport.getBoundingClientRect().width;
-    const cardsPerView = getCardsPerView();
 
-    if (cardsPerView <= 1.8) {
-      cardWidth = Math.min(viewportWidth * 0.64, 230);
-      cardWidth = Math.max(cardWidth, 190);
+    if (firstCard) {
+      const rect = firstCard.getBoundingClientRect();
+      cardWidth = Math.round(rect.width) || (window.innerWidth <= 480 ? 195 : (window.innerWidth <= 768 ? 210 : 230));
     } else {
-      cardWidth = (viewportWidth - (gap * (Math.floor(cardsPerView) - 1))) / cardsPerView;
-      cardWidth = Math.min(Math.max(cardWidth, 190), 245);
+      cardWidth = window.innerWidth <= 480 ? 195 : (window.innerWidth <= 768 ? 210 : 230);
     }
 
     const cardHeight = Math.round(cardWidth * (16 / 9));
@@ -100,20 +90,26 @@ function initPodcastCarousel() {
     allCards.forEach((card) => {
       card.style.flex = `0 0 ${cardWidth}px`;
       card.style.width = `${cardWidth}px`;
+      card.style.minWidth = `${cardWidth}px`;
       card.style.maxWidth = `${cardWidth}px`;
       card.style.height = `${cardHeight}px`;
+      card.style.minHeight = `${cardHeight}px`;
       card.style.maxHeight = `${cardHeight}px`;
 
       const media = card.querySelector('.podcast__media');
       if (media) {
         media.style.width = '100%';
         media.style.height = '100%';
+        media.style.minWidth = '100%';
+        media.style.minHeight = '100%';
       }
 
       const video = card.querySelector('video');
       if (video) {
         video.style.width = '100%';
         video.style.height = '100%';
+        video.style.minWidth = '100%';
+        video.style.minHeight = '100%';
         video.style.objectFit = 'cover';
         video.style.objectPosition = 'center';
         video.style.display = 'block';
