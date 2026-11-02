@@ -971,6 +971,50 @@
 }
 
 /* ==========================================================================
+   Website Projects Section (#website-projects) - Scrollable Live Website Previews
+   ========================================================================== */
+
+#website-projects .home-cs__media {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  background: #0B0E17;
+  overflow: hidden;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+  cursor: default;
+}
+
+#website-projects .home-cs__preview-fallback {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  z-index: 1;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+#website-projects .home-cs__preview-iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+  display: block;
+  background: #0B0E17;
+  z-index: 2;
+  overscroll-behavior: contain;
+}
+
+#website-projects .home-cs__card:hover .home-cs__media-img {
+  transform: none;
+}
+
+/* ==========================================================================
    SEO Results Section (#seo-results) - Contained Proof Images Display
    Fixes cropped/zoomed screenshots: contains full analytics proofs,
    maintains intrinsic aspect ratio, centers images, and uses clean neutral framing.

@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initHomeVideoModal();
   initHomeSeoLightbox();
   initHomeAutoplayVideoVisibility();
+  initWebsitePreviewScroll();
 });
 
 /* ==========================================================================
@@ -726,4 +727,55 @@ function initHomeWorkCarousel() {
   setupVideoEventListeners();
   playAllSilentVideos();
   animationId = requestAnimationFrame(animate);
+}
+
+/* ==========================================================================
+   06. SCROLLABLE WEBSITE PREVIEW CARDS (Independent Mouse-Wheel Scrolling)
+   ========================================================================== */
+
+function initWebsitePreviewScroll() {
+  const websiteSection = document.getElementById('website-projects');
+  if (!websiteSection) return;
+
+  const previewMedias = websiteSection.querySelectorAll('.home-cs__media');
+  if (!previewMedias.length) return;
+
+  let activePreview = null;
+
+  previewMedias.forEach(media => {
+    // When pointer enters the preview viewport, mark as active preview
+    media.addEventListener('mouseenter', () => {
+      activePreview = media;
+    });
+
+    media.addEventListener('mouseleave', () => {
+      if (activePreview === media) {
+        activePreview = null;
+      }
+    });
+
+    media.addEventListener('pointerenter', () => {
+      activePreview = media;
+    });
+
+    media.addEventListener('pointerleave', () => {
+      if (activePreview === media) {
+        activePreview = null;
+      }
+    });
+  });
+
+  // Reset active preview whenever pointer moves anywhere outside the active preview
+  document.addEventListener('mousemove', (e) => {
+    if (activePreview && !activePreview.contains(e.target)) {
+      activePreview = null;
+    }
+  }, { passive: true });
+
+  // Prevent main Crewiify portfolio page from scrolling when pointer is over a website preview
+  window.addEventListener('wheel', (e) => {
+    if (activePreview) {
+      e.preventDefault();
+    }
+  }, { passive: false });
 }
