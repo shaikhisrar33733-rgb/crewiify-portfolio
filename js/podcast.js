@@ -26,24 +26,27 @@ function initPodcastCarousel() {
   const totalCards = originalCards.length;
   if (totalCards === 0) return;
 
-  // Clone original cards once for seamless infinite wrapping (total 12 cards)
-  originalCards.forEach((card) => {
-    const clone = card.cloneNode(true);
-    clone.classList.add('is-clone');
-    clone.setAttribute('aria-hidden', 'true');
-    const cloneVid = clone.querySelector('video');
-    if (cloneVid) {
-      cloneVid.muted = true;
-      cloneVid.volume = 0;
-      cloneVid.loop = true;
-      cloneVid.playsInline = true;
-      cloneVid.setAttribute('muted', '');
-      cloneVid.setAttribute('playsinline', '');
-      cloneVid.setAttribute('loop', '');
-      cloneVid.removeAttribute('controls');
-    }
-    track.appendChild(clone);
-  });
+  // Clone original cards for seamless infinite wrapping (at least 12 cards total)
+  const cloneSets = totalCards <= 5 ? 2 : 1;
+  for (let s = 0; s < cloneSets; s++) {
+    originalCards.forEach((card) => {
+      const clone = card.cloneNode(true);
+      clone.classList.add('is-clone');
+      clone.setAttribute('aria-hidden', 'true');
+      const cloneVid = clone.querySelector('video');
+      if (cloneVid) {
+        cloneVid.muted = true;
+        cloneVid.volume = 0;
+        cloneVid.loop = true;
+        cloneVid.playsInline = true;
+        cloneVid.setAttribute('muted', '');
+        cloneVid.setAttribute('playsinline', '');
+        cloneVid.setAttribute('loop', '');
+        cloneVid.removeAttribute('controls');
+      }
+      track.appendChild(clone);
+    });
+  }
 
   function getGap() {
     const section = document.querySelector('.home-podcast-section') || carousel;
@@ -85,18 +88,18 @@ function initPodcastCarousel() {
 
     if (!cardWidth || isNaN(cardWidth)) {
       if (window.innerWidth <= 480) {
-        cardWidth = 195;
+        cardWidth = 260;
       } else if (window.innerWidth <= 768) {
-        cardWidth = 210;
+        cardWidth = 300;
       } else if (window.innerWidth <= 1100) {
-        cardWidth = 220;
+        cardWidth = 360;
       } else {
-        cardWidth = 230;
+        cardWidth = 420;
       }
     }
 
     if (!cardHeight || isNaN(cardHeight)) {
-      cardHeight = Math.round(cardWidth * (16 / 9));
+      cardHeight = Math.round(cardWidth * (9 / 16));
     }
 
     const allCards = track.querySelectorAll('.podcast__card, .podcast-video-card');
