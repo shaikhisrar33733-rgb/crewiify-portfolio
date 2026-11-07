@@ -25,8 +25,7 @@
     function getVisibleCount() {
       var w = window.innerWidth;
       if (w <= 640) return 1;
-      if (w <= 1024) return 2;
-      return 3;
+      return 2;
     }
 
     function getMaxIndex() {

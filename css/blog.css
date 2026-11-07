@@ -189,8 +189,8 @@
    ========================================================================== */
 
 .blog__card {
-  flex: 0 0 calc((100% - 56px) / 3);
-  width: calc((100% - 56px) / 3);
+  flex: 0 0 calc((100% - 28px) / 2);
+  width: calc((100% - 28px) / 2);
   min-width: 0;
   box-sizing: border-box;
   background: rgba(18, 18, 24, 0.72);
@@ -469,5 +469,12 @@
   }
   .blog__card-desc {
     font-size: 0.84rem;
+  }
+}
+
+/* Hide navigation controls on desktop/tablet since both cards fit side-by-side */
+@media (min-width: 641px) {
+  .blog-carousel__nav {
+    display: none;
   }
 }
