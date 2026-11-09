@@ -335,21 +335,16 @@ function initHomeWorkCarousel() {
   const totalCards = originalCards.length;
   if (totalCards === 0) return;
 
-  // Clone original cards once for seamless infinite wrapping (total 16 cards)
+  // Clone original cards once for seamless infinite wrapping
   originalCards.forEach((card) => {
     const clone = card.cloneNode(true);
     clone.classList.add('is-clone');
     clone.setAttribute('aria-hidden', 'true');
-    const cloneVid = clone.querySelector('video');
-    if (cloneVid) {
-      cloneVid.muted = true;
-      cloneVid.volume = 0;
-      cloneVid.loop = true;
-      cloneVid.playsInline = true;
-      cloneVid.setAttribute('muted', '');
-      cloneVid.setAttribute('playsinline', '');
-      cloneVid.setAttribute('loop', '');
-      cloneVid.removeAttribute('controls');
+    delete clone.dataset.iframeLoaded;
+    const cloneIframe = clone.querySelector('iframe');
+    if (cloneIframe) {
+      cloneIframe.removeAttribute('src');
+      cloneIframe.removeAttribute('srcdoc');
     }
     track.appendChild(clone);
   });
@@ -373,6 +368,154 @@ function initHomeWorkCarousel() {
   // Active playing card tracking (ensures only one video plays with sound)
   let activePlayingCard = null;
   let isAnyVideoPlaying = false;
+
+  // Helper to retrieve the active <video> element from a card (direct or iframe embed)
+  function getVideo(card) {
+    if (!card) return null;
+    const iframe = card.querySelector('iframe');
+    if (iframe && iframe.contentDocument) {
+      try {
+        const v = iframe.contentDocument.querySelector('video');
+        if (v) return v;
+      } catch (e) {}
+    }
+    return card.querySelector('video');
+  }
+
+  // Attach video event listeners for ended and pause handlers
+  function attachVideoListeners(v, card) {
+    if (!v || v.dataset.hasOurWorkListeners === 'true') return;
+    v.dataset.hasOurWorkListeners = 'true';
+    v.addEventListener('ended', () => {
+      if (card === activePlayingCard) {
+        stopActiveVideo(true);
+      }
+    });
+    v.addEventListener('pause', () => {
+      if (card === activePlayingCard && !v.ended && v.paused) {
+        card.classList.remove('is-playing');
+        isAnyVideoPlaying = false;
+        lastTimestamp = performance.now();
+        playAllSilentVideos();
+      }
+    });
+  }
+
+  // Lazy-load an iframe embed for a card when approaching viewport
+  function loadCardIframe(card, onReady) {
+    if (!card) return;
+    const iframe = card.querySelector('iframe');
+    if (!iframe) {
+      const v = card.querySelector('video');
+      if (v) {
+        attachVideoListeners(v, card);
+        if (typeof onReady === 'function') onReady(v);
+      }
+      return;
+    }
+
+    if (card.dataset.iframeLoaded === 'true') {
+      const v = getVideo(card);
+      if (v && typeof onReady === 'function') onReady(v);
+      return;
+    }
+
+    const src = iframe.dataset.src;
+    if (!src) return;
+
+    card.dataset.iframeLoaded = 'true';
+    iframe.srcdoc = `<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; }
+    html, body { width:100%; height:100%; overflow:hidden; background:#0B0E17; }
+    video { width:100%; height:100%; object-fit:contain; display:block; background:#0B0E17; }
+  </style>
+</head>
+<body>
+  <video src="${src}" autoplay muted loop playsinline preload="auto"></video>
+</body>
+</html>`;
+
+    iframe.addEventListener('load', () => {
+      try {
+        const v = iframe.contentDocument ? iframe.contentDocument.querySelector('video') : null;
+        if (v) {
+          v.muted = true;
+          v.volume = 0;
+          v.loop = true;
+          v.playsInline = true;
+          v.setAttribute('muted', '');
+          v.setAttribute('playsinline', '');
+          v.setAttribute('loop', '');
+          v.removeAttribute('controls');
+          attachVideoListeners(v, card);
+          if (!isAnyVideoPlaying) {
+            v.play().catch(() => {});
+          }
+          if (typeof onReady === 'function') {
+            onReady(v);
+          }
+        }
+      } catch (e) {}
+    });
+  }
+
+  let checkOurWorkVisible = null;
+
+  // IntersectionObserver for deferred lazy-loaded iframe embeds
+  function initOurWorkLazyLoading() {
+    const allCards = track.querySelectorAll('.home-work__card');
+    if (!allCards.length) return;
+
+    checkOurWorkVisible = () => {
+      const carouselRect = carousel.getBoundingClientRect();
+      if (carouselRect.bottom < -300 || carouselRect.top > window.innerHeight + 300) {
+        return;
+      }
+      const viewportRect = viewport.getBoundingClientRect();
+      allCards.forEach((card) => {
+        const cardRect = card.getBoundingClientRect();
+        if (cardRect.right >= viewportRect.left - 250 && cardRect.left <= viewportRect.right + 250) {
+          loadCardIframe(card);
+        }
+      });
+    };
+
+    if ('IntersectionObserver' in window) {
+      const sectionObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            checkOurWorkVisible();
+          }
+        });
+      }, {
+        root: null,
+        rootMargin: '300px 0px',
+        threshold: 0.01
+      });
+      sectionObserver.observe(carousel);
+
+      const cardObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            loadCardIframe(entry.target);
+            cardObserver.unobserve(entry.target);
+          }
+        });
+      }, {
+        root: null,
+        rootMargin: '250px 250px',
+        threshold: 0.01
+      });
+
+      allCards.forEach((card) => cardObserver.observe(card));
+    } else {
+      allCards.forEach(loadCardIframe);
+    }
+  }
 
   // Smooth cinematic gliding speed: ~46 px/sec
   const SPEED = 46;
@@ -421,61 +564,71 @@ function initHomeWorkCarousel() {
 
   // Play a video with original sound and pause carousel gliding
   function playVideoWithSound(card) {
-    const video = card.querySelector('video');
-    if (!video) return;
+    const applyPlay = (video) => {
+      if (!video) return;
 
-    // If another card was active, stop it first
-    if (activePlayingCard && activePlayingCard !== card) {
-      stopActiveVideo(false);
-    }
-
-    // Pause all other carousel videos so ONLY this video plays
-    const allVideos = track.querySelectorAll('video');
-    allVideos.forEach((v) => {
-      if (v !== video) {
-        v.pause();
-        v.muted = true;
+      // If another card was active, stop it first
+      if (activePlayingCard && activePlayingCard !== card) {
+        stopActiveVideo(false);
       }
-    });
 
-    // Unmute and play this video
-    video.muted = false;
-    video.volume = 1;
-    video.loop = false; // Allows 'ended' event to trigger completion
-
-    if (video.ended || (video.duration && video.currentTime >= video.duration - 0.2)) {
-      video.currentTime = 0;
-    }
-
-    const playPromise = video.play();
-    if (playPromise !== undefined) {
-      playPromise.catch(() => {
-        // Fallback silently if browser restrictions prevent audio
-        video.muted = true;
-        video.play().catch(() => {});
+      // Pause all other carousel videos so ONLY this video plays
+      const allCards = track.querySelectorAll('.home-work__card');
+      allCards.forEach((c) => {
+        if (c !== card) {
+          const v = getVideo(c);
+          if (v) {
+            v.pause();
+            v.muted = true;
+          }
+        }
       });
-    }
 
-    card.classList.add('is-playing', 'is-unmuted');
-    activePlayingCard = card;
-    isAnyVideoPlaying = true;
+      // Unmute and play this video
+      video.muted = false;
+      video.volume = 1;
+      video.loop = false;
 
-    const playBtn = card.querySelector('.home-work__play-btn');
-    if (playBtn) {
-      playBtn.setAttribute('title', 'Pause video');
-      playBtn.setAttribute('aria-label', 'Pause video');
-    }
-    const muteBtn = card.querySelector('.home-work__mute-btn');
-    if (muteBtn) {
-      muteBtn.setAttribute('title', 'Mute sound');
-      muteBtn.setAttribute('aria-label', 'Mute video audio');
+      if (video.ended || (video.duration && video.currentTime >= video.duration - 0.2)) {
+        video.currentTime = 0;
+      }
+
+      const playPromise = video.play();
+      if (playPromise !== undefined) {
+        playPromise.catch(() => {
+          video.muted = true;
+          video.play().catch(() => {});
+        });
+      }
+
+      card.classList.add('is-playing', 'is-unmuted');
+      activePlayingCard = card;
+      isAnyVideoPlaying = true;
+
+      const playBtn = card.querySelector('.home-work__play-btn');
+      if (playBtn) {
+        playBtn.setAttribute('title', 'Pause video');
+        playBtn.setAttribute('aria-label', 'Pause video');
+      }
+      const muteBtn = card.querySelector('.home-work__mute-btn');
+      if (muteBtn) {
+        muteBtn.setAttribute('title', 'Mute sound');
+        muteBtn.setAttribute('aria-label', 'Mute video audio');
+      }
+    };
+
+    const existingVid = getVideo(card);
+    if (existingVid) {
+      applyPlay(existingVid);
+    } else {
+      loadCardIframe(card, applyPlay);
     }
   }
 
   // Stop currently playing active video and optionally resume carousel
   function stopActiveVideo(andResumeCarousel = true) {
     if (activePlayingCard) {
-      const vid = activePlayingCard.querySelector('video');
+      const vid = getVideo(activePlayingCard);
       if (vid) {
         vid.pause();
         vid.muted = true;
@@ -503,77 +656,68 @@ function initHomeWorkCarousel() {
 
   // Toggle Mute/Unmute sound for a video card
   function toggleMute(card) {
-    const video = card.querySelector('video');
-    if (!video) return;
+    const handleToggle = (video) => {
+      if (!video) return;
 
-    video.muted = !video.muted;
-    const muteBtn = card.querySelector('.home-work__mute-btn');
+      video.muted = !video.muted;
+      const muteBtn = card.querySelector('.home-work__mute-btn');
 
-    if (video.muted) {
-      card.classList.remove('is-unmuted');
-      if (muteBtn) {
-        muteBtn.setAttribute('title', 'Unmute sound');
-        muteBtn.setAttribute('aria-label', 'Unmute video audio');
+      if (video.muted) {
+        card.classList.remove('is-unmuted');
+        if (muteBtn) {
+          muteBtn.setAttribute('title', 'Unmute sound');
+          muteBtn.setAttribute('aria-label', 'Unmute video audio');
+        }
+      } else {
+        video.volume = 1;
+        card.classList.add('is-unmuted');
+        if (muteBtn) {
+          muteBtn.setAttribute('title', 'Mute sound');
+          muteBtn.setAttribute('aria-label', 'Mute video audio');
+        }
+        if (!card.classList.contains('is-playing')) {
+          playVideoWithSound(card);
+        }
       }
+    };
+
+    const existingVid = getVideo(card);
+    if (existingVid) {
+      handleToggle(existingVid);
     } else {
-      video.volume = 1;
-      card.classList.add('is-unmuted');
-      if (muteBtn) {
-        muteBtn.setAttribute('title', 'Mute sound');
-        muteBtn.setAttribute('aria-label', 'Mute video audio');
-      }
-      // If the card was not yet in active playing mode, activate it
-      if (!card.classList.contains('is-playing')) {
-        playVideoWithSound(card);
-      }
+      loadCardIframe(card, handleToggle);
     }
-  }
-
-  // Setup video ended & pause listener callbacks
-  function setupVideoEventListeners() {
-    const allVideos = track.querySelectorAll('video');
-    allVideos.forEach((v) => {
-      v.addEventListener('ended', () => {
-        const card = v.closest('.home-work__card');
-        if (card === activePlayingCard) {
-          stopActiveVideo(true);
-        }
-      });
-      v.addEventListener('pause', () => {
-        const card = v.closest('.home-work__card');
-        if (card === activePlayingCard && !v.ended && v.paused) {
-          card.classList.remove('is-playing');
-          isAnyVideoPlaying = false;
-          lastTimestamp = performance.now();
-          playAllSilentVideos();
-        }
-      });
-    });
   }
 
   // Background silent loop playback for all carousel videos
   function playAllSilentVideos() {
     if (isAnyVideoPlaying) return;
-    const allVideos = track.querySelectorAll('video');
-    allVideos.forEach((v) => {
-      v.muted = true;
-      v.volume = 0;
-      v.loop = true;
-      v.playsInline = true;
-      v.setAttribute('muted', '');
-      v.setAttribute('playsinline', '');
-      v.setAttribute('loop', '');
-      v.removeAttribute('controls');
-      v.play().catch(() => {});
+    const allCards = track.querySelectorAll('.home-work__card');
+    allCards.forEach((card) => {
+      const v = getVideo(card);
+      if (v) {
+        v.muted = true;
+        v.volume = 0;
+        v.loop = true;
+        v.playsInline = true;
+        v.setAttribute('muted', '');
+        v.setAttribute('playsinline', '');
+        v.setAttribute('loop', '');
+        v.removeAttribute('controls');
+        v.play().catch(() => {});
+      }
     });
   }
 
   function pauseAllVideos() {
-    const allVideos = track.querySelectorAll('video');
-    allVideos.forEach((v) => {
-      v.pause();
+    const allCards = track.querySelectorAll('.home-work__card');
+    allCards.forEach((card) => {
+      const v = getVideo(card);
+      if (v) v.pause();
     });
   }
+
+  let lastOurWorkLazyCheck = 0;
 
   // Animation Loop using requestAnimationFrame
   function animate(timestamp) {
@@ -588,6 +732,13 @@ function initHomeWorkCarousel() {
         currentX = currentX % singleSetWidth;
       }
       track.style.transform = `translate3d(-${currentX}px, 0, 0)`;
+
+      if (timestamp - lastOurWorkLazyCheck > 500) {
+        lastOurWorkLazyCheck = timestamp;
+        if (typeof checkOurWorkVisible === 'function') {
+          checkOurWorkVisible();
+        }
+      }
     }
 
     animationId = requestAnimationFrame(animate);
@@ -722,9 +873,9 @@ function initHomeWorkCarousel() {
     }, 100);
   });
 
-  // Initialize layout, video events, and start continuous loop
+  // Initialize layout, lazy-loading observer, and start continuous loop
   updateDimensions();
-  setupVideoEventListeners();
+  initOurWorkLazyLoading();
   playAllSilentVideos();
   animationId = requestAnimationFrame(animate);
 }

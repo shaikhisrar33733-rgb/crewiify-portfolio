@@ -156,7 +156,11 @@
 .podcast-video-card video,
 .podcast__card video,
 .podcast__media video,
-.podcast__video {
+.podcast__video,
+.podcast-video-card iframe,
+.podcast__card iframe,
+.podcast__media iframe,
+.podcast__iframe {
   display: block;
   position: absolute;
   top: 0;
@@ -180,7 +184,9 @@
 }
 
 .podcast-video-card:hover video,
-.podcast__card:hover .podcast__video {
+.podcast__card:hover .podcast__video,
+.podcast-video-card:hover iframe,
+.podcast__card:hover .podcast__iframe {
   transform: scale(1.02);
 }
 
