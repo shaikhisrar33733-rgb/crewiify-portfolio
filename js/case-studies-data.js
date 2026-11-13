@@ -145,7 +145,7 @@ export const caseStudiesData = [
     title: "Paladium Janseva Hospital",
     subtitle: "Local SEO & Google Business Profile Optimization",
     cardSpan: "tall",
-    image: "assets/case-studies/palladium/coverimage.jpeg",
+    image: "https://shaikhisrar33733-rgb.github.io/crewiify-portfolio/assets/case-studies/palladium/coverimage.jpeg",
     imagePosition: "center 25%",
     description: "Helped a newly launched hospital generate patients, consultations, and local visibility in 45 days through Google Business Profile optimization.",
     result: "1,356",
@@ -166,7 +166,7 @@ export const caseStudiesData = [
       overview: "A newly launched hospital needed to establish local search visibility and turn Google discovery into measurable patient actions.",
       description: "A newly launched hospital needed to establish local search visibility and turn Google discovery into measurable patient actions.",
       imageMode: "cutout",
-      coverImage: "assets/case-studies/palladium/coverimage.jpeg",
+      coverImage: "https://shaikhisrar33733-rgb.github.io/crewiify-portfolio/assets/case-studies/palladium/coverimage.jpeg",
       coverImageAlt: "Paladium Janseva Hospital Clinical Team and Growth Highlights"
     },
 
