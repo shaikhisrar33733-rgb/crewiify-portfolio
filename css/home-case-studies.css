@@ -1775,3 +1775,141 @@
     height: 14px;
   }
 }
+
+/* ==========================================================================
+   HOMEPAGE CASE STUDIES CALLOUT SECTION (ABOVE LET'S BUILD TOGETHER)
+   ========================================================================== */
+
+.home-case-studies-cta {
+  position: relative;
+  padding: clamp(64px, 7.5vw, 96px) 0;
+  background-color: var(--color-bg-dark, #06040A);
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  overflow: hidden;
+  text-align: center;
+  z-index: 1;
+  scroll-margin-top: 80px;
+}
+
+/* Subtle Violet Ambient Radial Glow */
+.home-case-studies-cta .home-cs-cta__glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: min(720px, 92vw);
+  height: 320px;
+  background: radial-gradient(ellipse 65% 55% at 50% 50%, rgba(139, 92, 246, 0.12) 0%, rgba(109, 40, 217, 0.025) 50%, transparent 75%);
+  filter: blur(50px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Centered Grouped Content */
+.home-case-studies-cta .home-cs-cta__content {
+  position: relative;
+  z-index: 1;
+  max-width: 680px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Pill Eyebrow Badge */
+.home-case-studies-cta .home-cs-cta__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0.4rem 1.25rem;
+  border-radius: var(--radius-pill, 9999px);
+  border: 1px solid var(--color-purple-border, rgba(167, 139, 250, 0.3));
+  background: var(--color-purple-pill-bg, rgba(139, 92, 246, 0.08));
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  font-size: var(--font-size-xs, 0.75rem);
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #9A9A9A;
+  margin-bottom: 20px;
+}
+
+.home-case-studies-cta .home-cs-cta__badge-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--color-primary, #8B5CF6);
+  box-shadow: 0 0 6px var(--color-primary, #8B5CF6);
+}
+
+/* Title */
+.home-case-studies-cta .home-cs-cta__title {
+  font-size: var(--font-size-3xl, clamp(2rem, 3.8vw, 2.85rem));
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: #F5F5F5;
+  margin-bottom: var(--space-md, 16px);
+}
+
+.home-case-studies-cta .home-cs-cta__title-highlight {
+  font-style: italic;
+  font-weight: 400;
+  color: #F5F5F5;
+  background: linear-gradient(180deg, #F5F5F5 0%, #BCC5D8 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+  padding-right: 4px;
+}
+
+/* Description */
+.home-case-studies-cta .home-cs-cta__desc {
+  font-size: var(--font-size-md, clamp(0.95rem, 1.2vw, 1.05rem));
+  font-weight: 400;
+  color: var(--color-text-muted, #A1A1AA);
+  line-height: 1.6;
+  max-width: 580px;
+  margin: 0 0 28px 0;
+}
+
+/* Action Area */
+.home-case-studies-cta .home-cs-cta__action {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.home-case-studies-cta .home-cs-cta__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #FFFFFF;
+  background: linear-gradient(180deg, #151024 0%, #0D0A17 100%);
+  border: 1px solid rgba(167, 139, 250, 0.35);
+  border-radius: var(--radius-pill, 9999px);
+  padding: 13px 32px;
+  text-decoration: none;
+  box-shadow: 0 0 18px rgba(139, 92, 246, 0.14), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
+}
+
+.home-case-studies-cta .home-cs-cta__btn:hover {
+  background: linear-gradient(180deg, #1E1635 0%, #130E22 100%);
+  border-color: rgba(167, 139, 250, 0.7);
+  box-shadow: 0 0 26px rgba(139, 92, 246, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.22);
+  transform: translateY(-2px);
+  color: #FFFFFF;
+}
+
+@media (max-width: 640px) {
+  .home-case-studies-cta {
+    padding: clamp(52px, 8vw, 72px) 0;
+  }
+}
