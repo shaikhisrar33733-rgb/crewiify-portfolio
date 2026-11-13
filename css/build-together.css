@@ -1,0 +1,166 @@
+/* build-together.css - Let's Build Together Callout Section */
+
+.build-together {
+  position: relative;
+  padding: clamp(64px, 7.5vw, 100px) 0;
+  background-color: var(--color-bg-dark, #06040A);
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  overflow: hidden;
+  text-align: center;
+  z-index: 1;
+}
+
+/* Subtle Violet Ambient Radial Glow */
+.build-together__glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: min(720px, 92vw);
+  height: 320px;
+  background: radial-gradient(ellipse 65% 55% at 50% 50%, rgba(139, 92, 246, 0.13) 0%, rgba(109, 40, 217, 0.03) 50%, transparent 75%);
+  filter: blur(50px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Grouped Content Container */
+.build-together__content {
+  position: relative;
+  z-index: 1;
+  max-width: 720px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Pill Eyebrow Badge */
+.build-together__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0.4rem 1.25rem;
+  border-radius: var(--radius-pill, 9999px);
+  border: 1px solid var(--color-purple-border, rgba(167, 139, 250, 0.3));
+  background: var(--color-purple-pill-bg, rgba(139, 92, 246, 0.08));
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  font-size: var(--font-size-xs, 0.75rem);
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #9A9A9A;
+  margin-bottom: 20px;
+}
+
+.build-together__badge-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--color-primary, #8B5CF6);
+  box-shadow: 0 0 6px var(--color-primary, #8B5CF6);
+}
+
+/* Heading */
+.build-together__heading {
+  font-size: clamp(2rem, 3.8vw, 2.85rem);
+  font-weight: 800;
+  color: #FFFFFF;
+  line-height: 1.18;
+  letter-spacing: -0.025em;
+  margin: 0 0 16px 0;
+}
+
+/* Gradient Accent */
+.build-together__gradient {
+  background: linear-gradient(135deg, #FFFFFF 0%, #D8B4FE 30%, #A78BFA 70%, #8B5CF6 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+}
+
+/* Description */
+.build-together__desc {
+  font-size: clamp(0.98rem, 1.3vw, 1.1rem);
+  color: #A1A1AA;
+  line-height: 1.6;
+  max-width: 600px;
+  margin: 0 0 30px 0;
+}
+
+/* Action Area */
+.build-together__action {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.build-together__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #FFFFFF;
+  background: linear-gradient(180deg, #151024 0%, #0D0A17 100%);
+  border: 1px solid rgba(167, 139, 250, 0.35);
+  border-radius: 9999px;
+  padding: 14px 34px;
+  text-decoration: none;
+  box-shadow: 0 0 20px rgba(139, 92, 246, 0.16), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
+}
+
+.build-together__btn:hover {
+  background: linear-gradient(180deg, #1E1635 0%, #130E22 100%);
+  border-color: rgba(167, 139, 250, 0.7);
+  box-shadow: 0 0 28px rgba(139, 92, 246, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.22);
+  transform: translateY(-2px);
+  color: #FFFFFF;
+}
+
+.build-together__btn-arrow {
+  transition: transform 0.2s ease;
+  font-size: 1.05em;
+  color: #C4B5FD;
+}
+
+.build-together__btn:hover .build-together__btn-arrow {
+  transform: translateX(4px);
+  color: #FFFFFF;
+}
+
+.build-together__subtext {
+  font-size: 0.84rem;
+  color: #71717A;
+  letter-spacing: 0.01em;
+  margin-top: 14px;
+  margin-bottom: 0;
+}
+
+/* Responsive tweaks */
+@media (max-width: 640px) {
+  .build-together {
+    padding: clamp(52px, 8vw, 72px) 0;
+  }
+  
+  .build-together__heading {
+    font-size: clamp(1.8rem, 7vw, 2.2rem);
+  }
+  
+  .build-together__desc {
+    font-size: 0.95rem;
+  }
+  
+  .build-together__btn {
+    width: 100%;
+    max-width: 340px;
+    padding: 13px 24px;
+  }
+}

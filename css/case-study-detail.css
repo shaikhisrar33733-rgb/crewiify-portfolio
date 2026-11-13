@@ -1,0 +1,401 @@
+/* case-study-detail.css - Individual Case Study Detail Template Styles */
+
+.case-study-page {
+  background-color: var(--color-bg-dark, #06040A);
+  color: var(--color-text-main, #FFFFFF);
+  font-family: var(--font-family-sans, 'Plus Jakarta Sans', sans-serif);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Breadcrumbs */
+.cs-detail-breadcrumbs {
+  padding: calc(var(--header-height, 84px) + 20px) 0 10px 0;
+}
+
+.cs-breadcrumbs-list {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-size: 0.85rem;
+}
+
+.cs-breadcrumbs-list a {
+  color: #71717A;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.cs-breadcrumbs-list a:hover {
+  color: #A78BFA;
+}
+
+.cs-breadcrumbs-separator {
+  color: #3F3F46;
+}
+
+.cs-breadcrumbs-list [aria-current="page"] {
+  color: #D4D4D8;
+  font-weight: 500;
+}
+
+/* Hero Section */
+.cs-detail-hero {
+  padding: clamp(32px, 4vw, 56px) 0 clamp(40px, 5vw, 64px) 0;
+  position: relative;
+}
+
+.cs-detail-hero__header {
+  text-align: center;
+  max-width: 860px;
+  margin: 0 auto clamp(32px, 4vw, 48px) auto;
+}
+
+.cs-detail-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0.4rem 1.25rem;
+  border-radius: 9999px;
+  border: 1px solid rgba(167, 139, 250, 0.28);
+  background: rgba(139, 92, 246, 0.08);
+  backdrop-filter: blur(8px);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #C4B5FD;
+  margin-bottom: 20px;
+}
+
+.cs-detail-badge-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--color-primary, #8B5CF6);
+  box-shadow: 0 0 8px var(--color-primary, #8B5CF6);
+}
+
+.cs-detail-hero__title {
+  font-size: clamp(2.1rem, 4.2vw, 3.4rem);
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.025em;
+  color: #FFFFFF;
+  margin: 0 0 18px 0;
+}
+
+.cs-detail-hero__overview {
+  font-size: clamp(1rem, 1.35vw, 1.18rem);
+  color: #A1A1AA;
+  line-height: 1.65;
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.cs-detail-media-container {
+  position: relative;
+  border-radius: 24px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: #0D0A14;
+  max-width: 1040px;
+  margin: 0 auto;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.5), 0 0 40px rgba(139, 92, 246, 0.08);
+}
+
+.cs-detail-hero__image {
+  width: 100%;
+  max-height: 540px;
+  object-fit: cover;
+  display: block;
+}
+
+.cs-detail-media-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(6, 4, 10, 0) 60%, rgba(6, 4, 10, 0.4) 100%);
+  pointer-events: none;
+}
+
+/* Results Section */
+.cs-detail-results {
+  padding: clamp(52px, 6vw, 84px) 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  background: radial-gradient(ellipse 70% 50% at 50% 0%, rgba(139, 92, 246, 0.07) 0%, transparent 70%);
+}
+
+.cs-detail-results__header {
+  text-align: center;
+  max-width: 680px;
+  margin: 0 auto clamp(32px, 4vw, 48px) auto;
+}
+
+.cs-section-label {
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #A78BFA;
+  margin-bottom: 10px;
+}
+
+.cs-section-heading {
+  font-size: clamp(1.8rem, 3.2vw, 2.5rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: #FFFFFF;
+  margin: 0 0 10px 0;
+}
+
+.cs-section-sub {
+  font-size: 0.95rem;
+  color: #71717A;
+  margin: 0;
+}
+
+.cs-metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  max-width: 1040px;
+  margin: 0 auto;
+}
+
+.cs-metric-card {
+  background: rgba(21, 16, 34, 0.75);
+  border: 1px solid rgba(167, 139, 250, 0.2);
+  border-radius: 18px;
+  padding: clamp(20px, 2.5vw, 28px);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+  transition: transform 0.25s ease, border-color 0.25s ease;
+}
+
+.cs-metric-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(167, 139, 250, 0.45);
+}
+
+.cs-metric-card--primary {
+  background: linear-gradient(180deg, rgba(29, 21, 48, 0.9) 0%, rgba(18, 13, 31, 0.95) 100%);
+  border-color: rgba(167, 139, 250, 0.4);
+  box-shadow: 0 12px 35px rgba(139, 92, 246, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.cs-metric-card__val {
+  font-size: clamp(2rem, 3.5vw, 2.8rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  background: linear-gradient(135deg, #FFFFFF 0%, #D8B4FE 40%, #A78BFA 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  line-height: 1.1;
+  margin-bottom: 8px;
+}
+
+.cs-metric-card__lbl {
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #A1A1AA;
+}
+
+/* Proof Section */
+.cs-detail-proof-section {
+  max-width: 1040px;
+  margin: 48px auto 0 auto;
+  padding-top: 36px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.cs-detail-subheading {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #FFFFFF;
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.cs-proof-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 24px;
+}
+
+.cs-proof-figure {
+  margin: 0;
+  background: #0B0814;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  overflow: hidden;
+  padding: 12px;
+}
+
+.cs-proof-img {
+  width: 100%;
+  border-radius: 10px;
+  display: block;
+}
+
+.cs-proof-caption {
+  font-size: 0.82rem;
+  color: #71717A;
+  padding: 10px 4px 4px 4px;
+  text-align: center;
+}
+
+/* Deepdive Grid (Challenge & Approach) */
+.cs-detail-deepdive {
+  padding: clamp(52px, 6vw, 84px) 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.cs-deepdive-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  max-width: 1040px;
+  margin: 0 auto;
+}
+
+.cs-deepdive-card {
+  background: #0C0916;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 22px;
+  padding: clamp(28px, 3.5vw, 40px);
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.cs-deepdive-badge {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  padding: 4px 12px;
+  border-radius: 9999px;
+  margin-bottom: 18px;
+}
+
+.cs-deepdive-badge--challenge {
+  color: #F87171;
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.25);
+}
+
+.cs-deepdive-badge--approach {
+  color: #A78BFA;
+  background: rgba(139, 92, 246, 0.1);
+  border: 1px solid rgba(139, 92, 246, 0.25);
+}
+
+.cs-deepdive-heading {
+  font-size: clamp(1.4rem, 2.2vw, 1.8rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: #FFFFFF;
+  margin: 0 0 16px 0;
+}
+
+.cs-deepdive-p {
+  font-size: 0.98rem;
+  color: #A1A1AA;
+  line-height: 1.6;
+  margin: 0 0 24px 0;
+}
+
+.cs-challenge-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.cs-challenge-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-size: 0.92rem;
+  color: #D4D4D8;
+  line-height: 1.5;
+}
+
+.cs-challenge-icon {
+  color: #EF4444;
+  font-weight: 800;
+  font-size: 0.85rem;
+  margin-top: 2px;
+  flex-shrink: 0;
+}
+
+.cs-approach-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.cs-approach-card {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 14px;
+  padding: 18px 20px;
+}
+
+.cs-approach-step {
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  color: #A78BFA;
+  margin-bottom: 6px;
+}
+
+.cs-approach-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #FFFFFF;
+  margin: 0 0 6px 0;
+}
+
+.cs-approach-desc {
+  font-size: 0.88rem;
+  color: #9CA3AF;
+  line-height: 1.55;
+  margin: 0;
+}
+
+/* Detail Page CTA */
+.footer-cta--detail {
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .cs-deepdive-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+}
+
+@media (max-width: 600px) {
+  .cs-metrics-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .cs-deepdive-card {
+    padding: 24px 20px;
+  }
+}

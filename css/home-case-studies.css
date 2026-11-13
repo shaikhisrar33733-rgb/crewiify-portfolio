@@ -1410,7 +1410,7 @@
 
 .home-cs__case-card .home-cs__action-row {
   margin-top: auto;
-  padding-top: 14px;
+  padding-top: 16px;
   border-top: 1px solid rgba(255, 255, 255, 0.06);
   display: flex;
   align-items: center;
@@ -1421,30 +1421,49 @@
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  background: transparent;
-  border: none;
+  background: rgba(139, 92, 246, 0.1);
+  border: 1px solid rgba(167, 139, 250, 0.3);
+  border-radius: 9999px;
+  padding: 8px 18px;
   font-family: inherit;
   font-size: 0.85rem;
   font-weight: 700;
-  color: #A78BFA;
+  color: #C4B5FD;
   cursor: pointer;
-  padding: 4px 0;
   text-decoration: none;
-  transition: all 0.2s ease;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .home-cs__case-card .home-cs__action-btn svg {
   width: 14px;
   height: 14px;
   transition: transform 0.2s ease;
+  color: #A78BFA;
 }
 
-.home-cs__case-card:hover .home-cs__action-btn {
+.home-cs__case-card:hover .home-cs__action-btn,
+.home-cs__case-card .home-cs__action-btn:hover {
+  background: rgba(139, 92, 246, 0.25);
+  border-color: rgba(167, 139, 250, 0.6);
+  color: #FFFFFF;
+  box-shadow: 0 0 16px rgba(139, 92, 246, 0.35);
+}
+
+.home-cs__case-card:hover .home-cs__action-btn svg,
+.home-cs__case-card .home-cs__action-btn:hover svg {
+  transform: translateX(4px);
   color: #FFFFFF;
 }
 
-.home-cs__case-card:hover .home-cs__action-btn svg {
-  transform: translateX(4px);
+.home-cs__case-card .home-cs__metric-pill {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  padding: 3px 10px;
+  border-radius: 9999px;
+  background: rgba(16, 185, 129, 0.12);
+  border: 1px solid rgba(16, 185, 129, 0.28);
+  color: #34D399;
 }
 
 

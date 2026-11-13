@@ -544,6 +544,15 @@ function initModalSystem() {
       closeModal();
     }
   });
+
+  // Check URL query params to auto-open modal if specified
+  const urlParams = new URLSearchParams(window.location.search);
+  const targetId = urlParams.get('id') || urlParams.get('project') || urlParams.get('case-study');
+  if (targetId) {
+    setTimeout(() => {
+      openModal(targetId);
+    }, 150);
+  }
 }
 
 /**
