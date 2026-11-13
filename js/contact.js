@@ -60,12 +60,15 @@ export function initContactForm() {
 
   // Render configured direct contact details into UI elements
   const emailElem = document.getElementById('contactDirectEmail');
+  const emailLink = document.getElementById('contactDirectEmailLink');
   const phoneElem = document.getElementById('contactDirectPhone');
   const responseElem = document.getElementById('contactDirectResponse');
 
   if (emailElem) {
     emailElem.textContent = CONTACT_CONFIG.EMAIL;
-    emailElem.href = `mailto:${CONTACT_CONFIG.EMAIL}`;
+  }
+  if (emailLink) {
+    emailLink.href = `mailto:${CONTACT_CONFIG.EMAIL}`;
   }
   if (phoneElem) {
     phoneElem.textContent = CONTACT_CONFIG.PHONE_DISPLAY;

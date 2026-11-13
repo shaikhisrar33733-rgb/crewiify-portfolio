@@ -13,7 +13,7 @@ export const CONTACT_CONFIG = {
   PHONE_DISPLAY: '+91 97658 05364',
 
   // Confirmed Client Email Address
-  EMAIL: 'sociiofy@gmail.com',
+  EMAIL: 'Partners@crewiify.com',
 
   // Expected Response Time Window
   RESPONSE_TIME: 'Typically within 1 business day.',
