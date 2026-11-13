@@ -379,7 +379,196 @@
       </div>
     </section>
 
-    <!-- Case Studies / Portfolio Masonry Section -->
+    <!-- Section 3: Case Studies Portfolio Browsing -->
+    <section class="cs-portfolio" id="case-studies-grid">
+      <!-- Atmospheric Ambient Glow -->
+      <div class="cs-portfolio__glow" aria-hidden="true"></div>
+
+      <div class="container">
+
+        <!-- Case Studies Listing -->
+        <div class="cs-grid-view" id="csGridView">
+
+          <!-- 2. All Case Studies Grid Header & Counter -->
+          <div class="cs-grid-header">
+            <h3 class="cs-grid-header__title">All Case Studies</h3>
+            <span class="cs-grid-header__count" id="csItemCount">Showing 6 of 6 Projects</span>
+          </div>
+
+          <!-- 1. Category Filter Navigation -->
+          <nav class="cs-filter-nav" aria-label="Case Study Category Filters">
+            <ul class="cs-filter-list" role="tablist">
+              <li role="presentation">
+                <button class="cs-filter-btn is-active" data-filter="all" role="tab" aria-selected="true">
+                  All Work
+                </button>
+              </li>
+              <li role="presentation">
+                <button class="cs-filter-btn" data-filter="SEO" role="tab" aria-selected="false">
+                  SEO
+                </button>
+              </li>
+              <li role="presentation">
+                <button class="cs-filter-btn" data-filter="PPC Management & Growth" role="tab" aria-selected="false">
+                  PPC Management &amp; Growth
+                </button>
+              </li>
+            </ul>
+          </nav>
+
+          <!-- 3. Responsive Masonry-Inspired Case Study Grid -->
+          <div class="cs-masonry-grid" id="csMasonryGrid">
+            <!-- Project 1: Paladium Janseva Hospital -->
+            <article class="cs-card cs-card--tall animate-fade-up-1" data-id="paladium-janseva" tabindex="0" role="button" aria-label="View Paladium Janseva Hospital Case Study Preview">
+              <div class="cs-card__media">
+                <img src="https://shaikhisrar33733-rgb.github.io/crewiify-portfolio/assets/case-studies/palladium/coverimage.jpeg" alt="Paladium Janseva Hospital Project" class="cs-card__img" style="object-position: center 25%;" loading="lazy">
+                <div class="cs-card__overlay"></div>
+                <div class="cs-card__tag-wrap">
+                  <span class="cs-tag cs-tag--category">SEO</span>
+                </div>
+              </div>
+              <div class="cs-card__body">
+                <h4 class="cs-card__title">Paladium Janseva Hospital</h4>
+                <p class="cs-card__desc">Helped a newly launched hospital generate patients, consultations, and local visibility in 45 days through Google Business Profile optimization.</p>
+                <div class="cs-card__footer">
+                  <div class="cs-card__metric-badge">
+                    <span class="cs-card__metric-val">1,356</span>
+                    <span class="cs-card__metric-lbl">Interactions in 45 Days</span>
+                  </div>
+                  <span class="cs-card__affordance" aria-hidden="true">
+                    View Case Study →
+                  </span>
+                </div>
+              </div>
+            </article>
+
+            <!-- Project 2: Orthopedic Doctor -->
+            <article class="cs-card cs-card--medium animate-fade-up-2" data-id="orthopedic-doctor-seo" tabindex="0" role="button" aria-label="View Orthopedic Doctor Case Study Preview">
+              <div class="cs-card__media">
+                <img src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&w=800&q=80" alt="Orthopedic Doctor Project" class="cs-card__img" style="object-position: center 22%;" loading="lazy">
+                <div class="cs-card__overlay"></div>
+                <div class="cs-card__tag-wrap">
+                  <span class="cs-tag cs-tag--category">SEO</span>
+                </div>
+              </div>
+              <div class="cs-card__body">
+                <h4 class="cs-card__title">Orthopedic Doctor</h4>
+                <p class="cs-card__desc">Optimized local SEO and Google Business Profile to capture patient searches, climbing clinic calls from 60 to 345 in four months.</p>
+                <div class="cs-card__footer">
+                  <div class="cs-card__metric-badge">
+                    <span class="cs-card__metric-val">345</span>
+                    <span class="cs-card__metric-lbl">Monthly Calls</span>
+                  </div>
+                  <span class="cs-card__affordance" aria-hidden="true">
+                    View Case Study →
+                  </span>
+                </div>
+              </div>
+            </article>
+
+            <!-- Project 3: Organic Farm Resort -->
+            <article class="cs-card cs-card--tall animate-fade-up-3" data-id="organic-farm-resort-seo" tabindex="0" role="button" aria-label="View Organic Farm Resort Case Study Preview">
+              <div class="cs-card__media">
+                <img src="https://images.unsplash.com/photo-1500651230702-0e2d8a49d4ad?auto=format&fit=crop&w=800&q=80" alt="Organic Farm Resort Project" class="cs-card__img" style="object-position: center center;" loading="lazy">
+                <div class="cs-card__overlay"></div>
+                <div class="cs-card__tag-wrap">
+                  <span class="cs-tag cs-tag--category">SEO</span>
+                </div>
+              </div>
+              <div class="cs-card__body">
+                <h4 class="cs-card__title">Organic Farm Resort</h4>
+                <p class="cs-card__desc">Rebuilt on-page structure and ran sustained off-page SEO, securing 16 first-page Google rankings with several holding #1–2 spots for over a year.</p>
+                <div class="cs-card__footer">
+                  <div class="cs-card__metric-badge">
+                    <span class="cs-card__metric-val">16</span>
+                    <span class="cs-card__metric-lbl">First-Page Keywords</span>
+                  </div>
+                  <span class="cs-card__affordance" aria-hidden="true">
+                    View Case Study →
+                  </span>
+                </div>
+              </div>
+            </article>
+
+            <!-- Project 4: Resort -->
+            <article class="cs-card cs-card--medium animate-fade-up-1" data-id="resort-local-seo" tabindex="0" role="button" aria-label="View Resort Case Study Preview">
+              <div class="cs-card__media">
+                <img src="https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&w=800&q=80" alt="Resort Project" class="cs-card__img" style="object-position: center 45%;" loading="lazy">
+                <div class="cs-card__overlay"></div>
+                <div class="cs-card__tag-wrap">
+                  <span class="cs-tag cs-tag--category">SEO</span>
+                </div>
+              </div>
+              <div class="cs-card__body">
+                <h4 class="cs-card__title">Resort</h4>
+                <p class="cs-card__desc">Built out local SEO and off-page signals from a standing start, breaking into top-20 positions for competitive getaway searches.</p>
+                <div class="cs-card__footer">
+                  <div class="cs-card__metric-badge">
+                    <span class="cs-card__metric-val">Top 20</span>
+                    <span class="cs-card__metric-lbl">Local Search Rankings</span>
+                  </div>
+                  <span class="cs-card__affordance" aria-hidden="true">
+                    View Case Study →
+                  </span>
+                </div>
+              </div>
+            </article>
+
+            <!-- Project 5: A Leading Cruise Line -->
+            <article class="cs-card cs-card--tall animate-fade-up-2" data-id="leading-cruise-line-ppc" tabindex="0" role="button" aria-label="View A Leading Cruise Line Case Study Preview">
+              <div class="cs-card__media">
+                <img src="https://images.unsplash.com/photo-1548574505-5e239809ee19?auto=format&fit=crop&w=800&q=80" alt="A Leading Cruise Line Project" class="cs-card__img" style="object-position: center center;" loading="lazy">
+                <div class="cs-card__overlay"></div>
+                <div class="cs-card__tag-wrap">
+                  <span class="cs-tag cs-tag--category">PPC Management &amp; Growth</span>
+                </div>
+              </div>
+              <div class="cs-card__body">
+                <h4 class="cs-card__title">A Leading Cruise Line</h4>
+                <p class="cs-card__desc">Rebuilt conversion tracking and restructured intent signals to drive cabin bookings, achieving a 9x ROAS and $550K in monthly PPC revenue.</p>
+                <div class="cs-card__footer">
+                  <div class="cs-card__metric-badge">
+                    <span class="cs-card__metric-val">9x</span>
+                    <span class="cs-card__metric-lbl">ROAS</span>
+                  </div>
+                  <span class="cs-card__affordance" aria-hidden="true">
+                    View Case Study →
+                  </span>
+                </div>
+              </div>
+            </article>
+
+            <!-- Project 6: A Leading Multispeciality Hospital -->
+            <article class="cs-card cs-card--medium animate-fade-up-3" data-id="leading-multispeciality-hospital-ppc" tabindex="0" role="button" aria-label="View A Leading Multispeciality Hospital Case Study Preview">
+              <div class="cs-card__media">
+                <img src="https://images.unsplash.com/photo-1586773860418-d37222d8fce3?auto=format&fit=crop&w=800&q=80" alt="A Leading Multispeciality Hospital Project" class="cs-card__img" style="object-position: center 30%;" loading="lazy">
+                <div class="cs-card__overlay"></div>
+                <div class="cs-card__tag-wrap">
+                  <span class="cs-tag cs-tag--category">PPC Management &amp; Growth</span>
+                </div>
+              </div>
+              <div class="cs-card__body">
+                <h4 class="cs-card__title">A Leading Multispeciality Hospital</h4>
+                <p class="cs-card__desc">Fixed tracking, rebuilt the conversion funnel, and refocused spend on high-converting searches, achieving 7x ROAS and $255K in monthly revenue.</p>
+                <div class="cs-card__footer">
+                  <div class="cs-card__metric-badge">
+                    <span class="cs-card__metric-val">7x</span>
+                    <span class="cs-card__metric-lbl">ROAS</span>
+                  </div>
+                  <span class="cs-card__affordance" aria-hidden="true">
+                    View Case Study →
+                  </span>
+                </div>
+              </div>
+            </article>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Section 4: Case Studies / Portfolio Masonry Section -->
     <section class="portfolio" id="portfolio" aria-label="Case Studies">
       <div class="container">
 
@@ -594,196 +783,7 @@
       </div>
     </section>
 
-    <!-- Section 3: Case Studies Portfolio Browsing -->
-    <section class="cs-portfolio" id="case-studies-grid">
-      <!-- Atmospheric Ambient Glow -->
-      <div class="cs-portfolio__glow" aria-hidden="true"></div>
-
-      <div class="container">
-
-        <!-- Case Studies Listing -->
-        <div class="cs-grid-view" id="csGridView">
-
-          <!-- 2. All Case Studies Grid Header & Counter -->
-          <div class="cs-grid-header">
-            <h3 class="cs-grid-header__title">All Case Studies</h3>
-            <span class="cs-grid-header__count" id="csItemCount">Showing 6 of 6 Projects</span>
-          </div>
-
-          <!-- 1. Category Filter Navigation -->
-          <nav class="cs-filter-nav" aria-label="Case Study Category Filters">
-            <ul class="cs-filter-list" role="tablist">
-              <li role="presentation">
-                <button class="cs-filter-btn is-active" data-filter="all" role="tab" aria-selected="true">
-                  All Work
-                </button>
-              </li>
-              <li role="presentation">
-                <button class="cs-filter-btn" data-filter="SEO" role="tab" aria-selected="false">
-                  SEO
-                </button>
-              </li>
-              <li role="presentation">
-                <button class="cs-filter-btn" data-filter="PPC Management & Growth" role="tab" aria-selected="false">
-                  PPC Management &amp; Growth
-                </button>
-              </li>
-            </ul>
-          </nav>
-
-          <!-- 3. Responsive Masonry-Inspired Case Study Grid -->
-          <div class="cs-masonry-grid" id="csMasonryGrid">
-            <!-- Project 1: Paladium Janseva Hospital -->
-            <article class="cs-card cs-card--tall animate-fade-up-1" data-id="paladium-janseva" tabindex="0" role="button" aria-label="View Paladium Janseva Hospital Case Study Preview">
-              <div class="cs-card__media">
-                <img src="https://shaikhisrar33733-rgb.github.io/crewiify-portfolio/assets/case-studies/palladium/coverimage.jpeg" alt="Paladium Janseva Hospital Project" class="cs-card__img" style="object-position: center 25%;" loading="lazy">
-                <div class="cs-card__overlay"></div>
-                <div class="cs-card__tag-wrap">
-                  <span class="cs-tag cs-tag--category">SEO</span>
-                </div>
-              </div>
-              <div class="cs-card__body">
-                <h4 class="cs-card__title">Paladium Janseva Hospital</h4>
-                <p class="cs-card__desc">Helped a newly launched hospital generate patients, consultations, and local visibility in 45 days through Google Business Profile optimization.</p>
-                <div class="cs-card__footer">
-                  <div class="cs-card__metric-badge">
-                    <span class="cs-card__metric-val">1,356</span>
-                    <span class="cs-card__metric-lbl">Interactions in 45 Days</span>
-                  </div>
-                  <span class="cs-card__affordance" aria-hidden="true">
-                    View Case Study →
-                  </span>
-                </div>
-              </div>
-            </article>
-
-            <!-- Project 2: Orthopedic Doctor -->
-            <article class="cs-card cs-card--medium animate-fade-up-2" data-id="orthopedic-doctor-seo" tabindex="0" role="button" aria-label="View Orthopedic Doctor Case Study Preview">
-              <div class="cs-card__media">
-                <img src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&w=800&q=80" alt="Orthopedic Doctor Project" class="cs-card__img" style="object-position: center 22%;" loading="lazy">
-                <div class="cs-card__overlay"></div>
-                <div class="cs-card__tag-wrap">
-                  <span class="cs-tag cs-tag--category">SEO</span>
-                </div>
-              </div>
-              <div class="cs-card__body">
-                <h4 class="cs-card__title">Orthopedic Doctor</h4>
-                <p class="cs-card__desc">Optimized local SEO and Google Business Profile to capture patient searches, climbing clinic calls from 60 to 345 in four months.</p>
-                <div class="cs-card__footer">
-                  <div class="cs-card__metric-badge">
-                    <span class="cs-card__metric-val">345</span>
-                    <span class="cs-card__metric-lbl">Monthly Calls</span>
-                  </div>
-                  <span class="cs-card__affordance" aria-hidden="true">
-                    View Case Study →
-                  </span>
-                </div>
-              </div>
-            </article>
-
-            <!-- Project 3: Organic Farm Resort -->
-            <article class="cs-card cs-card--tall animate-fade-up-3" data-id="organic-farm-resort-seo" tabindex="0" role="button" aria-label="View Organic Farm Resort Case Study Preview">
-              <div class="cs-card__media">
-                <img src="https://images.unsplash.com/photo-1500651230702-0e2d8a49d4ad?auto=format&fit=crop&w=800&q=80" alt="Organic Farm Resort Project" class="cs-card__img" style="object-position: center center;" loading="lazy">
-                <div class="cs-card__overlay"></div>
-                <div class="cs-card__tag-wrap">
-                  <span class="cs-tag cs-tag--category">SEO</span>
-                </div>
-              </div>
-              <div class="cs-card__body">
-                <h4 class="cs-card__title">Organic Farm Resort</h4>
-                <p class="cs-card__desc">Rebuilt on-page structure and ran sustained off-page SEO, securing 16 first-page Google rankings with several holding #1–2 spots for over a year.</p>
-                <div class="cs-card__footer">
-                  <div class="cs-card__metric-badge">
-                    <span class="cs-card__metric-val">16</span>
-                    <span class="cs-card__metric-lbl">First-Page Keywords</span>
-                  </div>
-                  <span class="cs-card__affordance" aria-hidden="true">
-                    View Case Study →
-                  </span>
-                </div>
-              </div>
-            </article>
-
-            <!-- Project 4: Resort -->
-            <article class="cs-card cs-card--medium animate-fade-up-1" data-id="resort-local-seo" tabindex="0" role="button" aria-label="View Resort Case Study Preview">
-              <div class="cs-card__media">
-                <img src="https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&w=800&q=80" alt="Resort Project" class="cs-card__img" style="object-position: center 45%;" loading="lazy">
-                <div class="cs-card__overlay"></div>
-                <div class="cs-card__tag-wrap">
-                  <span class="cs-tag cs-tag--category">SEO</span>
-                </div>
-              </div>
-              <div class="cs-card__body">
-                <h4 class="cs-card__title">Resort</h4>
-                <p class="cs-card__desc">Built out local SEO and off-page signals from a standing start, breaking into top-20 positions for competitive getaway searches.</p>
-                <div class="cs-card__footer">
-                  <div class="cs-card__metric-badge">
-                    <span class="cs-card__metric-val">Top 20</span>
-                    <span class="cs-card__metric-lbl">Local Search Rankings</span>
-                  </div>
-                  <span class="cs-card__affordance" aria-hidden="true">
-                    View Case Study →
-                  </span>
-                </div>
-              </div>
-            </article>
-
-            <!-- Project 5: A Leading Cruise Line -->
-            <article class="cs-card cs-card--tall animate-fade-up-2" data-id="leading-cruise-line-ppc" tabindex="0" role="button" aria-label="View A Leading Cruise Line Case Study Preview">
-              <div class="cs-card__media">
-                <img src="https://images.unsplash.com/photo-1548574505-5e239809ee19?auto=format&fit=crop&w=800&q=80" alt="A Leading Cruise Line Project" class="cs-card__img" style="object-position: center center;" loading="lazy">
-                <div class="cs-card__overlay"></div>
-                <div class="cs-card__tag-wrap">
-                  <span class="cs-tag cs-tag--category">PPC Management &amp; Growth</span>
-                </div>
-              </div>
-              <div class="cs-card__body">
-                <h4 class="cs-card__title">A Leading Cruise Line</h4>
-                <p class="cs-card__desc">Rebuilt conversion tracking and restructured intent signals to drive cabin bookings, achieving a 9x ROAS and $550K in monthly PPC revenue.</p>
-                <div class="cs-card__footer">
-                  <div class="cs-card__metric-badge">
-                    <span class="cs-card__metric-val">9x</span>
-                    <span class="cs-card__metric-lbl">ROAS</span>
-                  </div>
-                  <span class="cs-card__affordance" aria-hidden="true">
-                    View Case Study →
-                  </span>
-                </div>
-              </div>
-            </article>
-
-            <!-- Project 6: A Leading Multispeciality Hospital -->
-            <article class="cs-card cs-card--medium animate-fade-up-3" data-id="leading-multispeciality-hospital-ppc" tabindex="0" role="button" aria-label="View A Leading Multispeciality Hospital Case Study Preview">
-              <div class="cs-card__media">
-                <img src="https://images.unsplash.com/photo-1586773860418-d37222d8fce3?auto=format&fit=crop&w=800&q=80" alt="A Leading Multispeciality Hospital Project" class="cs-card__img" style="object-position: center 30%;" loading="lazy">
-                <div class="cs-card__overlay"></div>
-                <div class="cs-card__tag-wrap">
-                  <span class="cs-tag cs-tag--category">PPC Management &amp; Growth</span>
-                </div>
-              </div>
-              <div class="cs-card__body">
-                <h4 class="cs-card__title">A Leading Multispeciality Hospital</h4>
-                <p class="cs-card__desc">Fixed tracking, rebuilt the conversion funnel, and refocused spend on high-converting searches, achieving 7x ROAS and $255K in monthly revenue.</p>
-                <div class="cs-card__footer">
-                  <div class="cs-card__metric-badge">
-                    <span class="cs-card__metric-val">7x</span>
-                    <span class="cs-card__metric-lbl">ROAS</span>
-                  </div>
-                  <span class="cs-card__affordance" aria-hidden="true">
-                    View Case Study →
-                  </span>
-                </div>
-              </div>
-            </article>
-          </div>
-
-        </div>
-
-      </div>
-    </section>
-
-    <!-- Section 4: Final Conversion CTA -->
+    <!-- Section 5: Final Conversion CTA -->
     <section class="footer-cta" id="cta" aria-label="Start a Project">
       <div class="footer-cta__glow" aria-hidden="true"></div>
       <div class="container">
